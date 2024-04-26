@@ -1,0 +1,12 @@
+﻿using MediatR;
+using Tech_Inventory.Application.Common.Exceptions;
+using Tech_Inventory.Domain.Entities;
+
+namespace Tech_Inventory.Application.Features.SocketFeature.GetAllSockets;
+
+public sealed record GetAllSocketsRequest : IRequest<ApiResponse>
+{
+    public int ObyektId { get; set; }
+    public int PageNumber { get; set; } = 1;
+    public int PageSize { get; set; } = 20;
+}
