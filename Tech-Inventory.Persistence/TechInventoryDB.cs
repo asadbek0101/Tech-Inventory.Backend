@@ -4,14 +4,23 @@ using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Interfaces;
 using Tech_Inventory.Domain.Entities;
 using Tech_Inventory.Domain.IdentityEntities;
+using Tech_Inventory.Persistence.Interceptors;
 
 namespace Tech_Inventory.Persistence;
 
 public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRole, int>, ITechInventoryDB
 {
-    public TechInventoryDB(DbContextOptions<TechInventoryDB> options) : base(options)
+    private readonly EntitySaveChangesInterceptor _entitySaveChangesInterceptor;
+    public TechInventoryDB(DbContextOptions<TechInventoryDB> options, EntitySaveChangesInterceptor entitySaveChangesInterceptor) : base(options)
     {
+        _entitySaveChangesInterceptor = entitySaveChangesInterceptor;
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.AddInterceptors(_entitySaveChangesInterceptor);
+    }
+
     public DbSet<Akumalator> Akumalators { get; set; }
     public DbSet<Avtomat> Avtomats { get; set; }
     public DbSet<Attachment> Attachments { get; set; }
@@ -32,6 +41,7 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
     public DbSet<Ups> Ups { get; set; }
     public DbSet<Project> Projects { get; set; }
     public DbSet<SpeedChecking> SpeedCheckings { get; set; }
+    public DbSet<AspNetClaim> AspNetClaims { get; set; }
     public DbSet<ObjectClass> ObjectClasses { get; set; }
     public DbSet<ObjectClassType> ObjectClassTypes { get; set; }
     public DbSet<Stanchion> Stanchions { get; set; }
@@ -39,6 +49,8 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
     public DbSet<FTTX> FTTXs { get; set; }
     public DbSet<GPON> GPONs { get; set; }
     public DbSet<GSM> GSMs { get; set; }
+
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -49,8 +61,20 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
                     .HasForeignKey(c => c.RegionId)
                     .OnDelete(DeleteBehavior.Cascade);
 
+        modelBuilder.Entity<Region>()
+                    .HasMany(u => u.Users)
+                    .WithOne(c => c.Region)
+                    .HasForeignKey(c => c.RegionId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
         modelBuilder.Entity<District>()
                    .HasMany(u => u.Obyekts)
+                   .WithOne(c => c.District)
+                   .HasForeignKey(c => c.DistrictId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<District>()
+                   .HasMany(u => u.Users)
                    .WithOne(c => c.District)
                    .HasForeignKey(c => c.DistrictId)
                    .OnDelete(DeleteBehavior.Cascade);
@@ -299,13 +323,22 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
                  .HasForeignKey(c => c.ObyektId)
                  .OnDelete(DeleteBehavior.Cascade);
 
+        // User Regions
+
+        modelBuilder.Entity<Region>()
+                 .HasMany(u => u.UserRegions)
+                 .WithOne(c => c.Region)
+                 .HasForeignKey(c => c.RegionId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<ApplicationUser>()
+                 .HasMany(u => u.UserRegions)
+                 .WithOne(c => c.User)
+                 .HasForeignKey(c => c.UserId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+
         var hasher = new PasswordHasher<ApplicationUser>();
-
-        modelBuilder.Entity<ApplicationUser>().HasData(
-
-            new ApplicationUser() { Id = 1, UserName = "Asadbek", NormalizedUserName = "ASADBEK", Email = "asad@gmail.com", NormalizedEmail = "ASAD@GMAIL.COM", PhoneNumber = "998996906901", SecurityStamp = Guid.NewGuid().ToString("D"), PasswordHash = hasher.HashPassword(null, "Asadbek2001!")
-                }
-           );
 
         modelBuilder.Entity<Region>().HasData(
             new Region() { Id = 1, Name = "Qoraqalpog‘iston Respublikasi", Info = "test", CreatedBy = 1 },
@@ -527,10 +560,28 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
             new District() { Id = 200, RegionId = 14, Name = "Yashnobod tumani", Info = "test", CreatedBy = 1 }
             );
 
+        modelBuilder.Entity<ApplicationUser>().HasData(
+
+            new ApplicationUser()
+            {
+                Id = 1,
+                UserName = "Asadbek",
+                NormalizedUserName = "ASADBEK",
+                Email = "asad@gmail.com",
+                NormalizedEmail = "ASAD@GMAIL.COM",
+                PhoneNumber = "998996906901",
+                SecurityStamp = Guid.NewGuid().ToString("D"),
+                PasswordHash = hasher.HashPassword(null, "Asadbek2001!"),
+                RegionId = 7,
+                DistrictId = 95,
+               }
+           );
+
         modelBuilder.Entity<ObjectClassType>().HasData(
             new ObjectClassType() { Id = 1, Name = "Ijtimoiy obyektlar" },
             new ObjectClassType() { Id = 2, Name = "PDD" }
             );
+
         modelBuilder.Entity<ObjectClass>().HasData(
             new ObjectClass() { Id = 1, Name = "Maktab", ObjectClassTypeId = 1 },
             new ObjectClass() { Id = 2, Name = "Bog'cha", ObjectClassTypeId = 1},
@@ -545,5 +596,19 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
             new ObjectClass() { Id = 10, Name = "Radar", ObjectClassTypeId = 2},
             new ObjectClass() { Id = 11, Name = "3.27 yo'l beligisi", ObjectClassTypeId = 2}
             );
-        }
+
+        modelBuilder.Entity<ApplicationRole>().HasData(
+            new ApplicationRole() { Id = 1, Name = "Admin", NormalizedName = "ADMIN" },
+            new ApplicationRole() { Id = 2, Name = "Staff", NormalizedName = "STAFF" },
+            new ApplicationRole() { Id = 3, Name = "SuperAdmin", NormalizedName = "SUPERADMIN" }
+            );
+
+        modelBuilder.Entity<AspNetClaim>().HasData(
+            new AspNetClaim() { Id = 1, ClaimName = "Obyekt yaratish", ClaimType = "createObyekt", ClaimValue = "CreateObyekt" },
+            new AspNetClaim() { Id = 2, ClaimName = "Hamma obyektlarni ko'rish", ClaimType = "readAllObyekts", ClaimValue = "readAllObyekts" },
+            new AspNetClaim() { Id = 3, ClaimName = "Bitta obyektni ko'rish", ClaimType = "readOneObyekt", ClaimValue = "ReadOneObyekt" },
+            new AspNetClaim() { Id = 4, ClaimName = "Obyektni yangilash", ClaimType = "updateObyekt", ClaimValue = "UpdateObyekt" },
+            new AspNetClaim() { Id = 5, ClaimName = "Obyektni o'chirish", ClaimType = "deleteObyekt", ClaimValue = "DeleteObyekt" }
+      );
+    }
    }

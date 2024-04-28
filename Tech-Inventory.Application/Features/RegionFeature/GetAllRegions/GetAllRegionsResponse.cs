@@ -8,5 +8,4 @@ public sealed record GetAllRegionsResponse
     public DateTime? UpdatedDate { get; set; }
     public string Name { get; set; }
     public string Info { get; set; }
-    public string Asadbek {  get; set; }
 }

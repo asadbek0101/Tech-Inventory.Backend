@@ -22,10 +22,4 @@
     <ProjectReference Include="..\Tech-Inventory.Domain\Tech-Inventory.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\ModelFeature\DeleteModels\" />
-    <Folder Include="Features\ModelFeature\DeleteModel\" />
-    <Folder Include="Features\ModelFeature\UpdateModel\" />
-  </ItemGroup>
-
 </Project>

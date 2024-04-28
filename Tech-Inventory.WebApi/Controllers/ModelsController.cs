@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Features.ModelFeature.CreateModel;
+using Tech_Inventory.Application.Features.ModelFeature.DeleteModels;
 using Tech_Inventory.Application.Features.ModelFeature.GetAllModels;
 using Tech_Inventory.Application.Features.ModelFeature.GetModelsList;
 using Tech_Inventory.Application.Features.ModelFeature.GetOneModel;
+using Tech_Inventory.Application.Features.ModelFeature.UpdateModel;
 
 namespace Tech_Inventory.WebApi.Controllers;
 
@@ -29,6 +31,18 @@ public class ModelsController : BaseController
 
     [HttpPost("Create")]
     public async Task<ActionResult<ApiResponse>> Create([FromBody] CreateModelRequest request)
+    {
+        return await Mediator.Send(request);
+    }
+
+    [HttpPut("Update")]
+    public async Task<ActionResult<ApiResponse>> Update([FromBody] UpdateModelRequest request)
+    {
+        return await Mediator.Send(request);
+    }
+
+    [HttpPost("Delete")]
+    public async Task<ActionResult<ApiResponse>> DeleteByIds([FromBody] DeleteModelsRequest request)
     {
         return await Mediator.Send(request);
     }

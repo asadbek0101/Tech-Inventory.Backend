@@ -1,6 +1,4 @@
-﻿using Tech_Inventory.Domain.Entities;
-
-namespace Tech_Inventory.Application.Features.ObyektFeature.GetAllObyekts;
+﻿namespace Tech_Inventory.Application.Features.ObyektFeature.GetAllObyekts;
 
 public sealed record GetAllObyektsResponse
 {
@@ -9,6 +7,8 @@ public sealed record GetAllObyektsResponse
     public int UpdatedBy { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime UpdatedDate { get; set; }
+    public string UpdatedByUserName { get; set; }
+    public string CreatedByUserName { get; set; }
     public string Name { get; set; }
     public string Home { get; set; }
     public string Street { get; set; }
@@ -16,4 +16,5 @@ public sealed record GetAllObyektsResponse
     public string Longitude { get; set; }
     public string Info { get; set; }
     public string ConnectionType { get; set; }
+    public string Owner { get; set; }
 }

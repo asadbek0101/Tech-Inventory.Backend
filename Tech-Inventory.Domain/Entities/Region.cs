@@ -1,4 +1,6 @@
-﻿namespace Tech_Inventory.Domain.Entities;
+﻿using Tech_Inventory.Domain.IdentityEntities;
+
+namespace Tech_Inventory.Domain.Entities;
 
 public class Region : BaseEntity
 {
@@ -6,4 +8,6 @@ public class Region : BaseEntity
     public string Info { get; set; }
     public List<District> Districts { get; set; }
     public List<Obyekt> Obyekts { get; set; }
+    public List<ApplicationUser> Users { get; set; }
+    public List<UserRegion> UserRegions { get; set; }
 }

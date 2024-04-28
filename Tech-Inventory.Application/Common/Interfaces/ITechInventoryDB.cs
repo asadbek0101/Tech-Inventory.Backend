@@ -6,6 +6,7 @@ namespace Tech_Inventory.Application.Common.Interfaces;
 public interface ITechInventoryDB
 {
     public DbSet<Akumalator> Akumalators { get; set; }
+    public DbSet<AspNetClaim> AspNetClaims { get; set; }
     public DbSet<Avtomat> Avtomats { get; set; }
     public DbSet<Attachment> Attachments { get; set; }
     public DbSet<Cabel> Cabels { get; set; }

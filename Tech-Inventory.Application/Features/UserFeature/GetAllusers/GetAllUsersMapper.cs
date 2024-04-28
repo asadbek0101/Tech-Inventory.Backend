@@ -7,6 +7,8 @@ public class GetAllUsersMapper : Profile
 {
     public GetAllUsersMapper()
     {
-        CreateMap<ApplicationUser, GetAllUsersResponse>();
+        CreateMap<ApplicationUser, GetAllUsersResponse>()
+            .ForMember(x=>x.Region, otp => otp.MapFrom(x => x.Region.Name))
+            .ForMember(x=>x.District, otp => otp.MapFrom(x => x.District.Name));
     }
 }

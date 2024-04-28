@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿    using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -37,7 +37,7 @@ public class LoginUserHandler : IRequestHandler<LoginUserRequest, ApiResponse>
 
                 if (!isCorrect)
                 {
-                    var response = new LoginUserResponse { Message = "Username or password is invalid" };
+                    var response = new LoginUserResponse { Message = "Username or password invalid" };
 
                     return ResponseHandler.GetAppResponse(ResponseType.Success, response);
                 }
@@ -45,14 +45,14 @@ public class LoginUserHandler : IRequestHandler<LoginUserRequest, ApiResponse>
                 {
                     type = ResponseType.Failed;
                     var token = await GenerateToken(hasUser);
-                    var response = new LoginUserResponse { Message = "Success", Token = token };
+                    var response = new LoginUserResponse { UserId = hasUser.Id, Message = "Successfully logged", Token = token };
                     return ResponseHandler.GetAppResponse(type, response);
                 }
             }
             else
             {
                 type = ResponseType.Success;
-                var reposne = new LoginUserResponse { Message = "Username or password is invalid" };
+                var reposne = new LoginUserResponse { Message = "Username or password invalid" };
                 return ResponseHandler.GetAppResponse(type, reposne);
             }
         }

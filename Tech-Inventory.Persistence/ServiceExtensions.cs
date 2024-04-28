@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tech_Inventory.Application.Common.Interfaces;
 using Tech_Inventory.Domain.IdentityEntities;
+using Tech_Inventory.Persistence.Interceptors;
 
 namespace Tech_Inventory.Persistence;
 
@@ -12,6 +13,7 @@ public static class ServiceExtensions
     {
         var connectionString = configuration.GetConnectionString("DBConnection");
         services.AddDbContext<TechInventoryDB>(opt => opt.UseNpgsql(connectionString));
+        services.AddScoped<EntitySaveChangesInterceptor>();
         services.AddIdentityCore<ApplicationUser>(options => {
             options.SignIn.RequireConfirmedAccount = true;
             options.User.RequireUniqueEmail = true;
@@ -20,6 +22,7 @@ public static class ServiceExtensions
 
         services.AddScoped<ITechInventoryDB, TechInventoryDB>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         return services;
     }
 }

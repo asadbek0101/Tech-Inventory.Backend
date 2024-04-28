@@ -21,7 +21,9 @@ public class GetAllAkumalatorsHandler : IRequestHandler<GetAllAkumalatorsRequest
         var type = ResponseType.Failed;
         try
         {
-            var akumalators = await _context.Akumalators.Where(x => x.ObyektId == request.ObyektId).ToListAsync();
+            var akumalators = await _context.Akumalators
+                .Where(x => x.ObyektId == request.ObyektId)
+                .ToListAsync();
 
             var akumalatorsResponse = _mapper.Map<List<GetAllAkumalatorsResponse>>(akumalators);
 

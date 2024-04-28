@@ -22,7 +22,12 @@ public class GetOneUserHandler : IRequestHandler<GetOneUserRequest, ApiResponse>
         ResponseType type = ResponseType.Success;
         try
         {
-            var user = await _userManager.Users.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var user = await _userManager
+                .Users
+                .Include(x => x.Region)
+                .Include(x => x.District)
+                .Where(x => x.Id == request.Id)
+                .FirstOrDefaultAsync();
             if (user == null)
             {
                 type = ResponseType.Failed;
@@ -31,7 +36,11 @@ public class GetOneUserHandler : IRequestHandler<GetOneUserRequest, ApiResponse>
             }
             else
             {
+                var role = await _userManager.GetRolesAsync(user);
+
                 var responseUser = _mapper.Map<GetOneUserResponse>(user);
+
+                responseUser.Role = role;
 
                 return ResponseHandler.GetAppResponse(type, responseUser);
             }

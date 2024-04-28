@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
+using Tech_Inventory.Domain.Entities;
 
 namespace Tech_Inventory.Application.Features.ObyektFeature.GetObyektProducts;
 
@@ -23,163 +24,133 @@ public class GetObyektProductsHandler : IRequestHandler<GetObyektProductsRequest
         var type = ResponseType.Success;
         try
         {
-            var obyektProducts = new List<GetObyektProductsResponse>();
+            var utpCabelCount = await _context.Cabels
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.CabelType == CabelTypes.UTPable)
+                .CountAsync();
 
-            var akumalatorsCount = await _context.Akumalators.Where(x => x.ObyektId == request.ObyektId).CountAsync();
+            var electrCabelCount = await _context.Cabels
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.CabelType == CabelTypes.ElectricCable)
+                .CountAsync();
 
-            if(akumalatorsCount > 0)
+            var swtichPoeCount = await _context.Switches
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.SwitchType == SwitchTypes.SwitchPoE)
+                .CountAsync();
+
+            var swtichComboCount = await _context.Switches
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.SwitchType == SwitchTypes.SwitchCombo)
+                .CountAsync();
+
+            var telecommunicationShelfCount = await _context.Shelves
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.ShelfType == ShelfTypes.TelecommunicationShelf)
+                .CountAsync();
+
+            var centralTelecommunicationShelfCount = await _context.Shelves
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.ShelfType == ShelfTypes.CentralTelecommunicationShelf)
+                .CountAsync();
+
+            var mainElectronicShelfCount = await _context.Shelves
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.ShelfType == ShelfTypes.MainElectronicShelf)
+                .CountAsync();
+
+            var distributionShelfCount = await _context.Shelves
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.ShelfType == ShelfTypes.DistributionShelf)
+                .CountAsync();
+
+            var odfOpticRackCount = await _context.Racks
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.RackType == RackTypes.ODFOpticRack)
+                .CountAsync();
+
+            var miniOpticRackCount = await _context.Racks
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.RackType == RackTypes.MiniOpticRack)
+                .CountAsync();
+
+            var svetaforDetectorCount = await _context.SvetoforDetectors
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.SvetaforType == SvetaforTypes.SvetaforDetector)
+                .CountAsync();
+
+            var svetaforDetectorForCameraCount = await _context.SvetoforDetectors
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.SvetaforType == SvetaforTypes.SvetaforDetectorForCamera)
+                .CountAsync();
+
+            var projectorCount = await _context.Projectors
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var avtomatCount = await _context.Avtomats
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var akumalatorCount = await _context.Akumalators
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var upsCount = await _context.Ups
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var terminalServerCount = await _context.TerminalServers
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var socketCount = await _context.Sockets
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var stabilizerCount = await _context.Stabilizers
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var stanchionCount = await _context.Stanchions
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var speedCheckingCount = await _context.SpeedCheckings
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var cameraCount = await _context.Cameras
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var response = new GetObyektProductsResponse
             {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Akumalators",
-                    Count = akumalatorsCount.ToString()
-                });
-            }
+                UtpCabelCount = utpCabelCount,
+                ElectrCabelCount = electrCabelCount,
+                SwitchComboCount = swtichComboCount,
+                SwitchPoeCount = swtichPoeCount,
+                ProjectorCount = projectorCount,
+                AvtomatCount = avtomatCount,
+                AkumalatorCount = akumalatorCount,
+                UpsCount = upsCount,
+                TerminalServerCount = terminalServerCount,
+                SocketCount = socketCount,
+                StabilizerCount = stabilizerCount,
+                StanchionCount = stanchionCount,
+                SpeedCheckingCount = speedCheckingCount,
+                MainElectronicShelfCount = mainElectronicShelfCount,
+                DistributionShelfCount = distributionShelfCount,
+                CentralTelecommunicationShelfCount = centralTelecommunicationShelfCount,
+                TelecommunicationShelfCount = telecommunicationShelfCount,
+                OdfOpticRackCount = odfOpticRackCount,
+                MiniOpticRackCount = miniOpticRackCount,
+                SvetaforDetectorCount = svetaforDetectorCount,
+                SvetaforDetectorForCameraCount = svetaforDetectorForCameraCount,
+                CameraCount = cameraCount,
+            };
 
-            var camerasCount = await _context.Cameras.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (camerasCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Cameras",
-                    Count = camerasCount.ToString()
-                });
-            }
-
-            var cabelsCount = await _context.Cabels.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (cabelsCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Cabels",
-                    Count = cabelsCount.ToString()
-                });
-            }
-
-            var attechmentsCount = await _context.Attachments.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (attechmentsCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Attachments",
-                    Count = attechmentsCount.ToString()
-                });
-            }
-
-            var avtomatsCount = await _context.Avtomats.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (avtomatsCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Avtomats",
-                    Count = avtomatsCount.ToString()
-                });
-            }
-
-            var projectorsCount = await _context.Projectors.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (projectorsCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Projectors",
-                    Count = projectorsCount.ToString()
-                });
-            }
-
-            var rackesCount = await _context.Racks.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (rackesCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Rackes",
-                    Count = rackesCount.ToString()
-                });
-            }
-
-            var switchesCount = await _context.Switches.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (switchesCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Switches",
-                    Count = switchesCount.ToString()
-                });
-            }
-
-            var shelvesCount = await _context.Shelves.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (shelvesCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Shelves",
-                    Count = shelvesCount.ToString()
-                });
-            }
-
-            var socketsCount = await _context.Sockets.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (socketsCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Sockets",
-                    Count = socketsCount.ToString()
-                });
-            }
-
-            var stabilizersCount = await _context.Stabilizers.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (stabilizersCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Stabilizers",
-                    Count = stabilizersCount.ToString()
-                });
-            }
-
-            var svetaforsCount = await _context.SvetoforDetectors.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (svetaforsCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Svetafors",
-                    Count = svetaforsCount.ToString()
-                });
-            }
-
-            var upsesCount = await _context.Ups.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (upsesCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Upses",
-                    Count = upsesCount.ToString()
-                });
-            }
-
-            var terminalServersCount = await _context.TerminalServers.Where(x => x.ObyektId == request.ObyektId).CountAsync();
-
-            if (terminalServersCount > 0)
-            {
-                obyektProducts.Add(new GetObyektProductsResponse
-                {
-                    Name = "Terminal Servers",
-                    Count = terminalServersCount.ToString()
-                });
-            }
-
-            return ResponseHandler.GetAppResponse(type, obyektProducts);
+            return ResponseHandler.GetAppResponse(type, response);
         }
         catch (Exception ex)
         {

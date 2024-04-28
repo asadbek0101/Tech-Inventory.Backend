@@ -11,7 +11,7 @@ using Tech_Inventory.Application.Features.RegionFeature.UpdateRegion;
 
 namespace Tech_Inventory.WebApi.Controllers;
 
-//[Authorize]
+[Authorize]
 public class RegionsController : BaseController
 {
     [HttpGet("GetAll")]

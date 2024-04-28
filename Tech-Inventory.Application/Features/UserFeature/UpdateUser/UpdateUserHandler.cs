@@ -30,11 +30,18 @@ public class UpdateUserHandler : IRequestHandler<UpdateUserRequest, ApiResponse>
                 user.Email = request.Email;
                 user.UserName = request.UserName;
                 user.PhoneNumber = request.PhoneNumber;
+                user.RegionId = request.RegionId;
+                user.DistrictId = request.DistrictId;
 
                 var isUpdateUser = await _userManager.UpdateAsync(user);
 
                 if(isUpdateUser.Succeeded)
                 {
+                    var role = await _userManager.GetRolesAsync(user);
+
+                    await _userManager.RemoveFromRoleAsync(user, role[0]);
+                    await _userManager.AddToRoleAsync(user, request.RoleName);
+
                     return ResponseHandler.GetAppResponse(type, new UpdateUserResponse
                     {
                         Id = user.Id,

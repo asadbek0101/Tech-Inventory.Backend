@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Helpers;
 using Tech_Inventory.Application.Common.Interfaces;
+using Tech_Inventory.Domain.IdentityEntities;
 
 namespace Tech_Inventory.Application.Features.ObyektFeature.GetAllObyekts;
 
@@ -12,12 +14,14 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
     private readonly ITechInventoryDB _context;
     private readonly IMapper _mapper;
     private readonly IPaginator _paginator;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public GetAllObyektsHandler(ITechInventoryDB context, IMapper mapper, IPaginator paginator)
+    public GetAllObyektsHandler(ITechInventoryDB context, IMapper mapper, IPaginator paginator, UserManager<ApplicationUser> userManager)
     {
         _context = context;
         _mapper = mapper;
         _paginator = paginator;
+        _userManager = userManager;
     }
     public async Task<ApiResponse> Handle(GetAllObyektsRequest request, CancellationToken cancellationToken)
     {
@@ -69,6 +73,17 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
 
             var totalRowCount = await _context.Obyekts.CountAsync();
             var totalPageCount = _paginator.GetTotalPageCount(request.PageSize, totalRowCount);
+
+            foreach( var item in obyektsResponse)
+            {
+                var user = await _userManager.FindByIdAsync(item.CreatedBy.ToString());
+
+                if (user != null)
+                {
+                    item.Owner = user.UserName;
+                }
+            }
+
             var response = new PaginationResponse { Data = obyektsResponse, TotalRowCount = totalRowCount, TotalPageCount = totalPageCount };
 
             return ResponseHandler.GetAppResponse(type, response);

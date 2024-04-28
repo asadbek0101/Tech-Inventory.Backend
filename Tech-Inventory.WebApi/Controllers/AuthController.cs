@@ -4,7 +4,7 @@ using Tech_Inventory.Application.Common.Exceptions;
 
 namespace Tech_Inventory.WebApi.Controllers;
 
-public class AuthController : BaseController
+public class AuthController : BaseControllerForAuth
 {
     [HttpPost]
     public async Task<ActionResult<ApiResponse>> Login([FromBody] LoginUserRequest request)

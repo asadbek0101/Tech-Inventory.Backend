@@ -1,4 +1,6 @@
-﻿namespace Tech_Inventory.Domain.Entities;
+﻿using Tech_Inventory.Domain.IdentityEntities;
+
+namespace Tech_Inventory.Domain.Entities;
 
 public class Obyekt : BaseEntity
 {

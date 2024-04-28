@@ -4,6 +4,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Tech_Inventory.Application.Common.Interfaces;
 using Tech_Inventory.WebApi.Services;
+using Microsoft.AspNetCore.Identity;
+using Tech_Inventory.Persistence;
+using Tech_Inventory.Domain.IdentityEntities;
 
 namespace Tech_Inventory.WebApi;
 
@@ -58,6 +61,25 @@ public static class ServiceExtensions
 
                     }
                 });
+        });
+
+        services.AddIdentity<ApplicationUser, ApplicationRole>()
+                .AddEntityFrameworkStores<TechInventoryDB>()
+                .AddDefaultTokenProviders();
+
+        services.AddAuthorization(o =>
+        {
+            o.AddPolicy("ReadAllUsers", p => p.RequireClaim("readAllUsers", "ReadAllUsers"));
+            o.AddPolicy("ReadOneUser", p => p.RequireClaim("readOneUser", "ReadOneUser"));
+            o.AddPolicy("CreateUser", p => p.RequireClaim("createUser", "CreateUser"));
+            o.AddPolicy("DeleteUser", p => p.RequireClaim("deleteUser", "DeleteUser"));
+            o.AddPolicy("UpdateUser", p => p.RequireClaim("updateUser", "UpdateUser"));
+            
+            o.AddPolicy("ReadAllObyekts", p => p.RequireClaim("readAllObyekts", "ReadAllObyekts"));
+            o.AddPolicy("ReadOneObyekt", p => p.RequireClaim("readOneObyekt", "ReadOneObyekt"));
+            o.AddPolicy("CreateObyekt", p => p.RequireClaim("createObyekt", "CreateObyekt"));
+            o.AddPolicy("UpdateObyekt", p => p.RequireClaim("updateObyekt", "UpdateObyekt"));
+            o.AddPolicy("DeleteObyekt", p => p.RequireClaim("deleteObyekt", "DeleteObyekt"));
         });
 
         services.AddAuthentication(option =>

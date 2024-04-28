@@ -21,13 +21,16 @@ public class CreateUserHandler : IRequestHandler<CreateUserRequest, ApiResponse>
                 Email = request.Email,
                 UserName = request.UserName,
                 PhoneNumber = request.PhoneNumber,
+                RegionId = request.RegionId,
+                DistrictId = request.DistrictId,
             };
 
             var isCreatedUser = await _userManager.CreateAsync(user, request.Password);
 
             if(isCreatedUser.Succeeded)
             {
-                
+                await _userManager.AddToRoleAsync(user, request.RoleName);
+
                 return ResponseHandler.GetAppResponse(type, new CreateUserResponse { Id = user.Id, Message = "User has created" });
             }
             else
