@@ -6,6 +6,6 @@ public class CreateObyektValidator : AbstractValidator<CreateObyektRequest>
 {
     public CreateObyektValidator()
     {
-        RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.NameAndAddress).NotEmpty();
     }
 }

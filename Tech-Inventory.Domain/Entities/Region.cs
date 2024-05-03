@@ -6,6 +6,7 @@ public class Region : BaseEntity
 {
     public string Name { get; set; }
     public string Info { get; set; }
+    public List<NumberOfOrder> NumberOfOrders { get; set; }
     public List<District> Districts { get; set; }
     public List<Obyekt> Obyekts { get; set; }
     public List<ApplicationUser> Users { get; set; }

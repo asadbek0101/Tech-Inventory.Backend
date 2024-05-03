@@ -49,14 +49,32 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
     public DbSet<FTTX> FTTXs { get; set; }
     public DbSet<GPON> GPONs { get; set; }
     public DbSet<GSM> GSMs { get; set; }
+    //
+    public DbSet<Box> Boxes { get; set; }
+    public DbSet<Bracket> Brackets { get; set; }
+    public DbSet<Connector> Connectors { get; set; }
+    public DbSet<Counter> Counters { get; set; }
+    public DbSet<Freezer> Freezers { get; set; }
+    public DbSet<GlueForNail> GlueForNails { get; set; }
+    public DbSet<Hook> Hooks { get; set; }
+    public DbSet<Nail> Nails { get; set; }
+    public DbSet<Ribbon> Ribbons { get; set; }
+    public DbSet<Server> Servers { get; set; }
+    public DbSet<Shell> Shells { get; set; }
+    public DbSet<VideoRecorder> VideoRecorders { get; set; }
 
-    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Region>()
                     .HasMany(u => u.Obyekts)
+                    .WithOne(c => c.Region)
+                    .HasForeignKey(c => c.RegionId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Region>()
+                    .HasMany(u => u.NumberOfOrders)
                     .WithOne(c => c.Region)
                     .HasForeignKey(c => c.RegionId)
                     .OnDelete(DeleteBehavior.Cascade);
@@ -217,6 +235,78 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
                  .HasForeignKey(c => c.ObyektId)
                  .OnDelete(DeleteBehavior.Cascade);
 
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.Boxes)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.Brackets)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.Connectors)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.Counters)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.Freezers)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.GlueForNails)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.Hooks)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.Nails)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.Ribbons)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.Servers)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.Shells)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.VideoRecorders)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
         // Product Types 
 
         modelBuilder.Entity<Model>()
@@ -299,6 +389,30 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
 
         modelBuilder.Entity<Model>()
                  .HasMany(u => u.GPONs)
+                 .WithOne(c => c.Model)
+                 .HasForeignKey(c => c.ModelId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Model>()
+                 .HasMany(u => u.Boxes)
+                 .WithOne(c => c.Model)
+                 .HasForeignKey(c => c.TypeId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Model>()
+                 .HasMany(u => u.Brackets)
+                 .WithOne(c => c.Model)
+                 .HasForeignKey(c => c.ModelId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Model>()
+                 .HasMany(u => u.Counters)
+                 .WithOne(c => c.Model)
+                 .HasForeignKey(c => c.ModelId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Model>()
+                 .HasMany(u => u.VideoRecorders)
                  .WithOne(c => c.Model)
                  .HasForeignKey(c => c.ModelId)
                  .OnDelete(DeleteBehavior.Cascade);

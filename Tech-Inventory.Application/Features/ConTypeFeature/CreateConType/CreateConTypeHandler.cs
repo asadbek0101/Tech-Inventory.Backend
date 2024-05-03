@@ -49,7 +49,7 @@ public class CreateConTypeHandler : IRequestHandler<CreateConTypeRequest, ApiRes
                 id = gsm.Id;
             }
 
-            return ResponseHandler.GetAppResponse(type, new CreateConTypeResponse { Id = id, Message = "dd" });
+            return ResponseHandler.GetAppResponse(type, new CreateConTypeResponse { Id = id, Message = "Connection type has created" });
         }
         catch (Exception ex)
         {

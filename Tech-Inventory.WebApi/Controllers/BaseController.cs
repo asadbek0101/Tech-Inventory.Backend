@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Tech_Inventory.WebApi.Controllers;
 
-[Authorize]
+//[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class BaseController : ControllerBase

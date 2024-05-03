@@ -12,9 +12,7 @@ public sealed record CreateObyektRequest : IRequest<ApiResponse>
     public int NumberOfOrderId { get; set; }
     public int ObjectClassId { get; set; }
     public int ObjectClassTypeId { get; set; }
-    public string Name { get; set; }
-    public string Home { get; set; }
-    public string Street { get; set; }
+    public string NameAndAddress { get; set; }
     public string Latitude { get; set; }
     public string Longitude { get; set; }
     public string? Info { get; set; }

@@ -27,4 +27,20 @@ public sealed record GetObyektProductsResponse
     public int SwitchPoeCount { get; set; }
     public int StabilizerCount { get; set; }
     public int TerminalServerCount { get; set; }
+    //
+    public int BoxCount { get; set; }
+    public int WallBracketCount { get; set; }
+    public int PillarBracketCount { get; set; }
+    public int ConnectorCount { get; set; }
+    public int CounterCount { get; set; }
+    public int SipHookCount { get; set; }
+    public int CabelHookCount { get; set; }
+    public int GofraShellCount { get; set; }
+    public int PlasticShellCount { get; set; }
+    public int VideoRecorderCount { get; set; }
+    public int RibbonCount { get; set; }
+    public int ServerCount { get; set; }
+    public int FreezerCount { get; set; }
+    public int NailCount { get; set; }
+    public int GlueForNailCount { get; set; }
 }

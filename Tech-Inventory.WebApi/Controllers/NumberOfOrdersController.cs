@@ -2,6 +2,7 @@
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Features.NumberOfOrderFeature.CreateNumberOfOrder;
 using Tech_Inventory.Application.Features.NumberOfOrderFeature.DeleteNumberOfOrder;
+using Tech_Inventory.Application.Features.NumberOfOrderFeature.DeleteNumberOfOrders;
 using Tech_Inventory.Application.Features.NumberOfOrderFeature.GetAllNumberOfOrder;
 using Tech_Inventory.Application.Features.NumberOfOrderFeature.GetNumberOfOrdersList;
 using Tech_Inventory.Application.Features.NumberOfOrderFeature.GetOneNumberOfOrder;
@@ -31,6 +32,12 @@ public class NumberOfOrdersController : BaseController
 
     [HttpPost("Create")]
     public async Task<ActionResult<ApiResponse>> Create([FromBody] CreateNumberOfOrderRequest request)
+    {
+        return await Mediator.Send(request);
+    }
+
+    [HttpPost("Delete")]
+    public async Task<ActionResult<ApiResponse>> DeleteByIds([FromBody] DeleteNumberOfOrdersRequest request)
     {
         return await Mediator.Send(request);
     }

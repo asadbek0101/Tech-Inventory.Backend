@@ -7,6 +7,7 @@ public class GetOneNumberOfOrderMapper : Profile
 {
     public GetOneNumberOfOrderMapper()
     {
-        CreateMap<NumberOfOrder, GetOneNumberOfOrderResponse>();
+        CreateMap<NumberOfOrder, GetOneNumberOfOrderResponse>()
+            .ForMember(x=>x.Region, otp => otp.MapFrom(x => x.Region.Name));
     }
 }

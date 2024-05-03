@@ -33,6 +33,18 @@ public interface ITechInventoryDB
     public DbSet<FTTX> FTTXs { get; set; }
     public DbSet<GPON> GPONs { get; set; }
     public DbSet<GSM> GSMs { get; set; }
+    public DbSet<Box> Boxes { get; set; }
+    public DbSet<Bracket> Brackets { get; set; }
+    public DbSet<Connector> Connectors { get; set; }
+    public DbSet<Counter> Counters { get; set; }
+    public DbSet<Freezer> Freezers { get; set; }
+    public DbSet<GlueForNail> GlueForNails { get; set; }
+    public DbSet<Hook> Hooks { get; set; }
+    public DbSet<Nail> Nails { get; set; }
+    public DbSet<Ribbon> Ribbons { get; set; }
+    public DbSet<Server> Servers { get; set; }
+    public DbSet<Shell> Shells { get; set; }
+    public DbSet<VideoRecorder> VideoRecorders { get; set; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
 }

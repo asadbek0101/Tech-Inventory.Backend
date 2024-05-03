@@ -6,6 +6,6 @@ public class UpdateObyektValidator : AbstractValidator<UpdateObyektRequest>
 {
     public UpdateObyektValidator()
     {
-        RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.NameAndAddress).NotEmpty();
     }
 }

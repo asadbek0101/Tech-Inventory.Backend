@@ -124,6 +124,72 @@ public class GetObyektProductsHandler : IRequestHandler<GetObyektProductsRequest
                 .Where(x => x.ObyektId == request.ObyektId)
                 .CountAsync();
 
+            var boxesCount = await _context.Boxes
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var wallBracketCount = await _context.Brackets
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.BracketType == BracketTypes.WallBracket)
+                .CountAsync();
+
+            var pillarBracketCount = await _context.Brackets
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.BracketType == BracketTypes.PillarBracket)
+                .CountAsync();
+
+            var connectorCount = await _context.Connectors
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var counterCount = await _context.Counters
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var cabelHookCount = await _context.Hooks
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.HookType == HookTypes.CabelHook)
+                .CountAsync();
+
+            var sipHookCount = await _context.Hooks
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.HookType == HookTypes.SipHook)
+                .CountAsync();
+
+            var nailCount = await _context.Nails
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var ribbonCount = await _context.Ribbons
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var serverCount = await _context.Servers
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var plasticShellCount = await _context.Shells
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.ShellType == ShellTypes.PlasticShell)
+                .CountAsync();
+
+            var gofraShellCount = await _context.Shells
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.ShellType == ShellTypes.GofraShell)
+                .CountAsync();
+
+            var videoRecorderCount = await _context.VideoRecorders
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var freezerCount = await _context.Freezers
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
+            var glueOfNailCount = await _context.GlueForNails
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
             var response = new GetObyektProductsResponse
             {
                 UtpCabelCount = utpCabelCount,
@@ -148,6 +214,21 @@ public class GetObyektProductsHandler : IRequestHandler<GetObyektProductsRequest
                 SvetaforDetectorCount = svetaforDetectorCount,
                 SvetaforDetectorForCameraCount = svetaforDetectorForCameraCount,
                 CameraCount = cameraCount,
+                BoxCount = boxesCount,
+                PillarBracketCount  = pillarBracketCount,
+                WallBracketCount = wallBracketCount,
+                ConnectorCount = connectorCount,
+                CounterCount = counterCount,
+                CabelHookCount = cabelHookCount,
+                SipHookCount = sipHookCount,
+                GlueForNailCount = glueOfNailCount,
+                NailCount = nailCount,
+                RibbonCount = ribbonCount,
+                ServerCount = serverCount,
+                GofraShellCount = gofraShellCount,
+                PlasticShellCount = plasticShellCount,
+                VideoRecorderCount = videoRecorderCount,
+                FreezerCount = freezerCount,
             };
 
             return ResponseHandler.GetAppResponse(type, response);

@@ -30,7 +30,12 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
         {
             var skipRows = _paginator.Offset(request.PageNumber, request.PageSize);
 
-            var obyekts = await _context.Obyekts.ToListAsync();
+            var obyekts = await _context
+                .Obyekts
+                .Include(x=>x.Project)
+                .Include(x=>x.Region)
+                .Include(x=>x.District)
+                .ToListAsync();
 
             if(request.RegionId != 0)
             {

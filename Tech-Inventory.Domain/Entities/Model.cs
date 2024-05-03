@@ -20,6 +20,10 @@ public class Model : BaseEntity
     public List<Ups> Upses { get; set; }
     public List<FTTX> FTTXes { get; set; }
     public List<GPON> GPONs { get; set; }
+    public List<Box> Boxes { get; set; }
+    public List<Bracket> Brackets { get; set; }
+    public List<Counter> Counters { get; set; }
+    public List<VideoRecorder> VideoRecorders { get; set; }
 }
 
 
@@ -40,5 +44,8 @@ public enum ModelTypes
     Ups = 13,
     FTTX = 14,
     GPON = 15,
-    GSM = 16
+    Box = 16,
+    Bracket = 17,
+    Counter = 18,
+    VideoRecorder = 19
 }

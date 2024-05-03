@@ -21,7 +21,10 @@ public class GetOneNumberOfOrderHandler : IRequestHandler<GetOneNumberOfOrderReq
         var type = ResponseType.Success;
         try
         {
-            var numberOfOrder = await _context.NumberOfOrders.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var numberOfOrder = await _context
+                .NumberOfOrders
+                .Include(x => x.Region)
+                .Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
             var numberOfOrderResponse = _mapper.Map<GetOneNumberOfOrderResponse>(numberOfOrder);
 

@@ -27,6 +27,7 @@ public class GetAllNumberOfOrdersHandler : IRequestHandler<GetAllNumberOfOrdersR
             var skipRows = _paginator.Offset(request.PageNumber, request.PageSize);
 
             var numberOfOrders = await _context.NumberOfOrders
+                .Include(x => x.Region)
                 .Where(x => x.ProjectId == request.ProjectId)
                 .Skip(skipRows)
                 .Take(request.PageSize)

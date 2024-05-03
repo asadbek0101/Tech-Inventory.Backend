@@ -7,6 +7,6 @@ public class CreateNumberOfOrderValidator : AbstractValidator<CreateNumberOfOrde
     public CreateNumberOfOrderValidator()
     {
         RuleFor(x => x.Number).NotEmpty();
-        RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.RegionId).NotEmpty();
     }
 }

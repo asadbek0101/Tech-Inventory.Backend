@@ -10,7 +10,7 @@ public class ObyektReportMapper : Profile
         CreateMap<Obyekt, ObyektReportResponse>()
             .ForMember(x=>x.Region, otp => otp.MapFrom(ex => ex.Region.Name))
             .ForMember(x=>x.ProjectName, otp => otp.MapFrom(ex => ex.Project.Name))
-            .ForMember(x=>x.NumberOfOrder, otp => otp.MapFrom(ex => ex.NumberOfOrder.Name))
+            .ForMember(x=>x.NumberOfOrder, otp => otp.MapFrom(ex => ex.NumberOfOrder.Number))
             .ForMember(x=>x.ObjectClass, otp => otp.MapFrom(ex => ex.ObjectClass.Name))
             .ForMember(x=>x.ObjectClassType, otp => otp.MapFrom(ex => ex.ObjectClassType.Name))
             .ForMember(x=>x.District, otp=>otp.MapFrom(ex => ex.District.Name)); 

@@ -1,6 +1,4 @@
-﻿using Tech_Inventory.Domain.IdentityEntities;
-
-namespace Tech_Inventory.Domain.Entities;
+﻿namespace Tech_Inventory.Domain.Entities;
 
 public class Obyekt : BaseEntity
 {
@@ -11,11 +9,12 @@ public class Obyekt : BaseEntity
     public int NumberOfOrderId { get; set; }
     public int ObjectClassTypeId { get; set; }
 
-    public string Name { get; set; }
-    public string Home { get; set; }
-    public string Street { get; set; }
+    public string? Name { get; set; }
+    public string? Home { get; set; }
+    public string? Street { get; set; }
     public string Latitude { get; set; }
     public string Longitude { get; set; }
+    public string NameAndAddress { get; set; }
     public string? Info { get; set; }
     public ConnectionTypes ConnectionType { get; set; }
 
@@ -42,6 +41,18 @@ public class Obyekt : BaseEntity
     public List<SpeedChecking> SpeedCheckings { get; set; }
     public List<TerminalServer> TerminalServers { get; set; }
     public List<SvetoforDetector> SvetoforDetectors { get; set; }
+    public List<Box> Boxes { get; set; }
+    public List<Bracket> Brackets { get; set; }
+    public List<Connector> Connectors { get; set; }
+    public List<Counter> Counters { get; set; }
+    public List<Freezer> Freezers { get; set; }
+    public List<GlueForNail> GlueForNails { get; set; }
+    public List<Hook> Hooks { get; set; }
+    public List<Nail> Nails { get; set; }
+    public List<Ribbon> Ribbons { get; set; }
+    public List<Server> Servers { get; set; }
+    public List<Shell> Shells { get; set; }
+    public List<VideoRecorder> VideoRecorders { get; set; }
 
     public List<GPON> GPONs { get; set; }
     public List<FTTX> FTTXes { get; set; }

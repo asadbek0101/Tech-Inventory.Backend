@@ -22,4 +22,12 @@
     <ProjectReference Include="..\Tech-Inventory.Domain\Tech-Inventory.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\GlueForNailFeature\CreateGlueForNail\" />
+    <Folder Include="Features\GlueForNailFeature\DeleteGlueForNail\" />
+    <Folder Include="Features\GlueForNailFeature\GetAllGlueForNails\" />
+    <Folder Include="Features\GlueForNailFeature\GetOneGlueForNail\" />
+    <Folder Include="Features\GlueForNailFeature\UpdateGlueForNail\" />
+  </ItemGroup>
+
 </Project>
