@@ -91,12 +91,6 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
                    .HasForeignKey(c => c.DistrictId)
                    .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<District>()
-                   .HasMany(u => u.Users)
-                   .WithOne(c => c.District)
-                   .HasForeignKey(c => c.DistrictId)
-                   .OnDelete(DeleteBehavior.Cascade);
-
         modelBuilder.Entity<Region>()
                    .HasMany(u => u.Districts)
                    .WithOne(c => c.Region)
@@ -679,6 +673,10 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
             new ApplicationUser()
             {
                 Id = 1,
+                FirstName = "Asadbek",
+                LastName = "Rejabboyev",
+                MiddleName = "Boqijonovich",
+                RoleName = "Dasturchi",
                 UserName = "Asadbek",
                 NormalizedUserName = "ASADBEK",
                 Email = "asad@gmail.com",
@@ -687,7 +685,6 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
                 SecurityStamp = Guid.NewGuid().ToString("D"),
                 PasswordHash = hasher.HashPassword(null, "Asadbek2001!"),
                 RegionId = 7,
-                DistrictId = 95,
                }
            );
 
@@ -712,9 +709,11 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
             );
 
         modelBuilder.Entity<ApplicationRole>().HasData(
-            new ApplicationRole() { Id = 1, Name = "Admin", NormalizedName = "ADMIN" },
-            new ApplicationRole() { Id = 2, Name = "Staff", NormalizedName = "STAFF" },
-            new ApplicationRole() { Id = 3, Name = "SuperAdmin", NormalizedName = "SUPERADMIN" }
+            new ApplicationRole() { Id = 1, Name = "Programmer", NormalizedName = "PROGRAMMER", RoleLabel = "Dasturchi" },
+            new ApplicationRole() { Id = 2, Name = "ChiefSpecialist", NormalizedName = "CHIEFSPECIALIST", RoleLabel = "Bosh mutaxassis" },
+            new ApplicationRole() { Id = 3, Name = "SeniorSpecialist", NormalizedName = "SENIORSPECIALIST", RoleLabel = "Katta mutaxassis" },
+            new ApplicationRole() { Id = 4, Name = "LeadingExpert", NormalizedName = "LEADINGEXPERT", RoleLabel = "Yetakchi mutaxassis" },
+            new ApplicationRole() { Id = 5, Name = "DepartmentHead", NormalizedName = "DEPARTMENTHEAD", RoleLabel = "Bo'lim boshlig'i" }
             );
 
         modelBuilder.Entity<AspNetClaim>().HasData(

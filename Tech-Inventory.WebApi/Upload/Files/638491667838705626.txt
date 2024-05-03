@@ -1,5 +1,0 @@
-To do for Next tasks
-
-1. Hamma sidebar menular objectlar da accardion bo'lishi kerak
-2. Object lar ga type qo'shish kerak, filter uchun ham
-3. 

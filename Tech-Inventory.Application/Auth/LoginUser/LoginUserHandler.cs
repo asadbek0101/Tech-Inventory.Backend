@@ -1,4 +1,4 @@
-﻿    using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -75,6 +75,7 @@ public class LoginUserHandler : IRequestHandler<LoginUserRequest, ApiResponse>
                 new Claim("Id", user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Name, user.UserName),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim("RoleName", user.RoleName)
         };
 
         foreach (var userRole in userRoles)

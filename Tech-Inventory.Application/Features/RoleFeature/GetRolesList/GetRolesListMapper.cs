@@ -7,6 +7,7 @@ public class GetRolesListMapper : Profile
 {
     public GetRolesListMapper()
     {
-        CreateMap<ApplicationRole, GetRolesListResponse>();
+        CreateMap<ApplicationRole, GetRolesListResponse>()
+            .ForMember(x => x.Name, otp => otp.MapFrom(x => x.RoleLabel));
     }
 }

@@ -26,6 +26,7 @@ public class GetAllModelsHandler : IRequestHandler<GetAllModelsRequest, ApiRespo
         try
         {
             var models = await _context.Models
+                .OrderBy(x => x.Id)
                 .ToListAsync();
             var skipRows = _paginator.Offset(request.PageNumber, request.PageSize);
 

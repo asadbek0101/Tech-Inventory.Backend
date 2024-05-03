@@ -29,7 +29,6 @@ public class GetAllUsersHandler : IRequestHandler<GetAllUsersRequest, ApiRespons
             var users = await _userManager
                 .Users
                 .Include(x => x.Region)
-                .Include(x => x.District)
                 .Skip(skipRows)
                 .Take(request.PageSize).ToListAsync();
 

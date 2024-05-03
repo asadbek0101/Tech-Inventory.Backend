@@ -25,7 +25,6 @@ public class GetOneUserHandler : IRequestHandler<GetOneUserRequest, ApiResponse>
             var user = await _userManager
                 .Users
                 .Include(x => x.Region)
-                .Include(x => x.District)
                 .Where(x => x.Id == request.Id)
                 .FirstOrDefaultAsync();
             if (user == null)

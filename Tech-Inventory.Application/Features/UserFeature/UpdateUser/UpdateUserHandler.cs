@@ -31,7 +31,6 @@ public class UpdateUserHandler : IRequestHandler<UpdateUserRequest, ApiResponse>
                 user.UserName = request.UserName;
                 user.PhoneNumber = request.PhoneNumber;
                 user.RegionId = request.RegionId;
-                user.DistrictId = request.DistrictId;
 
                 var isUpdateUser = await _userManager.UpdateAsync(user);
 

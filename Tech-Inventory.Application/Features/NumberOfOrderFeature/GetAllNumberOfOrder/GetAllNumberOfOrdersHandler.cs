@@ -28,6 +28,7 @@ public class GetAllNumberOfOrdersHandler : IRequestHandler<GetAllNumberOfOrdersR
 
             var numberOfOrders = await _context.NumberOfOrders
                 .Include(x => x.Region)
+                .OrderBy(x => x.Id)
                 .Where(x => x.ProjectId == request.ProjectId)
                 .Skip(skipRows)
                 .Take(request.PageSize)
