@@ -41,6 +41,7 @@ public class ResetPasswordHandler : IRequestHandler<ResetPasswordRequest, ApiRes
                     }
                     else
                     {
+                        await _userManager.AddPasswordAsync(hasUser, request.OldPassword);
                         var errorMessage = "";
                         foreach (var item in addResult.Errors)
                         {
