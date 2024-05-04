@@ -31,7 +31,6 @@ public class EntitySaveChangesInterceptor : SaveChangesInterceptor
         return base.SavingChangesAsync(eventData, result, cancellationToken);
     }
 
-    //public void UpdateEntities(DbContext? context)
     public void UpdateEntities(DbContext context)
     {
         if (context == null) return;

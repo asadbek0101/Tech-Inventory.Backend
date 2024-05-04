@@ -27,10 +27,15 @@ public class UpdateUserHandler : IRequestHandler<UpdateUserRequest, ApiResponse>
             }
             else
             {
+                user.FirstName = request.FirstName;
+                user.LastName = request.LastName;
+                user.MiddleName = request.MiddleName;
                 user.Email = request.Email;
                 user.UserName = request.UserName;
                 user.PhoneNumber = request.PhoneNumber;
                 user.RegionId = request.RegionId;
+                user.RoleName = request.RoleName;
+                user.Image = request.Image;
 
                 var isUpdateUser = await _userManager.UpdateAsync(user);
 

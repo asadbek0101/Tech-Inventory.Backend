@@ -7,6 +7,7 @@ namespace Tech_Inventory.Application.Features.ObyektFeature.UpdateObyekt;
 public sealed record UpdateObyektRequest : IRequest<ApiResponse>
 {
     public int Id { get; set; }
+    public int CreatedBy { get; set; }
     public int RegionId { get; set; }
     public int DistrictId { get; set; }
     public int ProjectId { get; set; }

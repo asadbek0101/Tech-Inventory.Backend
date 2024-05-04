@@ -7,6 +7,7 @@ public class GetModelsListMapper : Profile
 {
     public GetModelsListMapper()
     {
-        CreateMap<Model, GetModelsListResponse>();
+        CreateMap<Model, GetModelsListResponse>()
+            .ForMember(x=>x.Name, otp=>otp.MapFrom(x => x.Info != "" ? x.Name + "(" + x.Info + ")" : x.Name));
     }
 }

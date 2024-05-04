@@ -5,6 +5,7 @@ namespace Tech_Inventory.Application.Features.ObyektFeature.GetOneObyekt;
 public sealed record GetOneObyektResponse
 {
     public int Id { get; set; }
+    public int CreatedBy { get; set; }
     public DateTime CreatedDate { get; set; }
     public int RegionId { get; set; }
     public int DistrictId { get; set; }

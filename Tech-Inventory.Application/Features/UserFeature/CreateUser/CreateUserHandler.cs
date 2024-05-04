@@ -26,6 +26,7 @@ public class CreateUserHandler : IRequestHandler<CreateUserRequest, ApiResponse>
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 MiddleName = request.MiddleName,
+                Image = request.Image
             };
 
             var isCreatedUser = await _userManager.CreateAsync(user, request.Password);

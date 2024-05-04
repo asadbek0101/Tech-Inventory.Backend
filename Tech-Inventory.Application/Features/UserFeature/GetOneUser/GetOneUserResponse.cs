@@ -12,6 +12,7 @@ public sealed record GetOneUserResponse
     public string PhoneNumber { get; set; }
     public string Region { get; set; }
     public object Role { get; set; }
+    public string RoleName { get; set; }
     public string Image {  get; set; }
 
 }
