@@ -6,6 +6,6 @@ public class UpdateSvetaforValidator : AbstractValidator<UpdateSvetaforRequest>
 {
     public UpdateSvetaforValidator()
     {
-        RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.CountOfPorts).NotEmpty();
     }
 }

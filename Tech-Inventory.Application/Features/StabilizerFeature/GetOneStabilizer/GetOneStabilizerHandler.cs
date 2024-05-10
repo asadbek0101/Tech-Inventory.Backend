@@ -21,7 +21,11 @@ public class GetOneStabilizerHandler : IRequestHandler<GetOneStabilizerRequest, 
         var type = ResponseType.Success;
         try
         {
-            var stabilizer = await _context.Stabilizers.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var stabilizer = await _context
+                .Stabilizers
+                .Include(x => x.Model)
+                .Where(x => x.Id == request.Id)
+                .FirstOrDefaultAsync();
 
             var stabilizerResponse = _mapper.Map<GetOneStabilizerResponse>(stabilizer);
 

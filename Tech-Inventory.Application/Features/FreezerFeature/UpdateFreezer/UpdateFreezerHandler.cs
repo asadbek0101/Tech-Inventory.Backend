@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
 using Tech_Inventory.Domain.Entities;
@@ -21,13 +22,28 @@ public class UpdateFreezerHandler : IRequestHandler<UpdateFreezerRequest, ApiRes
     public async Task<ApiResponse> Handle(UpdateFreezerRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Message = "Freezer not found";
+        var Id = 0;
         try
         {
-            var freezer = _mapper.Map<Freezer>(request);
-            _context.Freezers.Update(freezer);
-            await _unitOfWork.Save(cancellationToken);
+            var freezer = await _context.Freezers.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
-            return ResponseHandler.GetAppResponse(type, new UpdateFreezerResponse { Id = freezer.Id, Message = "Freezer has updated" });
+            if (freezer != null)
+            {
+                freezer.Count = request.Count;
+                freezer.Info = request.Info;
+
+                _context.Freezers.Update(freezer);
+                await _unitOfWork.Save(cancellationToken);
+                Id = freezer.Id;
+                Message = "Freezer has found";
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
+
+            return ResponseHandler.GetAppResponse(type, new UpdateFreezerResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

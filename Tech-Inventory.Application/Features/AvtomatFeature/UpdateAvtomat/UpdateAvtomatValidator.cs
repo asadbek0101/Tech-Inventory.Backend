@@ -6,6 +6,6 @@ public class UpdateAvtomatValidator : AbstractValidator<UpdateAvtomatRequest>
 {
     public UpdateAvtomatValidator()
     {
-        RuleFor(x => x.Name).NotEmpty();    
+        RuleFor(x => x.Count).NotEmpty();    
     }
 }

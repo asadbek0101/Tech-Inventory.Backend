@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.AvtomatFeature.GetAllAvtomats;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllAvtomatsResponse
+namespace Tech_Inventory.Application.Features.AvtomatFeature.GetAllAvtomats;
+
+public sealed record GetAllAvtomatsResponse : BaseResponse
 {
     public int Id { get; set; }
     public string Name { get; set; }

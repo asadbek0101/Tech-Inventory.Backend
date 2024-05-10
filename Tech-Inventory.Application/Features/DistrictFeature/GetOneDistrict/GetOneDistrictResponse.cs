@@ -3,7 +3,6 @@
 public sealed record GetOneDistrictResponse
 {
     public int Id { get; set; }
-    public int RegionId { get; set; }
     public string Name { get; set; }
     public string Info { get; set; }
 }

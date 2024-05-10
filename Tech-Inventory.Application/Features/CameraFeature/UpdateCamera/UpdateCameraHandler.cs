@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
-using Tech_Inventory.Domain.Entities;
 
 namespace Tech_Inventory.Application.Features.CameraFeature.UpdateCamera;
 
@@ -21,13 +21,32 @@ public class UpdateCameraHandler : IRequestHandler<UpdateCameraRequest, ApiRespo
     public async Task<ApiResponse> Handle(UpdateCameraRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Message = "Camera not found";
+        var Id = 0;
         try
         {
-            var camera = _mapper.Map<Camera>(request);
-            _context.Cameras.Update(camera);
-            await _unitOfWork.Save(cancellationToken);
+            var camera = await _context.Cameras.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
-            return ResponseHandler.GetAppResponse(type, new UpdateCameraResponse { Id = camera.Id, Message = "Camera has updated" });
+            if (camera != null)
+            {
+                camera.SerialNumber = request.SerialNumber;
+                camera.ModelId = request.ModelId;
+                camera.Ip = camera.Ip;
+                camera.Status = camera.Status;
+                camera.Info = request.Info;
+
+                _context.Cameras.Update(camera);
+                await _unitOfWork.Save(cancellationToken);
+
+                Message = "Camera has updated!";
+                Id = camera.Id;
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
+
+            return ResponseHandler.GetAppResponse(type, new UpdateCameraResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

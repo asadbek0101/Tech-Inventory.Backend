@@ -7,6 +7,7 @@ public class GetOneVideoRecorderMapper : Profile
 {
     public GetOneVideoRecorderMapper()
     {
-        CreateMap<VideoRecorder, GetOneVideoRecorderResponse>();
+        CreateMap<VideoRecorder, GetOneVideoRecorderResponse>()
+            .ForMember(x => x.Model, otp => otp.MapFrom(x => x.Model.Name)); 
     }
 }

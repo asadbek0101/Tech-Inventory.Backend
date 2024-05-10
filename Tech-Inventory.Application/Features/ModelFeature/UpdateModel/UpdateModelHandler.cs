@@ -1,33 +1,43 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
-using Tech_Inventory.Domain.Entities;
 
 namespace Tech_Inventory.Application.Features.ModelFeature.UpdateModel;
 
 public class UpdateModelHandler : IRequestHandler<UpdateModelRequest, ApiResponse>
 {
     private readonly ITechInventoryDB _context;
-    private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
 
-    public UpdateModelHandler(ITechInventoryDB context, IMapper mapper, IUnitOfWork unitOfWork)
+    public UpdateModelHandler(ITechInventoryDB context, IUnitOfWork unitOfWork)
     {
         _context = context;
-        _mapper = mapper;
         _unitOfWork = unitOfWork;
     }
     public async Task<ApiResponse> Handle(UpdateModelRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Message = "Model not found";
+        var Id = 0;
         try
         {
-            var model = _mapper.Map<Model>(request);
-            _context.Models.Update(model);
-            await _unitOfWork.Save(cancellationToken);
+            var model = await _context.Models.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
-            return ResponseHandler.GetAppResponse(type, new UpdateModelRepsonse { Id = model.Id, Message = "Region has udpated" });
+            if (model != null)
+            {
+                model.Name = request.Name;
+                model.Type = request.Type;
+                model.Info = request.Info;
+
+                _context.Models.Update(model);
+                await _unitOfWork.Save(cancellationToken);
+
+                Message = "Model has updated";
+                Id = model.Id;
+            }
+
+            return ResponseHandler.GetAppResponse(type, new UpdateModelRepsonse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

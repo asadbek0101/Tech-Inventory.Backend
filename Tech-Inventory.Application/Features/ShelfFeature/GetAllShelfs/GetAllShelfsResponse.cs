@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.ShelfFeature.GetAllShelfs;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllShelfsResponse
+namespace Tech_Inventory.Application.Features.ShelfFeature.GetAllShelfs;
+
+public sealed record GetAllShelfsResponse : BaseResponse
 {
     public int Id { get; set; }
     public string Name { get; set; }

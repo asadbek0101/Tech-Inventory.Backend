@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.SvetaforFeature.GetAllSvetafors;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllSvetaforsResponse
+namespace Tech_Inventory.Application.Features.SvetaforFeature.GetAllSvetafors;
+
+public sealed record GetAllSvetaforsResponse : BaseResponse
 {
     public int Id { get; set; }
     public string Name { get; set; }

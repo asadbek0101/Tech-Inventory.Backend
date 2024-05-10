@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
 using Tech_Inventory.Domain.Entities;
@@ -21,13 +22,30 @@ public class UpdateSvetaforHandler : IRequestHandler<UpdateSvetaforRequest, ApiR
     public async Task<ApiResponse> Handle(UpdateSvetaforRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Id = 0;
+        var Message = "Svetafor not found";
         try
         {
-            var svetafor = _mapper.Map<SvetoforDetector>(request);
-            _context.SvetoforDetectors.Update(svetafor);
-            await _unitOfWork.Save(cancellationToken);
+            var svetafor = await _context.SvetoforDetectors.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
-            return ResponseHandler.GetAppResponse(type, new UpdateSvetaforResponse { Id = svetafor.Id, Message = "Svetafor has updated" });
+            if(svetafor != null)
+            {
+                svetafor.ModelId = request.ModelId;
+                svetafor.CountOfPorts = request.CountOfPorts;
+                svetafor.Info = request.Info;
+
+                _context.SvetoforDetectors.Update(svetafor);
+                await _unitOfWork.Save(cancellationToken);
+
+                Id = svetafor.Id;
+                Message = "Svetafor has updated!";
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
+
+            return ResponseHandler.GetAppResponse(type, new UpdateSvetaforResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

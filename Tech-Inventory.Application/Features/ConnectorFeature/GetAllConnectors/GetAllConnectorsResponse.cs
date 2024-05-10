@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.ConnectorFeature.GetAllConnectors;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllConnectorsResponse
+namespace Tech_Inventory.Application.Features.ConnectorFeature.GetAllConnectors;
+
+public sealed record GetAllConnectorsResponse : BaseResponse
 {
     public int Id { get; set; }
     public int ObyektId { get; set; }

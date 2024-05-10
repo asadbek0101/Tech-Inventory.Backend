@@ -10,5 +10,4 @@ public sealed record UpdateBracketRequest : IRequest<ApiResponse>
     public int ObyektId { get; set; }
     public int ModelId { get; set; }
     public string? Info { get; set; }
-    public BracketTypes BracketType { get; set; }
 }

@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.CameraFeature.GetAllCameras;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllCamerasResponse
+namespace Tech_Inventory.Application.Features.CameraFeature.GetAllCameras;
+
+public sealed record GetAllCamerasResponse : BaseResponse
 {
     public int Id { get; set; }
     public string Name { get; set; }

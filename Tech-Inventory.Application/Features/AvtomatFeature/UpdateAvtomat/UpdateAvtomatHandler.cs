@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
 using Tech_Inventory.Domain.Entities;
@@ -21,13 +22,31 @@ public class UpdateAvtomatHandler : IRequestHandler<UpdateAvtomatRequest, ApiRes
     public async Task<ApiResponse> Handle(UpdateAvtomatRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Id = 0;
+        var Message = "Avtomat not found";
         try
         {
-            var avtomat = _mapper.Map<Avtomat>(request);
-            _context.Avtomats.Update(avtomat);
-            await _unitOfWork.Save(cancellationToken);
+            var avtomat = await _context.Avtomats.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
-            return ResponseHandler.GetAppResponse(type, new UpdateAvtomatResponse { Id = avtomat.Id, Message = "Avtomat has updated" });
+            if (avtomat != null)
+            {
+                avtomat.ModelId = request.ModelId;
+                avtomat.Count = request.Count;
+                avtomat.Info = request.Info;
+
+                _context.Avtomats.Update(avtomat);
+                await _unitOfWork.Save(cancellationToken);
+
+                Id = avtomat.Id;
+                Message = "Avtomat has updated!";
+
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
+
+            return ResponseHandler.GetAppResponse(type, new UpdateAvtomatResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

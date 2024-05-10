@@ -7,6 +7,7 @@ public class GetOneCounterMapper : Profile
 {
     public GetOneCounterMapper()
     {
-        CreateMap<Counter, GetOneCounterResponse>();
+        CreateMap<Counter, GetOneCounterResponse>()
+            .ForMember(x => x.Model, otp => otp.MapFrom(x => x.Model.Name));
     }
 }

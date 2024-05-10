@@ -25,7 +25,7 @@ public class Obyekt : BaseEntity
     public NumberOfOrder NumberOfOrder { get; set; }
     public ObjectClassType ObjectClassType { get; set; }
 
-    public List<Ups> Ups  { get; set; }
+    public List<Ups> Ups { get; set; }
     public List<Rack> Racks { get; set; }
     public List<Cabel> Cabels { get; set; }
     public List<Shelf> Shelves { get; set; }
@@ -34,7 +34,7 @@ public class Obyekt : BaseEntity
     public List<Switch> Switches { get; set; }
     public List<Avtomat> Avtomats { get; set; }
     public List<Projector> Projectors { get; set; }
-    public List<Stanchion> Stanchions  { get; set; }
+    public List<Stanchion> Stanchions { get; set; }
     public List<Attachment> Attachments { get; set; }
     public List<Stabilizer> Stabilizers { get; set; }
     public List<Akumalator> Akumalators { get; set; }

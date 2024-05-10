@@ -7,6 +7,7 @@ public class GetOneStabilizerMapper : Profile
 {
     public GetOneStabilizerMapper()
     {
-        CreateMap<Stabilizer, GetOneStabilizerResponse>();
+        CreateMap<Stabilizer, GetOneStabilizerResponse>()
+            .ForMember(x => x.Model, otp => otp.MapFrom(x => x.Model.Name));
     }
 }

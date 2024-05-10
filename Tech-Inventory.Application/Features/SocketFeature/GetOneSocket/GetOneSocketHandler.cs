@@ -21,7 +21,11 @@ public class GetOneSocketHandler : IRequestHandler<GetOneSocketRequest, ApiRespo
         var type = ResponseType.Success;
         try
         {
-            var socket = await _context.Sockets.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var socket = await _context
+                .Sockets
+                .Include(x => x.Model)
+                .Where(x => x.Id == request.Id)
+                .FirstOrDefaultAsync();
 
             var socketResponse = _mapper.Map<GetOneSocketResponse>(socket);
 

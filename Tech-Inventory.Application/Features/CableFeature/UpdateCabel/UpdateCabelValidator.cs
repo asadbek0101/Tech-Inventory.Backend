@@ -6,6 +6,6 @@ public class UpdateCabelValidator : AbstractValidator<UpdateCabelRequest>
 {
     public UpdateCabelValidator()
     {
-        RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.Meter).NotEmpty();
     }
 }

@@ -21,7 +21,10 @@ public class GetOneSwitchHandler : IRequestHandler<GetOneSwitchRequest, ApiRespo
         var type = ResponseType.Success;
         try
         {
-            var switchT = await _context.Switches.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var switchT = await _context
+                .Switches
+                .Include(x => x.Model)
+                .Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
             var switchTResponse = _mapper.Map<GetOneSwitchResponse>(switchT);
 

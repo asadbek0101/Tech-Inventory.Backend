@@ -6,6 +6,6 @@ public class UpdateStabilizerValidator : AbstractValidator<UpdateStabilizerReque
 {
     public UpdateStabilizerValidator()
     {
-        RuleFor(x=>x.Name).NotEmpty();
+        RuleFor(x=>x.Power).NotEmpty();
     }
 }

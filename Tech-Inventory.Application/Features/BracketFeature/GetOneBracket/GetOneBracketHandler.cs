@@ -21,7 +21,7 @@ public class GetOneBracketHandler : IRequestHandler<GetOneBracketRequest, ApiRes
         var type = ResponseType.Success;
         try
         {
-            var bracket = await _context.Brackets.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var bracket = await _context.Brackets.Include(x => x.Model).Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
             var bracketResponse = _mapper.Map<GetOneBracketResponse>(bracket);
 

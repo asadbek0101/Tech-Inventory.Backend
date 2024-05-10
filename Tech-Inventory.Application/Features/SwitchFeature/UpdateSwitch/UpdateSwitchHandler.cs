@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
 using Tech_Inventory.Domain.Entities;
@@ -21,13 +22,27 @@ public class UpdateSwitchHandler : IRequestHandler<UpdateSwitchRequest, ApiRespo
     public async Task<ApiResponse> Handle(UpdateSwitchRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Message = "Switch not found!";
+        var Id = 0;
         try
         {
-            var switchT = _mapper.Map<Switch>(request);
-            _context.Switches.Update(switchT);
-            await _unitOfWork.Save(cancellationToken);
+            var switchT = await _context.Switches.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
-            return ResponseHandler.GetAppResponse(type, new UpdateSwitchResponse { Id = switchT.Id, Message = "Switch has updated" });
+            if(switchT != null)
+            {
+                switchT.ModelId = request.ModelId;
+                switchT.CountOfPorts = request.CountOfPorts;
+                switchT.Info = request.Info;
+
+                _context.Switches.Update(switchT);
+                await _unitOfWork.Save(cancellationToken);
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
+
+            return ResponseHandler.GetAppResponse(type, new UpdateSwitchResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

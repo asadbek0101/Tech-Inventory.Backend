@@ -7,6 +7,7 @@ public class GetOneProjectorMapper : Profile
 {
     public GetOneProjectorMapper()
     {
-        CreateMap<Projector, GetOneProjectorResponse>();
+        CreateMap<Projector, GetOneProjectorResponse>()
+            .ForMember(x => x.Model, otp => otp.MapFrom(x => x.Model.Name));
     }
 }

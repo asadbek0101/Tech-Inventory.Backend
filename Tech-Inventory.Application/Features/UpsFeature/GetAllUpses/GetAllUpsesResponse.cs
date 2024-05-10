@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.UpsFeature.GetAllUpses;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllUpsesResponse
+namespace Tech_Inventory.Application.Features.UpsFeature.GetAllUpses;
+
+public sealed record GetAllUpsesResponse : BaseResponse
 {
     public int Id { get; set; }
     public int ObyektId { get; set; }

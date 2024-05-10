@@ -32,6 +32,7 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
 
             var obyekts = await _context
                 .Obyekts
+                .OrderBy(x=>x.Id)
                 .Include(x=>x.Project)
                 .Include(x=>x.Region)
                 .Include(x=>x.District)
@@ -69,25 +70,38 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
 
             if (request.SearchValue != null)
             {
-                obyekts = obyekts.Where(x => x.Name.ToUpper().Contains(request.SearchValue.ToUpper())).ToList();
+                obyekts = obyekts
+                    .Where(x => x.NameAndAddress.ToUpper().Contains(request.SearchValue.ToUpper()) || x.Region.Name.ToUpper().Contains(request.SearchValue.ToUpper()))
+                    .ToList();
             }
 
             obyekts = obyekts.Skip(skipRows).Take(request.PageSize).ToList();
 
             var obyektsResponse = _mapper.Map<List<GetAllObyektsResponse>>(obyekts);
 
-            var totalRowCount = await _context.Obyekts.CountAsync();
-            var totalPageCount = _paginator.GetTotalPageCount(request.PageSize, totalRowCount);
-
-            foreach( var item in obyektsResponse)
+            foreach (var item in obyektsResponse)
             {
-                var user = await _userManager.FindByIdAsync(item.CreatedBy.ToString());
+                var CreatorUser = await _userManager.FindByIdAsync(item.CreatedBy.ToString());
+                var UpdatorUser = new ApplicationUser();
 
-                if (user != null)
+                if (item.UpdatedBy != null)
                 {
-                    item.Owner = user.UserName;
+                    UpdatorUser = await _userManager.FindByIdAsync(item.UpdatedBy.ToString());
+                }
+
+                if (CreatorUser != null)
+                {
+                    item.Creator = CreatorUser.UserName;
+                }
+
+                if (UpdatorUser != null)
+                {
+                    item.Updator = UpdatorUser.UserName;
                 }
             }
+
+            var totalRowCount = await _context.Obyekts.CountAsync();
+            var totalPageCount = _paginator.GetTotalPageCount(request.PageSize, totalRowCount);
 
             var response = new PaginationResponse { Data = obyektsResponse, TotalRowCount = totalRowCount, TotalPageCount = totalPageCount };
 

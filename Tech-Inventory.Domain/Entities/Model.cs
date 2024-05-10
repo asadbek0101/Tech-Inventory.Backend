@@ -24,6 +24,7 @@ public class Model : BaseEntity
     public List<Bracket> Brackets { get; set; }
     public List<Counter> Counters { get; set; }
     public List<VideoRecorder> VideoRecorders { get; set; }
+    public List<MountingBox> MountingBoxs { get; set; }
 }
 
 
@@ -47,5 +48,6 @@ public enum ModelTypes
     Box = 16,
     Bracket = 17,
     Counter = 18,
-    VideoRecorder = 19
+    VideoRecorder = 19,
+    MountingBox = 20,
 }

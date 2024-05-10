@@ -41,6 +41,7 @@ public class ResetPasswordHandler : IRequestHandler<ResetPasswordRequest, ApiRes
                     }
                     else
                     {
+                        type = ResponseType.Failed;
                         await _userManager.AddPasswordAsync(hasUser, request.OldPassword);
                         var errorMessage = "";
                         foreach (var item in addResult.Errors)
@@ -53,11 +54,13 @@ public class ResetPasswordHandler : IRequestHandler<ResetPasswordRequest, ApiRes
                 }
                 else
                 {
+                    type = ResponseType.Failed;
                     response.Message = "Password has not changed";
                 }
             }
             else
             {
+                type = ResponseType.Failed;
                 response.Message = "User not found";
             }
 

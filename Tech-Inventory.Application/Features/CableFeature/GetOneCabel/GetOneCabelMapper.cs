@@ -7,6 +7,7 @@ public class GetOneCabelMapper : Profile
 {
     public GetOneCabelMapper()
     {
-        CreateMap<Cabel, GetOneCabelResponse>();
+        CreateMap<Cabel, GetOneCabelResponse>()
+            .ForMember(x => x.Model, otp => otp.MapFrom(x => x.Model.Name));
     }
 }

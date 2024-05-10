@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
-using Tech_Inventory.Domain.Entities;
 
 namespace Tech_Inventory.Application.Features.ProjectFeature.UpdateProject;
 
@@ -21,13 +21,26 @@ public class UpdateProjectHandler : IRequestHandler<UpdateProjectRequest, ApiRes
     public async Task<ApiResponse> Handle(UpdateProjectRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Message = "Project not found";
+        var Id = 0;
         try
         {
-            var project = _mapper.Map<Project>(request);
-            _context.Projects.Update(project);
-            await _unitOfWork.Save(cancellationToken);
+            var project = await _context.Projects.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
-            return ResponseHandler.GetAppResponse(type, new UpdateProjectResponse { Id = project.Id, Message = "Project has udpated" });
+            if (project != null)
+            {
+                project.Name = request.Name;
+                project.Info = request.Info;
+                _context.Projects.Update(project);
+                await _unitOfWork.Save(cancellationToken);
+                Message = "Project has updated";
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
+
+            return ResponseHandler.GetAppResponse(type, new UpdateProjectResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

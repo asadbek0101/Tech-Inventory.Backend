@@ -6,6 +6,7 @@ namespace Tech_Inventory.Application.Features.CableFeature.CreateCabel;
 
 public sealed record CreateCabelRequest : IRequest<ApiResponse>
 {
+    public int Id { get; set; }
     public int ObyektId { get; set; }
     public int ModelId { get; set; }
     public int CabelTypeId { get; set; }

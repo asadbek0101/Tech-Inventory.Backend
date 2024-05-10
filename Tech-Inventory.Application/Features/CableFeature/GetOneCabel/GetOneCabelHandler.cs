@@ -21,7 +21,11 @@ public class GetOneCabelHandler : IRequestHandler<GetOneCabelRequest, ApiRespons
         var type = ResponseType.Success;
         try
         {
-            var cabel = await _context.Cabels.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var cabel = await _context
+                .Cabels
+                .Include(x => x.Model)
+                .Where(x => x.Id == request.Id)
+                .FirstOrDefaultAsync();
 
             var cabelResponse = _mapper.Map<GetOneCabelResponse>(cabel);
 

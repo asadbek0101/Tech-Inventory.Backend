@@ -7,6 +7,7 @@ public class GetOneAvtomatMapper : Profile
 {
     public GetOneAvtomatMapper()
     {
-        CreateMap<Avtomat, GetOneAvtomatResponse>();
+        CreateMap<Avtomat, GetOneAvtomatResponse>()
+            .ForMember(x => x.Model, otp => otp.MapFrom(x => x.Model.Name));
     }
 }

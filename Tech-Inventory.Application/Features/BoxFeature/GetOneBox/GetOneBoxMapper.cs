@@ -7,6 +7,7 @@ public class GetOneBoxMapper : Profile
 {
     public GetOneBoxMapper()
     {
-        CreateMap<Box, GetOneBoxResponse>();
+        CreateMap<Box, GetOneBoxResponse>()
+            .ForMember(x => x.Type, otp => otp.MapFrom(x => x.Model.Name));
     }
 }

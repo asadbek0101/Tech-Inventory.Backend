@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.TerminalServerFeature.GetAllTerminalServers;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllTerminalServersResponse
+namespace Tech_Inventory.Application.Features.TerminalServerFeature.GetAllTerminalServers;
+
+public sealed record GetAllTerminalServersResponse : BaseResponse
 {
     public int Id { get; set; }
     public string Model { get; set; }

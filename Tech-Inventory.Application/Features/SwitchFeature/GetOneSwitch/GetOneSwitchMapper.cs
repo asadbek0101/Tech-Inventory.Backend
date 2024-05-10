@@ -7,6 +7,7 @@ public class GetOneSwitchMapper : Profile
 {
     public GetOneSwitchMapper()
     {
-        CreateMap<Switch, GetOneSwitchResponse>();
+        CreateMap<Switch, GetOneSwitchResponse>()
+            .ForMember(x => x.Model, otp => otp.MapFrom(x => x.Model.Name));
     }
 }

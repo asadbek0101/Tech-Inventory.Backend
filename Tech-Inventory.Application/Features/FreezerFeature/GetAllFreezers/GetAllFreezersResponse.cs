@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.FreezerFeature.GetAllFreezers;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllFreezersResponse
+namespace Tech_Inventory.Application.Features.FreezerFeature.GetAllFreezers;
+
+public sealed record GetAllFreezersResponse : BaseResponse
 {
     public int Id { get; set; }
     public int ObyektId { get; set; }

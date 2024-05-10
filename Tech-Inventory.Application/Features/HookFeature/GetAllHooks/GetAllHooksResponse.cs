@@ -1,8 +1,9 @@
-﻿using Tech_Inventory.Domain.Entities;
+﻿using Tech_Inventory.Application.Common.Exceptions;
+using Tech_Inventory.Domain.Entities;
 
 namespace Tech_Inventory.Application.Features.HookFeature.GetAllHooks;
 
-public sealed record GetAllHooksResponse
+public sealed record GetAllHooksResponse : BaseResponse
 {
     public int Id { get; set; }
     public int ObyektId { get; set; }

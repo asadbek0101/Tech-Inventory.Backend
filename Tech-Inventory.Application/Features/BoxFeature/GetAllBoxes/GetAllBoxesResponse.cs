@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.BoxFeature.GetAllBoxes;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllBoxesResponse
+namespace Tech_Inventory.Application.Features.BoxFeature.GetAllBoxes;
+
+public sealed record GetAllBoxesResponse : BaseResponse
 {
     public int Id { get; set; }
     public int ObyektId { get; set; }

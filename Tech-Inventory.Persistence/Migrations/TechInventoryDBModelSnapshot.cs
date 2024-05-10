@@ -403,9 +403,6 @@ namespace Tech_Inventory.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BracketType")
-                        .HasColumnType("integer");
-
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
 
@@ -506,6 +503,9 @@ namespace Tech_Inventory.Persistence.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CameraType")
+                        .HasColumnType("integer");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("integer");
@@ -693,7 +693,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3306),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2059),
                             Info = "test",
                             Name = "Nukus shahri",
                             RegionId = 1
@@ -702,7 +702,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 2,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3314),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2062),
                             Info = "test",
                             Name = "Amudaryo tumani",
                             RegionId = 1
@@ -711,7 +711,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 3,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3317),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2064),
                             Info = "test",
                             Name = "Beruniy tumani",
                             RegionId = 1
@@ -720,7 +720,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 4,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3320),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2066),
                             Info = "test",
                             Name = "Kegeyli tumani",
                             RegionId = 1
@@ -729,7 +729,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 5,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3323),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2068),
                             Info = "test",
                             Name = "Qanliko‘l tumani",
                             RegionId = 1
@@ -738,7 +738,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 6,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3326),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2115),
                             Info = "test",
                             Name = "Qorao‘zak tumani",
                             RegionId = 1
@@ -747,7 +747,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 7,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3330),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2117),
                             Info = "test",
                             Name = "Qo‘ng‘irot tumani",
                             RegionId = 1
@@ -756,7 +756,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 8,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3333),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2118),
                             Info = "test",
                             Name = "Mo‘ynoq tumani",
                             RegionId = 1
@@ -765,7 +765,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 9,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3335),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2120),
                             Info = "test",
                             Name = "Nukus tumani",
                             RegionId = 1
@@ -774,7 +774,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 10,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3341),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2122),
                             Info = "test",
                             Name = "Taxiatosh tumani",
                             RegionId = 1
@@ -783,7 +783,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 11,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3344),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2123),
                             Info = "test",
                             Name = "Taxtako‘pir tumani",
                             RegionId = 1
@@ -792,7 +792,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 12,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3346),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2125),
                             Info = "test",
                             Name = "To‘rtko‘l tumani",
                             RegionId = 1
@@ -801,7 +801,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 13,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3349),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2126),
                             Info = "test",
                             Name = "Xo‘jayli tumani",
                             RegionId = 1
@@ -810,7 +810,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 14,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3405),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2128),
                             Info = "test",
                             Name = "Chimboy tumani",
                             RegionId = 1
@@ -819,7 +819,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 15,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3408),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2130),
                             Info = "test",
                             Name = "Sho‘manoy tumani",
                             RegionId = 1
@@ -828,7 +828,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 16,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3410),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2145),
                             Info = "test",
                             Name = "Ellikqal’a tumani",
                             RegionId = 1
@@ -837,7 +837,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 17,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3413),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2147),
                             Info = "test",
                             Name = "Andijon shahri",
                             RegionId = 2
@@ -846,7 +846,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 18,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3440),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2149),
                             Info = "test",
                             Name = "Xonabod shahri",
                             RegionId = 2
@@ -855,7 +855,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 19,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3443),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2150),
                             Info = "test",
                             Name = "Andijon tumani",
                             RegionId = 2
@@ -864,7 +864,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 20,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3446),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2152),
                             Info = "test",
                             Name = "Asaka tumani",
                             RegionId = 2
@@ -873,7 +873,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 21,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3449),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2154),
                             Info = "test",
                             Name = "Baliqchi tumani",
                             RegionId = 2
@@ -882,7 +882,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 22,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3451),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2155),
                             Info = "test",
                             Name = "Bo‘z tumani",
                             RegionId = 2
@@ -891,7 +891,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 23,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3455),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2157),
                             Info = "test",
                             Name = "Buloqboshi tumani",
                             RegionId = 2
@@ -900,7 +900,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 24,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3457),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2158),
                             Info = "test",
                             Name = "Jalaquduq tumani",
                             RegionId = 2
@@ -909,7 +909,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 25,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3460),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2160),
                             Info = "test",
                             Name = "Izboskan tumani",
                             RegionId = 2
@@ -918,7 +918,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 26,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3462),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2162),
                             Info = "test",
                             Name = "Qo‘rg‘ontepa tumani",
                             RegionId = 2
@@ -927,7 +927,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 27,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3465),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2163),
                             Info = "test",
                             Name = "Marhamat tumani.",
                             RegionId = 2
@@ -936,7 +936,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 28,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3467),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2165),
                             Info = "test",
                             Name = "Oltinko‘l tumani",
                             RegionId = 2
@@ -945,7 +945,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 29,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3469),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2166),
                             Info = "test",
                             Name = "Paxtaobod tumani",
                             RegionId = 2
@@ -954,7 +954,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 30,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3472),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2168),
                             Info = "test",
                             Name = "Ulug‘nor tumani",
                             RegionId = 2
@@ -963,7 +963,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 31,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3475),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2170),
                             Info = "test",
                             Name = "Xo‘jaobod tumani",
                             RegionId = 2
@@ -972,7 +972,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 32,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3477),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2171),
                             Info = "test",
                             Name = "Shahrixon tumani",
                             RegionId = 2
@@ -981,7 +981,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 33,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3480),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2173),
                             Info = "test",
                             Name = "Buxoro shahri",
                             RegionId = 3
@@ -990,7 +990,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 34,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3482),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2174),
                             Info = "test",
                             Name = "Kogon shahri",
                             RegionId = 3
@@ -999,7 +999,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 35,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3485),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2176),
                             Info = "test",
                             Name = "Buxoro tumani",
                             RegionId = 3
@@ -1008,7 +1008,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 36,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3488),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2178),
                             Info = "test",
                             Name = "Vobkent tumani",
                             RegionId = 3
@@ -1017,7 +1017,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 37,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3490),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2179),
                             Info = "test",
                             Name = "Jondor tumani",
                             RegionId = 3
@@ -1026,7 +1026,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 38,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3493),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2181),
                             Info = "test",
                             Name = "Kogon tumani",
                             RegionId = 3
@@ -1035,7 +1035,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 39,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3496),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2183),
                             Info = "test",
                             Name = "Olot tumani",
                             RegionId = 3
@@ -1044,7 +1044,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 40,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3499),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2184),
                             Info = "test",
                             Name = "Peshku tumani",
                             RegionId = 3
@@ -1053,7 +1053,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 41,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3501),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2186),
                             Info = "test",
                             Name = "Romitan tumani",
                             RegionId = 3
@@ -1062,7 +1062,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 42,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3503),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2187),
                             Info = "test",
                             Name = "Shofirkon tumani",
                             RegionId = 3
@@ -1071,7 +1071,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 43,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3506),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2189),
                             Info = "test",
                             Name = "Qorovulbozor tumani",
                             RegionId = 3
@@ -1080,7 +1080,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 44,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3509),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2191),
                             Info = "test",
                             Name = "Qorako‘l tumani",
                             RegionId = 3
@@ -1089,7 +1089,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 45,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3512),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2192),
                             Info = "test",
                             Name = "G‘ijduvon tumani",
                             RegionId = 3
@@ -1098,7 +1098,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 46,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3515),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2194),
                             Info = "test",
                             Name = "Jizzax shahri",
                             RegionId = 4
@@ -1107,7 +1107,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 47,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3518),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2196),
                             Info = "test",
                             Name = "Arnasoy tumani",
                             RegionId = 4
@@ -1116,7 +1116,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 48,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3520),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2198),
                             Info = "test",
                             Name = "Baxmal tumani",
                             RegionId = 4
@@ -1125,7 +1125,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 49,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3523),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2200),
                             Info = "test",
                             Name = "Do‘stlik tumani",
                             RegionId = 4
@@ -1134,7 +1134,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 50,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3526),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2202),
                             Info = "test",
                             Name = "Zarbdor tumani",
                             RegionId = 4
@@ -1143,7 +1143,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 51,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3532),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2203),
                             Info = "test",
                             Name = "Zafarobod tumani",
                             RegionId = 4
@@ -1152,7 +1152,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 52,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3535),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2205),
                             Info = "test",
                             Name = "Zomin tumani",
                             RegionId = 4
@@ -1161,7 +1161,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 53,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3538),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2206),
                             Info = "test",
                             Name = "Mirzacho‘l tumani",
                             RegionId = 4
@@ -1170,7 +1170,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 54,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3543),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2208),
                             Info = "test",
                             Name = "Paxtakor tumani",
                             RegionId = 4
@@ -1179,7 +1179,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 55,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3546),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2210),
                             Info = "test",
                             Name = "Forish tumani",
                             RegionId = 4
@@ -1188,7 +1188,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 56,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3549),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2211),
                             Info = "test",
                             Name = "Sharof Rashidov tumani",
                             RegionId = 4
@@ -1197,7 +1197,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 57,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3551),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2213),
                             Info = "test",
                             Name = "G‘allaorol tumani",
                             RegionId = 4
@@ -1206,7 +1206,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 58,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3553),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2214),
                             Info = "test",
                             Name = "Yangiobod tumani",
                             RegionId = 4
@@ -1215,7 +1215,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 59,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3557),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2216),
                             Info = "test",
                             Name = "Qarshi shahri",
                             RegionId = 5
@@ -1224,7 +1224,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 60,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3560),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2218),
                             Info = "test",
                             Name = "Shahrisabz shahri",
                             RegionId = 5
@@ -1233,7 +1233,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 61,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3562),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2219),
                             Info = "test",
                             Name = "Dehqonobod tumani",
                             RegionId = 5
@@ -1242,7 +1242,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 62,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3565),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2221),
                             Info = "test",
                             Name = "Kasbi tumani",
                             RegionId = 5
@@ -1251,7 +1251,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 63,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3567),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2223),
                             Info = "test",
                             Name = "Kitob tumani",
                             RegionId = 5
@@ -1260,7 +1260,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 64,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3570),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2224),
                             Info = "test",
                             Name = "Koson tumani",
                             RegionId = 5
@@ -1269,7 +1269,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 65,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3572),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2226),
                             Info = "test",
                             Name = "Mirishkor tumani",
                             RegionId = 5
@@ -1278,7 +1278,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 66,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3576),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2227),
                             Info = "test",
                             Name = "Muborak tumani",
                             RegionId = 5
@@ -1287,7 +1287,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 67,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3578),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2229),
                             Info = "test",
                             Name = "Nishon tumani",
                             RegionId = 5
@@ -1296,7 +1296,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 68,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3581),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2230),
                             Info = "test",
                             Name = "Chiroqchi tumani",
                             RegionId = 5
@@ -1305,7 +1305,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 69,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3583),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2233),
                             Info = "test",
                             Name = "Shahrisabz tumani",
                             RegionId = 5
@@ -1314,7 +1314,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 70,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3586),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2235),
                             Info = "test",
                             Name = "Yakkabog‘ tumani",
                             RegionId = 5
@@ -1323,7 +1323,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 71,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3589),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2236),
                             Info = "test",
                             Name = "Qamashi tumani",
                             RegionId = 5
@@ -1332,7 +1332,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 72,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3592),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2238),
                             Info = "test",
                             Name = "Qarshi tumani",
                             RegionId = 5
@@ -1341,7 +1341,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 73,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3594),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2239),
                             Info = "test",
                             Name = "G‘uzor tumani",
                             RegionId = 5
@@ -1350,7 +1350,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 74,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3597),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2241),
                             Info = "test",
                             Name = "Navoiy shahri",
                             RegionId = 6
@@ -1359,7 +1359,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 75,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3599),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2243),
                             Info = "test",
                             Name = "Zarafshon shahri",
                             RegionId = 6
@@ -1368,7 +1368,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 76,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3603),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2244),
                             Info = "test",
                             Name = "Karmana tumani",
                             RegionId = 6
@@ -1377,7 +1377,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 77,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3606),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2246),
                             Info = "test",
                             Name = "Konimex tumani",
                             RegionId = 6
@@ -1386,7 +1386,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 78,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3608),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2247),
                             Info = "test",
                             Name = "Navbahor tumani",
                             RegionId = 6
@@ -1395,7 +1395,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 79,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3611),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2273),
                             Info = "test",
                             Name = "Nurota tumani",
                             RegionId = 6
@@ -1404,7 +1404,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 80,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3613),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2275),
                             Info = "test",
                             Name = "Tomdi tumani",
                             RegionId = 6
@@ -1413,7 +1413,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 81,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3616),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2276),
                             Info = "test",
                             Name = "Uchquduq tumani",
                             RegionId = 6
@@ -1422,7 +1422,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 82,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3752),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2278),
                             Info = "test",
                             Name = "Xatirchi tumani",
                             RegionId = 6
@@ -1431,7 +1431,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 83,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3755),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2279),
                             Info = "test",
                             Name = "Qiziltepa tumani",
                             RegionId = 6
@@ -1440,7 +1440,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 84,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3758),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2281),
                             Info = "test",
                             Name = "Namangan shahri",
                             RegionId = 7
@@ -1449,7 +1449,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 85,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3785),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2283),
                             Info = "test",
                             Name = "Kosonsoy tumani",
                             RegionId = 7
@@ -1458,7 +1458,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 86,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3788),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2284),
                             Info = "test",
                             Name = "Mingbuloq tumani",
                             RegionId = 7
@@ -1467,7 +1467,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 87,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3791),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2286),
                             Info = "test",
                             Name = "Namangan tumani",
                             RegionId = 7
@@ -1476,7 +1476,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 88,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3793),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2288),
                             Info = "test",
                             Name = "Norin tumani",
                             RegionId = 7
@@ -1485,7 +1485,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 89,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3796),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2289),
                             Info = "test",
                             Name = "Pop tumani",
                             RegionId = 7
@@ -1494,7 +1494,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 90,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3798),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2291),
                             Info = "test",
                             Name = "To‘raqo‘rg‘on tumani",
                             RegionId = 7
@@ -1503,7 +1503,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 91,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3801),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2294),
                             Info = "test",
                             Name = "Uychi tumani",
                             RegionId = 7
@@ -1512,7 +1512,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 92,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3804),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2296),
                             Info = "test",
                             Name = "Uchqo‘rg‘on tumani",
                             RegionId = 7
@@ -1521,7 +1521,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 93,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3806),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2297),
                             Info = "test",
                             Name = "Chortoq tumani",
                             RegionId = 7
@@ -1530,7 +1530,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 94,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3809),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2299),
                             Info = "test",
                             Name = "Chust tumani",
                             RegionId = 7
@@ -1539,7 +1539,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 95,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3812),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2300),
                             Info = "test",
                             Name = "Yangiqo‘rg‘on tumani",
                             RegionId = 7
@@ -1548,7 +1548,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 96,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3814),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2302),
                             Info = "test",
                             Name = "Samarqand shahri",
                             RegionId = 8
@@ -1557,7 +1557,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 97,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3817),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2304),
                             Info = "test",
                             Name = "Kattaqo‘rg‘on shahri",
                             RegionId = 8
@@ -1566,7 +1566,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 98,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3820),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2305),
                             Info = "test",
                             Name = "Bulung‘ur tumani",
                             RegionId = 8
@@ -1575,7 +1575,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 99,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3824),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2307),
                             Info = "test",
                             Name = "Jomboy tumani",
                             RegionId = 8
@@ -1584,7 +1584,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 100,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3827),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2309),
                             Info = "test",
                             Name = "Ishtixon tumani",
                             RegionId = 8
@@ -1593,7 +1593,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 101,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3829),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2310),
                             Info = "test",
                             Name = "Kattaqo‘rg‘on tumani",
                             RegionId = 8
@@ -1602,7 +1602,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 102,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3832),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2312),
                             Info = "test",
                             Name = "Narpay tumani",
                             RegionId = 8
@@ -1611,7 +1611,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 103,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3835),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2314),
                             Info = "test",
                             Name = "Nurobod tumani",
                             RegionId = 8
@@ -1620,7 +1620,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 104,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3837),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2315),
                             Info = "test",
                             Name = "Oqdaryo tumani",
                             RegionId = 8
@@ -1629,7 +1629,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 105,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3840),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2317),
                             Info = "test",
                             Name = "Payariq tumani",
                             RegionId = 8
@@ -1638,7 +1638,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 106,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3842),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2318),
                             Info = "test",
                             Name = "Pastdarg‘om tumani",
                             RegionId = 8
@@ -1647,7 +1647,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 107,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3845),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2320),
                             Info = "test",
                             Name = "Paxtachi tumani",
                             RegionId = 8
@@ -1656,7 +1656,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 108,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3848),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2322),
                             Info = "test",
                             Name = "Samarqand tumani",
                             RegionId = 8
@@ -1665,7 +1665,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 109,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3850),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2323),
                             Info = "test",
                             Name = "Toyloq tumani",
                             RegionId = 8
@@ -1674,7 +1674,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 110,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3852),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2325),
                             Info = "test",
                             Name = "Urgut tumani",
                             RegionId = 8
@@ -1683,7 +1683,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 111,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3855),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2327),
                             Info = "test",
                             Name = "Qo‘shrabot tumani",
                             RegionId = 8
@@ -1692,7 +1692,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 112,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3858),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2328),
                             Info = "test",
                             Name = "Termiz shahri",
                             RegionId = 9
@@ -1701,7 +1701,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 113,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3861),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2331),
                             Info = "test",
                             Name = "Angor tumani",
                             RegionId = 9
@@ -1710,7 +1710,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 114,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3863),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2333),
                             Info = "test",
                             Name = "Boysun tumani",
                             RegionId = 9
@@ -1719,7 +1719,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 115,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3866),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2335),
                             Info = "test",
                             Name = "Denov tumani",
                             RegionId = 9
@@ -1728,7 +1728,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 116,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3868),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2336),
                             Info = "test",
                             Name = "Jarqo‘rg‘on tumani",
                             RegionId = 9
@@ -1737,7 +1737,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 117,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3871),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2338),
                             Info = "test",
                             Name = "Muzrobod tumani",
                             RegionId = 9
@@ -1746,7 +1746,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 118,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3873),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2339),
                             Info = "test",
                             Name = "Oltinsoy tumani",
                             RegionId = 9
@@ -1755,7 +1755,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 119,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3878),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2341),
                             Info = "test",
                             Name = "Sariosiyo tumani",
                             RegionId = 9
@@ -1764,7 +1764,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 120,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3881),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2343),
                             Info = "test",
                             Name = "Termiz tumani",
                             RegionId = 9
@@ -1773,7 +1773,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 121,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3884),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2344),
                             Info = "test",
                             Name = "Uzun tumani",
                             RegionId = 9
@@ -1782,7 +1782,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 122,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3886),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2346),
                             Info = "test",
                             Name = "Sherobod tumani",
                             RegionId = 9
@@ -1791,7 +1791,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 123,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3889),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2347),
                             Info = "test",
                             Name = "Sho‘rchi tumani",
                             RegionId = 9
@@ -1800,7 +1800,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 124,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3892),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2349),
                             Info = "test",
                             Name = "Qiziriq tumani",
                             RegionId = 9
@@ -1809,7 +1809,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 125,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3894),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2350),
                             Info = "test",
                             Name = "Qumqo‘rg‘on tumani",
                             RegionId = 9
@@ -1818,7 +1818,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 126,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3896),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2352),
                             Info = "test",
                             Name = "Guliston shahri",
                             RegionId = 10
@@ -1827,7 +1827,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 127,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3899),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2354),
                             Info = "test",
                             Name = "Yangiyer shahri",
                             RegionId = 10
@@ -1836,7 +1836,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 128,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3901),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2355),
                             Info = "test",
                             Name = "Shirin shahri",
                             RegionId = 10
@@ -1845,7 +1845,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 129,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3905),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2357),
                             Info = "test",
                             Name = "Boyovut tumani",
                             RegionId = 10
@@ -1854,7 +1854,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 130,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3907),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2358),
                             Info = "test",
                             Name = "Guliston tumani",
                             RegionId = 10
@@ -1863,7 +1863,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 131,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3911),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2360),
                             Info = "test",
                             Name = "Mirzaobod tumani",
                             RegionId = 10
@@ -1872,7 +1872,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 132,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3913),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2362),
                             Info = "test",
                             Name = "Oqoltin tumani",
                             RegionId = 10
@@ -1881,7 +1881,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 133,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3916),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2363),
                             Info = "test",
                             Name = "Sardoba tumani",
                             RegionId = 10
@@ -1890,7 +1890,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 134,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3918),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2365),
                             Info = "test",
                             Name = "Sayxunobod tumani",
                             RegionId = 10
@@ -1899,7 +1899,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 135,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3921),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2367),
                             Info = "test",
                             Name = "Sirdaryo tumani",
                             RegionId = 10
@@ -1908,7 +1908,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 136,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3924),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2369),
                             Info = "test",
                             Name = "Xovos tumani",
                             RegionId = 10
@@ -1917,7 +1917,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 137,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3926),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2370),
                             Info = "test",
                             Name = "Nurafshon shahri",
                             RegionId = 11
@@ -1926,7 +1926,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 138,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3929),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2372),
                             Info = "test",
                             Name = "Angren shahri",
                             RegionId = 11
@@ -1935,7 +1935,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 139,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3932),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2373),
                             Info = "test",
                             Name = "Bekobod shahri",
                             RegionId = 11
@@ -1944,7 +1944,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 140,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3935),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2375),
                             Info = "test",
                             Name = "Olmaliq shahri",
                             RegionId = 11
@@ -1953,7 +1953,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 141,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3939),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2376),
                             Info = "test",
                             Name = "Ohangaron shahri",
                             RegionId = 11
@@ -1962,7 +1962,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 142,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3941),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2378),
                             Info = "test",
                             Name = "Chirchiq shahri",
                             RegionId = 11
@@ -1971,7 +1971,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 143,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3944),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2380),
                             Info = "test",
                             Name = "Yangiyo‘l shahri",
                             RegionId = 11
@@ -1980,7 +1980,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 144,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3947),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2381),
                             Info = "test",
                             Name = "Bekobod tumani",
                             RegionId = 11
@@ -1989,7 +1989,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 145,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3949),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2383),
                             Info = "test",
                             Name = "Bo‘ka tumani",
                             RegionId = 11
@@ -1998,7 +1998,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 146,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3951),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2384),
                             Info = "test",
                             Name = "Bo‘stonliq tumani",
                             RegionId = 11
@@ -2007,7 +2007,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 147,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3954),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2386),
                             Info = "test",
                             Name = "Zangiota tumani",
                             RegionId = 11
@@ -2016,7 +2016,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 148,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3957),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2387),
                             Info = "test",
                             Name = "Qibray tumani",
                             RegionId = 11
@@ -2025,7 +2025,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 149,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3959),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2389),
                             Info = "test",
                             Name = "Quyichirchiq tumani",
                             RegionId = 11
@@ -2034,7 +2034,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 150,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3979),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2467),
                             Info = "test",
                             Name = "Oqqo‘rg‘on tumani",
                             RegionId = 11
@@ -2043,7 +2043,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 151,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3982),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2469),
                             Info = "test",
                             Name = "Ohangaron tumani",
                             RegionId = 11
@@ -2052,7 +2052,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 152,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3984),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2471),
                             Info = "test",
                             Name = "Parkent tumani",
                             RegionId = 11
@@ -2061,7 +2061,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 153,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3987),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2472),
                             Info = "test",
                             Name = "Piskent tumani",
                             RegionId = 11
@@ -2070,7 +2070,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 154,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3989),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2474),
                             Info = "test",
                             Name = "Toshkent tumani",
                             RegionId = 11
@@ -2079,7 +2079,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 155,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3992),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2476),
                             Info = "test",
                             Name = "O‘rtachirchiq tumani",
                             RegionId = 11
@@ -2088,7 +2088,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 156,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3994),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2477),
                             Info = "test",
                             Name = "Chinoz tumani",
                             RegionId = 11
@@ -2097,7 +2097,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 157,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3997),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2480),
                             Info = "test",
                             Name = "21. Yuqorichirchiq tumani",
                             RegionId = 11
@@ -2106,7 +2106,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 158,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(3999),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2482),
                             Info = "test",
                             Name = "22. Yangiyo‘l tumani",
                             RegionId = 11
@@ -2115,7 +2115,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 159,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4002),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2483),
                             Info = "test",
                             Name = "Farg‘ona shahri",
                             RegionId = 12
@@ -2124,7 +2124,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 160,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4004),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2485),
                             Info = "test",
                             Name = "Marg‘ilon shahri",
                             RegionId = 12
@@ -2133,7 +2133,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 161,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4007),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2487),
                             Info = "test",
                             Name = "Quvasoy shahri",
                             RegionId = 12
@@ -2142,7 +2142,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 162,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4009),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2488),
                             Info = "test",
                             Name = "Qo‘qon shahri",
                             RegionId = 12
@@ -2151,7 +2151,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 163,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4014),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2490),
                             Info = "test",
                             Name = "Beshariq tumani",
                             RegionId = 12
@@ -2160,7 +2160,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 164,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4016),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2492),
                             Info = "test",
                             Name = "Bog‘dod tumani",
                             RegionId = 12
@@ -2169,7 +2169,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 165,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4018),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2493),
                             Info = "test",
                             Name = "Buvayda tumani",
                             RegionId = 12
@@ -2178,7 +2178,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 166,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4021),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2495),
                             Info = "test",
                             Name = "Dang‘ara tumani",
                             RegionId = 12
@@ -2187,7 +2187,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 167,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4024),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2497),
                             Info = "test",
                             Name = "Yozyovon tumani",
                             RegionId = 12
@@ -2196,7 +2196,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 168,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4026),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2498),
                             Info = "test",
                             Name = "Quva tumani",
                             RegionId = 12
@@ -2205,7 +2205,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 169,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4029),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2500),
                             Info = "test",
                             Name = "Qo‘shtepa tumani",
                             RegionId = 12
@@ -2214,7 +2214,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 170,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4031),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2501),
                             Info = "test",
                             Name = "Oltiariq tumani",
                             RegionId = 12
@@ -2223,7 +2223,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 171,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4034),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2503),
                             Info = "test",
                             Name = "Rishton tumani",
                             RegionId = 12
@@ -2232,7 +2232,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 172,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4036),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2505),
                             Info = "test",
                             Name = "So‘x tumani",
                             RegionId = 12
@@ -2241,7 +2241,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 173,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4039),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2506),
                             Info = "test",
                             Name = "Toshloq tumani",
                             RegionId = 12
@@ -2250,7 +2250,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 174,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4041),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2508),
                             Info = "test",
                             Name = "O‘zbekiston tumani",
                             RegionId = 12
@@ -2259,7 +2259,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 175,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4044),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2509),
                             Info = "test",
                             Name = "Uchko‘prik tumani",
                             RegionId = 12
@@ -2268,7 +2268,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 176,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4046),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2511),
                             Info = "test",
                             Name = "Farg‘ona tumani",
                             RegionId = 12
@@ -2277,7 +2277,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 177,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4049),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2513),
                             Info = "test",
                             Name = "Furqat tumani",
                             RegionId = 12
@@ -2286,7 +2286,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 178,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4052),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2515),
                             Info = "test",
                             Name = "Urganch shahri",
                             RegionId = 13
@@ -2295,7 +2295,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 179,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4055),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2517),
                             Info = "test",
                             Name = "Xiva shahri",
                             RegionId = 13
@@ -2304,7 +2304,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 180,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4057),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2519),
                             Info = "test",
                             Name = "Bog‘ot tumani",
                             RegionId = 13
@@ -2313,7 +2313,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 181,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4060),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2520),
                             Info = "test",
                             Name = "Gurlan tumani",
                             RegionId = 13
@@ -2322,7 +2322,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 182,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4063),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2522),
                             Info = "test",
                             Name = "Urganch tumani",
                             RegionId = 13
@@ -2331,7 +2331,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 183,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4065),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2523),
                             Info = "test",
                             Name = "Xiva tumani",
                             RegionId = 13
@@ -2340,7 +2340,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 184,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4069),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2525),
                             Info = "test",
                             Name = "Xonqa tumani",
                             RegionId = 13
@@ -2349,7 +2349,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 185,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4072),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2526),
                             Info = "test",
                             Name = "Hazorasp tumani",
                             RegionId = 13
@@ -2358,7 +2358,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 186,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4074),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2528),
                             Info = "test",
                             Name = "Shovot tumani",
                             RegionId = 13
@@ -2367,7 +2367,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 187,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4078),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2530),
                             Info = "test",
                             Name = "Yangiariq tumani",
                             RegionId = 13
@@ -2376,7 +2376,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 188,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4080),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2531),
                             Info = "test",
                             Name = "Yangibozor tumani",
                             RegionId = 13
@@ -2385,7 +2385,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 189,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4082),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2533),
                             Info = "test",
                             Name = "Qo‘shko‘pir tumani",
                             RegionId = 13
@@ -2394,7 +2394,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 190,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4085),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2534),
                             Info = "test",
                             Name = "Bektemir tumani",
                             RegionId = 14
@@ -2403,7 +2403,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 191,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4117),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2536),
                             Info = "test",
                             Name = "Mirzo Ulug‘bek tumani",
                             RegionId = 14
@@ -2412,7 +2412,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 192,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4119),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2537),
                             Info = "test",
                             Name = "Mirobod tumani",
                             RegionId = 14
@@ -2421,7 +2421,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 193,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4122),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2539),
                             Info = "test",
                             Name = "Olmazor tumani",
                             RegionId = 14
@@ -2430,7 +2430,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 194,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4124),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2540),
                             Info = "test",
                             Name = "Sirg‘ali tumani",
                             RegionId = 14
@@ -2439,7 +2439,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 195,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4127),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2542),
                             Info = "test",
                             Name = "Uchtepa tumani",
                             RegionId = 14
@@ -2448,7 +2448,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 196,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4155),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2544),
                             Info = "test",
                             Name = "Chilonzor tumani",
                             RegionId = 14
@@ -2457,7 +2457,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 197,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4158),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2545),
                             Info = "test",
                             Name = "Shayxontohur tumani",
                             RegionId = 14
@@ -2466,7 +2466,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 198,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4160),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2547),
                             Info = "test",
                             Name = "Yunusobod tumani",
                             RegionId = 14
@@ -2475,7 +2475,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 199,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4163),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2548),
                             Info = "test",
                             Name = "Yakkasaroy tumani",
                             RegionId = 14
@@ -2484,7 +2484,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 200,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4165),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2551),
                             Info = "test",
                             Name = "Yashnobod tumani",
                             RegionId = 14
@@ -2798,6 +2798,54 @@ namespace Tech_Inventory.Persistence.Migrations
                     b.ToTable("Models");
                 });
 
+            modelBuilder.Entity("Tech_Inventory.Domain.Entities.MountingBox", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Count")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Info")
+                        .HasColumnType("text");
+
+                    b.Property<int>("ModelId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ObyektId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ModelId");
+
+                    b.HasIndex("ObyektId");
+
+                    b.ToTable("MountingBoxs");
+                });
+
             modelBuilder.Entity("Tech_Inventory.Domain.Entities.Nail", b =>
                 {
                     b.Property<int>("Id")
@@ -2897,12 +2945,33 @@ namespace Tech_Inventory.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Info")
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("ObjectClassTypeId")
                         .HasColumnType("integer");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -2914,66 +2983,88 @@ namespace Tech_Inventory.Persistence.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6048),
                             Name = "Maktab",
                             ObjectClassTypeId = 1
                         },
                         new
                         {
                             Id = 2,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6053),
                             Name = "Bog'cha",
                             ObjectClassTypeId = 1
                         },
                         new
                         {
                             Id = 3,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6055),
                             Name = "Magazin",
                             ObjectClassTypeId = 1
                         },
                         new
                         {
                             Id = 4,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6057),
                             Name = "OTM",
                             ObjectClassTypeId = 1
                         },
                         new
                         {
                             Id = 5,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6059),
                             Name = "Supermarket",
                             ObjectClassTypeId = 1
                         },
                         new
                         {
                             Id = 6,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6060),
                             Name = "Masjid",
                             ObjectClassTypeId = 1
                         },
                         new
                         {
                             Id = 7,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6062),
                             Name = "Istirohat bo'gi",
                             ObjectClassTypeId = 1
                         },
                         new
                         {
                             Id = 8,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6064),
                             Name = "Jamoat maskanlari",
                             ObjectClassTypeId = 1
                         },
                         new
                         {
                             Id = 9,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6066),
                             Name = "Chorraxa",
                             ObjectClassTypeId = 2
                         },
                         new
                         {
                             Id = 10,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6067),
                             Name = "Radar",
                             ObjectClassTypeId = 2
                         },
                         new
                         {
                             Id = 11,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6070),
                             Name = "3.27 yo'l beligisi",
                             ObjectClassTypeId = 2
                         });
@@ -2987,9 +3078,30 @@ namespace Tech_Inventory.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Info")
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -2999,11 +3111,15 @@ namespace Tech_Inventory.Persistence.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(5957),
                             Name = "Ijtimoiy obyektlar"
                         },
                         new
                         {
                             Id = 2,
+                            CreatedBy = 0,
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(5966),
                             Name = "PDD"
                         });
                 });
@@ -3285,7 +3401,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2202),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1646),
                             Info = "test",
                             Name = "Qoraqalpog‘iston Respublikasi"
                         },
@@ -3293,7 +3409,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 2,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2216),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1652),
                             Info = "test",
                             Name = "Andijon viloyati"
                         },
@@ -3301,7 +3417,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 3,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2219),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1654),
                             Info = "test",
                             Name = "Buxoro viloyati"
                         },
@@ -3309,7 +3425,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 4,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2222),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1655),
                             Info = "test",
                             Name = "Jizzax viloyati"
                         },
@@ -3317,7 +3433,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 5,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2225),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1657),
                             Info = "test",
                             Name = "Qashqadaryo viloyati"
                         },
@@ -3325,7 +3441,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 6,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2227),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1659),
                             Info = "test",
                             Name = "Navoiy viloyati"
                         },
@@ -3333,7 +3449,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 7,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2230),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1661),
                             Info = "test",
                             Name = "Namangan viloyati"
                         },
@@ -3341,7 +3457,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 8,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2232),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1662),
                             Info = "test",
                             Name = "Samarqand viloyati"
                         },
@@ -3349,7 +3465,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 9,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2235),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1664),
                             Info = "test",
                             Name = "Surxondaryo viloyati"
                         },
@@ -3357,7 +3473,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 10,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2237),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1665),
                             Info = "test",
                             Name = "Sirdaryo viloyati"
                         },
@@ -3365,7 +3481,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 11,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2240),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1667),
                             Info = "test",
                             Name = "Toshkent viloyati"
                         },
@@ -3373,7 +3489,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 12,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2243),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1668),
                             Info = "test",
                             Name = "Farg‘ona viloyati"
                         },
@@ -3381,7 +3497,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 13,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2245),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1670),
                             Info = "test",
                             Name = "Xorazm viloyati"
                         },
@@ -3389,7 +3505,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 14,
                             CreatedBy = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(2247),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(1671),
                             Info = "test",
                             Name = "Toshkent shahri"
                         });
@@ -4116,7 +4232,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 761, DateTimeKind.Utc).AddTicks(25),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6258),
                             Name = "Programmer",
                             NormalizedName = "PROGRAMMER",
                             RoleLabel = "Dasturchi"
@@ -4124,7 +4240,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 761, DateTimeKind.Utc).AddTicks(39),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6270),
                             Name = "ChiefSpecialist",
                             NormalizedName = "CHIEFSPECIALIST",
                             RoleLabel = "Bosh mutaxassis"
@@ -4132,7 +4248,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 761, DateTimeKind.Utc).AddTicks(43),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6272),
                             Name = "SeniorSpecialist",
                             NormalizedName = "SENIORSPECIALIST",
                             RoleLabel = "Katta mutaxassis"
@@ -4140,7 +4256,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 761, DateTimeKind.Utc).AddTicks(45),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6275),
                             Name = "LeadingExpert",
                             NormalizedName = "LEADINGEXPERT",
                             RoleLabel = "Yetakchi mutaxassis"
@@ -4148,7 +4264,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2024, 5, 4, 7, 39, 16, 761, DateTimeKind.Utc).AddTicks(48),
+                            CreatedDate = new DateTime(2024, 5, 10, 5, 20, 49, 605, DateTimeKind.Utc).AddTicks(6277),
                             Name = "DepartmentHead",
                             NormalizedName = "DEPARTMENTHEAD",
                             RoleLabel = "Bo'lim boshlig'i"
@@ -4175,9 +4291,6 @@ namespace Tech_Inventory.Persistence.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
-
-                    b.Property<int?>("DistrictId")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -4243,8 +4356,6 @@ namespace Tech_Inventory.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DistrictId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -4261,8 +4372,8 @@ namespace Tech_Inventory.Persistence.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "23013633-db0b-4207-829c-81c1fc663868",
-                            DateTime = new DateTime(2024, 5, 4, 7, 39, 16, 518, DateTimeKind.Utc).AddTicks(4715),
+                            ConcurrencyStamp = "22005eb1-085d-4872-b0a0-d7c759cfe89a",
+                            DateTime = new DateTime(2024, 5, 10, 5, 20, 49, 432, DateTimeKind.Utc).AddTicks(2846),
                             Email = "asad@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Asadbek",
@@ -4271,12 +4382,12 @@ namespace Tech_Inventory.Persistence.Migrations
                             MiddleName = "Boqijonovich",
                             NormalizedEmail = "ASAD@GMAIL.COM",
                             NormalizedUserName = "ASADBEK",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDWyFXzr9ZXJZWQvVME1aU1ZAKtB22uYx5Fb10Q3rRt2k40gpbcKYqoOS5BoWOB6uQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG/wTjE/c/+JkVLmzfCWrFEcDzodcnE+eiTyTsvCWAb8UMUL7f2P1M9gGg/lWlzrYg==",
                             PhoneNumber = "998996906901",
                             PhoneNumberConfirmed = false,
                             RegionId = 7,
                             RoleName = "Dasturchi",
-                            SecurityStamp = "ff374c50-d652-40a1-8a59-f1a75f9e15cb",
+                            SecurityStamp = "50ab51a0-0acd-42f5-88e6-c8fe0e6d7b28",
                             TwoFactorEnabled = false,
                             UserName = "Asadbek"
                         });
@@ -4569,6 +4680,25 @@ namespace Tech_Inventory.Persistence.Migrations
                         .HasForeignKey("ObyektId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Obyekt");
+                });
+
+            modelBuilder.Entity("Tech_Inventory.Domain.Entities.MountingBox", b =>
+                {
+                    b.HasOne("Tech_Inventory.Domain.Entities.Model", "Model")
+                        .WithMany("MountingBoxs")
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tech_Inventory.Domain.Entities.Obyekt", "Obyekt")
+                        .WithMany()
+                        .HasForeignKey("ObyektId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Model");
 
                     b.Navigation("Obyekt");
                 });
@@ -4931,10 +5061,6 @@ namespace Tech_Inventory.Persistence.Migrations
 
             modelBuilder.Entity("Tech_Inventory.Domain.IdentityEntities.ApplicationUser", b =>
                 {
-                    b.HasOne("Tech_Inventory.Domain.Entities.District", null)
-                        .WithMany("Users")
-                        .HasForeignKey("DistrictId");
-
                     b.HasOne("Tech_Inventory.Domain.Entities.Region", "Region")
                         .WithMany("Users")
                         .HasForeignKey("RegionId")
@@ -4947,8 +5073,6 @@ namespace Tech_Inventory.Persistence.Migrations
             modelBuilder.Entity("Tech_Inventory.Domain.Entities.District", b =>
                 {
                     b.Navigation("Obyekts");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Tech_Inventory.Domain.Entities.Model", b =>
@@ -4968,6 +5092,8 @@ namespace Tech_Inventory.Persistence.Migrations
                     b.Navigation("FTTXes");
 
                     b.Navigation("GPONs");
+
+                    b.Navigation("MountingBoxs");
 
                     b.Navigation("Projectors");
 

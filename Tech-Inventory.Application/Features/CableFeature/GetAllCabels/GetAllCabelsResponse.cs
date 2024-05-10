@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.CableFeature.GetAllCabels;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllCabelsResponse
+namespace Tech_Inventory.Application.Features.CableFeature.GetAllCabels;
+
+public sealed record GetAllCabelsResponse : BaseResponse
 {
     public int Id { get; set; }
     public int ObyektId { get; set; }

@@ -5,6 +5,12 @@ namespace Tech_Inventory.Application.Features.ObyektFeature.GetObyektProducts;
 public sealed record GetObyektProductsResponse
 {
     public int CameraCount { get; set; }
+    public int SpeedCheckingCameraCount { get; set; }
+    public int ANPRCameraCount { get; set; }
+    public int PTZCameraCount { get; set; }
+    public int C327CameraCount { get; set; }
+    public int CHQBACameraCount { get; set; }
+    public int C733CameraCount { get; set; }
     public int UpsCount { get; set; }
     public int SpeedCheckingCount { get; set; }
     public int SocketCount { get; set; }
@@ -29,8 +35,7 @@ public sealed record GetObyektProductsResponse
     public int TerminalServerCount { get; set; }
     //
     public int BoxCount { get; set; }
-    public int WallBracketCount { get; set; }
-    public int PillarBracketCount { get; set; }
+    public int bracketCount { get; set; }
     public int ConnectorCount { get; set; }
     public int CounterCount { get; set; }
     public int SipHookCount { get; set; }
@@ -43,4 +48,5 @@ public sealed record GetObyektProductsResponse
     public int FreezerCount { get; set; }
     public int NailCount { get; set; }
     public int GlueForNailCount { get; set; }
+    public int MountingBoxCount { get; set; }
 }

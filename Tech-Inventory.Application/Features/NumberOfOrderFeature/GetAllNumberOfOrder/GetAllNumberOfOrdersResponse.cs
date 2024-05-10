@@ -11,4 +11,6 @@ public sealed record GetAllNumberOfOrdersResponse
     public string Number { get; set; }
     public string Region { get; set; }
     public string? Info { get; set; }
+    public string Creator { get; set; }
+    public string Updator { get; set; }
 }

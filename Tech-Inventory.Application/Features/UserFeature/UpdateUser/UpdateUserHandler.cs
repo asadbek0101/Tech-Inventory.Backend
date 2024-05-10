@@ -43,8 +43,12 @@ public class UpdateUserHandler : IRequestHandler<UpdateUserRequest, ApiResponse>
                 {
                     var role = await _userManager.GetRolesAsync(user);
 
-                    await _userManager.RemoveFromRoleAsync(user, role[0]);
-                    await _userManager.AddToRoleAsync(user, request.RoleName);
+                    if(role.Count > 0 && role[0] != null)
+                    {
+                        await _userManager.RemoveFromRoleAsync(user, role[0]);
+                    }
+
+                    await _userManager.AddToRoleAsync(user, request.RoleValue);
 
                     return ResponseHandler.GetAppResponse(type, new UpdateUserResponse
                     {

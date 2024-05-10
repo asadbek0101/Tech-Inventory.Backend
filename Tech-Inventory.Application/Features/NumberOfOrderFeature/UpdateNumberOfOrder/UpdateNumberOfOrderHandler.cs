@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
-using Tech_Inventory.Domain.Entities;
 
 namespace Tech_Inventory.Application.Features.NumberOfOrderFeature.UpdateNumberOfOrder;
 
@@ -21,13 +21,28 @@ public class UpdateNumberOfOrderHandler : IRequestHandler<UpdateNumberOfOrderReq
     public async Task<ApiResponse> Handle(UpdateNumberOfOrderRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Message = "Number of order not found";
+        var Id = 0;
         try
         {
-            var numberOfOrder = _mapper.Map<NumberOfOrder>(request);
-            _context.NumberOfOrders.Update(numberOfOrder);
-            await _unitOfWork.Save(cancellationToken);
+            var numberOfOrder = await _context.NumberOfOrders.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
-            return ResponseHandler.GetAppResponse(type, new UpdateNumberOfOrderResponse { Id = numberOfOrder.Id, Message = "Number Of Order has updated" });
+            if(numberOfOrder  != null)
+            {
+                numberOfOrder.Number = request.Number;
+                numberOfOrder.RegionId = request.RegionId;
+                numberOfOrder.Info = request.Info;
+
+                _context.NumberOfOrders.Update(numberOfOrder);
+                await _unitOfWork.Save(cancellationToken);
+                Message = "Number of order has updated!";
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
+
+            return ResponseHandler.GetAppResponse(type, new UpdateNumberOfOrderResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

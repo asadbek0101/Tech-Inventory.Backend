@@ -1,33 +1,43 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
-using Tech_Inventory.Domain.Entities;
 
 namespace Tech_Inventory.Application.Features.RegionFeature.UpdateRegion;
 
 public class UpdateRegionHandler : IRequestHandler<UpdateRegionRequest, ApiResponse>
 {
     private readonly ITechInventoryDB _context;
-    private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
 
-    public UpdateRegionHandler(ITechInventoryDB context, IMapper mapper, IUnitOfWork unitOfWork)
+    public UpdateRegionHandler(ITechInventoryDB context, IUnitOfWork unitOfWork)
     {
         _context = context;
-        _mapper = mapper;
         _unitOfWork = unitOfWork;
     }
     public async Task<ApiResponse> Handle(UpdateRegionRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Message = "Region Not Found";
+        var Id = 0;
         try
         {
-            var region = _mapper.Map<Region>(request);
-            _context.Regions.Update(region);
-            await _unitOfWork.Save(cancellationToken);
+            var region = await _context.Regions.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            if(region != null)
+            {
+                region.Name = request.Name;
+                region.Info = request.Info;
+                _context.Regions.Update(region);
+                await _unitOfWork.Save(cancellationToken);
+                Id = region.Id;
+                Message = "Region has updated!";
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
 
-            return ResponseHandler.GetAppResponse(type, new UpdateRegionResponse { Id = region.Id, Message = "Region has udpated" });
+            return ResponseHandler.GetAppResponse(type, new UpdateRegionResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

@@ -6,6 +6,6 @@ public class UpdateSocketValidator : AbstractValidator<UpdateSocketRequest>
 {
     public UpdateSocketValidator()
     {
-        RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.Count).NotEmpty();
     }
 }

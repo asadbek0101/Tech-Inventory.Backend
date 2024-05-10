@@ -3,5 +3,5 @@
 public sealed record UpdateConnectorResponse
 {
     public int Id { get; set; }
-    public string Messsage { get; set; }
+    public string Message { get; set; }
 }

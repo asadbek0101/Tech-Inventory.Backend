@@ -6,6 +6,6 @@ public class UpdateRackValidator : AbstractValidator<UpdateRackRequest>
 {
     public UpdateRackValidator()
     {
-        RuleFor(x=>x.Name).NotEmpty();
+        RuleFor(x=>x.NumberOfFibers).NotEmpty();
     }
 }

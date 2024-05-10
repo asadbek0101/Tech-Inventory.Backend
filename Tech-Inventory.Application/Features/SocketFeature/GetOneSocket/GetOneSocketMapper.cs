@@ -7,6 +7,7 @@ public class GetOneSocketMapper : Profile
 {
     public GetOneSocketMapper()
     {
-        CreateMap<Socket, GetOneSocketResponse>();
+        CreateMap<Socket, GetOneSocketResponse>()
+            .ForMember(x => x.Model, otp => otp.MapFrom(x => x.Model.Name));
     }
 }

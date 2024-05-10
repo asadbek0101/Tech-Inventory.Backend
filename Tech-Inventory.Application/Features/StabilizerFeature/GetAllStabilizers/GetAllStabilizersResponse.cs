@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.StabilizerFeature.GetAllStabilizers;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllStabilizersResponse
+namespace Tech_Inventory.Application.Features.StabilizerFeature.GetAllStabilizers;
+
+public sealed record GetAllStabilizersResponse : BaseResponse
 {
     public int Id { get; set; }
     public string Name { get; set; }

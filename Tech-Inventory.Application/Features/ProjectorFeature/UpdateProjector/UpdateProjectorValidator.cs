@@ -6,6 +6,6 @@ public class UpdateProjectorValidator : AbstractValidator<UpdateProjectorRequest
 {
     public UpdateProjectorValidator()
     {
-        RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.ModelId).NotEmpty();
     }
 }

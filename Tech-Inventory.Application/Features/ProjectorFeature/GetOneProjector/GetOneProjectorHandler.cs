@@ -21,7 +21,11 @@ public class GetOneProjectorHandler : IRequestHandler<GetOneProjectorRequest, Ap
         var type = ResponseType.Success;
         try
         {
-            var projector = await _context.Projectors.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var projector = await _context
+                .Projectors
+                .Include(x => x.Model)
+                .Where(x => x.Id == request.Id)
+                .FirstOrDefaultAsync();
 
             var projectorResponse = _mapper.Map<GetOneProjectorResponse>(projector);
 

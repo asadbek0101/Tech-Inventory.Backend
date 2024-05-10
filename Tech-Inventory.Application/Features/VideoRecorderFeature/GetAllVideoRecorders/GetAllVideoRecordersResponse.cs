@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.VideoRecorderFeature.GetAllVideoRecorders;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllVideoRecordersResponse
+namespace Tech_Inventory.Application.Features.VideoRecorderFeature.GetAllVideoRecorders;
+
+public sealed record GetAllVideoRecordersResponse : BaseResponse
 {
     public int Id { get; set; }
     public int ObyektId { get; set; }

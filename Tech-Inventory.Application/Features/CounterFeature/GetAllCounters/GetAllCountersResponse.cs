@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.CounterFeature.GetAllCounters;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllCountersResponse
+namespace Tech_Inventory.Application.Features.CounterFeature.GetAllCounters;
+
+public sealed record GetAllCountersResponse : BaseResponse
 {
     public int Id { get; set; }
     public int ObyektId { get; set; }

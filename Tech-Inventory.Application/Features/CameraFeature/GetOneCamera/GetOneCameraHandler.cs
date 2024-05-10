@@ -21,7 +21,11 @@ public class GetOneCameraHandler : IRequestHandler<GetOneCameraRequest, ApiRespo
         var type = ResponseType.Success;
         try
         {
-            var camera = await _context.Cameras.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var camera = await _context
+                .Cameras
+                .Include(x => x.Model)
+                .Where(x => x.Id == request.Id)
+                .FirstOrDefaultAsync();
 
             var cameraResponse = _mapper.Map<GetOneCameraResponse>(camera);
 

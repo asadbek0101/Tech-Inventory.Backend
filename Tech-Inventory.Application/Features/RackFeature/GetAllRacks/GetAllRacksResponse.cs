@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.RackFeature.GetAllRacks;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllRacksResponse
+namespace Tech_Inventory.Application.Features.RackFeature.GetAllRacks;
+
+public sealed record GetAllRacksResponse : BaseResponse
 {
     public int Id { get; set; }
     public string Name { get; set; }

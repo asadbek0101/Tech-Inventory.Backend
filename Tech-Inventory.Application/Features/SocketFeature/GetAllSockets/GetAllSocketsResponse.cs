@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.SocketFeature.GetAllSockets;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllSocketsResponse
+namespace Tech_Inventory.Application.Features.SocketFeature.GetAllSockets;
+
+public sealed record GetAllSocketsResponse : BaseResponse
 {
     public int Id { get; set; }
     public string Name { get; set; }

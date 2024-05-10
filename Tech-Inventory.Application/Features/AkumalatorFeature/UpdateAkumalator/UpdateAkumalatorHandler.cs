@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
 using Tech_Inventory.Domain.Entities;
@@ -21,13 +22,30 @@ public class UpdateAkumalatorHandler : IRequestHandler<UpdateAkumalatorRequest, 
     public async Task<ApiResponse> Handle(UpdateAkumalatorRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Id = 0;
+        var Message = "Akumalator not found";
         try
         {
-            var akumalator = _mapper.Map<Akumalator>(request);
-            _context.Akumalators.Update(akumalator);
-            await _unitOfWork.Save(cancellationToken);
+            var akumalator = await _context.Akumalators.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
-            return ResponseHandler.GetAppResponse(type, new UpdateAkumalatorResponse { Id = akumalator.Id, Message = "Akumalator has updated" });
+            if(akumalator != null)
+            {
+                akumalator.Power = request.Power;
+                akumalator.Count = request.Count;
+                akumalator.Info = request.Info;
+
+                _context.Akumalators.Update(akumalator);
+                await _unitOfWork.Save(cancellationToken);
+
+                Message = "Akumnalator has updated!";
+                Id = akumalator.Id;
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
+
+            return ResponseHandler.GetAppResponse(type, new UpdateAkumalatorResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

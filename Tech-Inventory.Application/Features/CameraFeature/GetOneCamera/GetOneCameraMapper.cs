@@ -7,6 +7,7 @@ public class GetOneCameraMapper : Profile
 {
     public GetOneCameraMapper()
     {
-        CreateMap<Camera, GetOneCameraResponse>();
+        CreateMap<Camera, GetOneCameraResponse>()
+            .ForMember(x => x.Model, otp => otp.MapFrom(x => x.Model.Name));
     }
 }

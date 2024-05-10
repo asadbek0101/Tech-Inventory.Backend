@@ -7,6 +7,7 @@ public class GetOneSvetaforMapper : Profile
 {
     public GetOneSvetaforMapper()
     {
-        CreateMap<SvetoforDetector, GetOneSvetaforResponse>();
+        CreateMap<SvetoforDetector, GetOneSvetaforResponse>()
+            .ForMember(x => x.Model, otp => otp.MapFrom(x => x.Model.Name));
     }
 }

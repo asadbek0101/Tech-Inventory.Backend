@@ -6,6 +6,6 @@ public class UpdateAkumalatorValidator : AbstractValidator<UpdateAkumalatorReque
 {
     public UpdateAkumalatorValidator()
     {
-        RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.Count).NotEmpty();
     }
 }

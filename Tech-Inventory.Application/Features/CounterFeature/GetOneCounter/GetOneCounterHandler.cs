@@ -21,7 +21,7 @@ public class GetOneCounterHandler : IRequestHandler<GetOneCounterRequest, ApiRes
         var type = ResponseType.Success;
         try
         {
-            var counter = await _context.Counters.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var counter = await _context.Counters.Include(x=>x.Model).Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
             var countertResponse = _mapper.Map<GetOneCounterResponse>(counter);
 

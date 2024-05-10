@@ -21,7 +21,11 @@ public class GetOneAvtomatHandler : IRequestHandler<GetOneAvtomatRequest, ApiRes
         var type = ResponseType.Success;
         try
         {
-            var avtomat = await _context.Avtomats.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var avtomat = await _context
+                .Avtomats
+                .Include(x => x.Model)
+                .Where(x => x.Id == request.Id)
+                .FirstOrDefaultAsync();
 
             var avtomatResponse = _mapper.Map<GetOneAvtomatResponse>(avtomat);
 

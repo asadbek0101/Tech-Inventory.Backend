@@ -7,6 +7,7 @@ public class GetOneBracketMapper : Profile
 {
     public GetOneBracketMapper()
     {
-        CreateMap<Bracket, GetOneBracketResponse>();
+        CreateMap<Bracket, GetOneBracketResponse>()
+            .ForMember(x => x.Model, otp => otp.MapFrom(x => x.Model.Name));
     }
 }

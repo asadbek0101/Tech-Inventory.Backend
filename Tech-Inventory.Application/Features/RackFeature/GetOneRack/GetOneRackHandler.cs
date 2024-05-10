@@ -21,7 +21,7 @@ public class GetOneRackHandler : IRequestHandler<GetOneRackRequest, ApiResponse>
         var type = ResponseType.Success;
         try
         {
-            var rack = await _context.Projectors.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var rack = await _context.Racks.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
             var rackResponse = _mapper.Map<GetOneRackResponse>(rack);
 

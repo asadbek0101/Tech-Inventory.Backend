@@ -1,33 +1,46 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
-using Tech_Inventory.Domain.Entities;
 
 namespace Tech_Inventory.Application.Features.CounterFeature.UpdateCounter;
 
 public class UpdateCounterHandler : IRequestHandler<UpdateCounterRequest, ApiResponse>
 {
     private readonly ITechInventoryDB _context;
-    private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
 
-    public UpdateCounterHandler(ITechInventoryDB context, IMapper mapper, IUnitOfWork unitOfWork)
+    public UpdateCounterHandler(ITechInventoryDB context, IUnitOfWork unitOfWork)
     {
         _context = context;
-        _mapper = mapper;
         _unitOfWork = unitOfWork;
     }
     public async Task<ApiResponse> Handle(UpdateCounterRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Message = "Counter not found!";
+        var Id = 0;
         try
         {
-            var counter = _mapper.Map<Counter>(request);
-            _context.Counters.Update(counter);
-            await _unitOfWork.Save(cancellationToken);
+            var counter = await _context.Counters.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
-            return ResponseHandler.GetAppResponse(type, new UpdateCounterResponse { Id = counter.Id, Message = "Counter has updated" });
+            if (counter != null)
+            {
+                counter.ModelId = request.ModelId;
+                counter.Info = request.Info;
+
+                _context.Counters.Update(counter);
+                await _unitOfWork.Save(cancellationToken);
+
+                Id = counter.Id;
+                Message = "Counter has updated!";
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
+
+            return ResponseHandler.GetAppResponse(type, new UpdateCounterResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

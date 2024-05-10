@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.AkumalatorFeature.GetAllAkumalators;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllAkumalatorsResponse
+namespace Tech_Inventory.Application.Features.AkumalatorFeature.GetAllAkumalators;
+
+public sealed record GetAllAkumalatorsResponse : BaseResponse
 {
     public int Id { get; set; }
     public string Name { get; set; }

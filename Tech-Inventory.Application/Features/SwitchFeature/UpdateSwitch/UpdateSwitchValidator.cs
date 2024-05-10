@@ -6,6 +6,6 @@ public class UpdateSwitchValidator : AbstractValidator<UpdateSwitchRequest>
 {
     public UpdateSwitchValidator()
     {
-        RuleFor(x=>x.Name).NotEmpty();
+        RuleFor(x=>x.CountOfPorts).NotEmpty();
     }
 }

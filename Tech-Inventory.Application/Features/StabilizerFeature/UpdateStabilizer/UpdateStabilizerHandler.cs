@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
 using Tech_Inventory.Application.Features.SocketFeature.UpdateSocket;
@@ -22,13 +23,32 @@ public class UpdateStabilizerHandler : IRequestHandler<UpdateStabilizerRequest, 
     public async Task<ApiResponse> Handle(UpdateStabilizerRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Message = "Stabilizator not found";
+        var Id = 0;
         try
         {
-            var stabilizer = _mapper.Map<Stabilizer>(request);
-            _context.Stabilizers.Update(stabilizer);
-            await _unitOfWork.Save(cancellationToken);
+            var stabilizer = await _context.Stabilizers.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
-            return ResponseHandler.GetAppResponse(type, new UpdateSocketResponse { Id = stabilizer.Id, Message = "Stabilizer has updated" });
+            if (stabilizer != null)
+            {
+                stabilizer.ModelId = request.ModelId;
+                stabilizer.Power = request.Power;
+                stabilizer.Info = request.Info;
+
+                _context.Stabilizers.Update(stabilizer);
+                await _unitOfWork.Save(cancellationToken);
+
+                Message = "Stabilizator has uppdated!";
+                Id = stabilizer.Id;
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
+
+            
+
+            return ResponseHandler.GetAppResponse(type, new UpdateSocketResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

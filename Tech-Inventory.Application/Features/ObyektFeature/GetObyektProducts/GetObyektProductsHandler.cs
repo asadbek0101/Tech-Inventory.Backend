@@ -122,22 +122,47 @@ public class GetObyektProductsHandler : IRequestHandler<GetObyektProductsRequest
 
             var cameraCount = await _context.Cameras
                 .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.CameraType == CameraTypes.Camera)
+                .CountAsync();
+
+            var speedCheckingCameraCount = await _context.Cameras
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.CameraType == CameraTypes.Radar)
+                .CountAsync();
+
+            var ptzCameraCount = await _context.Cameras
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.CameraType == CameraTypes.PTZ)
+                .CountAsync();
+
+            var anprCameraCount = await _context.Cameras
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.CameraType == CameraTypes.ANPR)
+                .CountAsync();
+
+            var c327CameraCount = await _context.Cameras
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.CameraType == CameraTypes.C327)
+                .CountAsync();
+
+            var chqbaCameraCount = await _context.Cameras
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.CameraType == CameraTypes.CHQBA)
+                .CountAsync();
+
+            var c733CameraCount = await _context.Cameras
+                .Where(x => x.ObyektId == request.ObyektId)
+                .Where(x => x.CameraType == CameraTypes.C733)
                 .CountAsync();
 
             var boxesCount = await _context.Boxes
                 .Where(x => x.ObyektId == request.ObyektId)
                 .CountAsync();
 
-            var wallBracketCount = await _context.Brackets
+            var bracketCount = await _context.Brackets
                 .Where(x => x.ObyektId == request.ObyektId)
-                .Where(x => x.BracketType == BracketTypes.WallBracket)
                 .CountAsync();
-
-            var pillarBracketCount = await _context.Brackets
-                .Where(x => x.ObyektId == request.ObyektId)
-                .Where(x => x.BracketType == BracketTypes.PillarBracket)
-                .CountAsync();
-
+         
             var connectorCount = await _context.Connectors
                 .Where(x => x.ObyektId == request.ObyektId)
                 .CountAsync();
@@ -190,6 +215,10 @@ public class GetObyektProductsHandler : IRequestHandler<GetObyektProductsRequest
                 .Where(x => x.ObyektId == request.ObyektId)
                 .CountAsync();
 
+            var mountingBoxCount = await _context.MountingBoxs
+                .Where(x => x.ObyektId == request.ObyektId)
+                .CountAsync();
+
             var response = new GetObyektProductsResponse
             {
                 UtpCabelCount = utpCabelCount,
@@ -214,9 +243,14 @@ public class GetObyektProductsHandler : IRequestHandler<GetObyektProductsRequest
                 SvetaforDetectorCount = svetaforDetectorCount,
                 SvetaforDetectorForCameraCount = svetaforDetectorForCameraCount,
                 CameraCount = cameraCount,
+                ANPRCameraCount = anprCameraCount,
+                SpeedCheckingCameraCount = speedCheckingCameraCount,
+                PTZCameraCount = ptzCameraCount,
+                C327CameraCount = c327CameraCount,
+                CHQBACameraCount = chqbaCameraCount,
+                C733CameraCount = c733CameraCount,
                 BoxCount = boxesCount,
-                PillarBracketCount  = pillarBracketCount,
-                WallBracketCount = wallBracketCount,
+                bracketCount = bracketCount,
                 ConnectorCount = connectorCount,
                 CounterCount = counterCount,
                 CabelHookCount = cabelHookCount,
@@ -229,6 +263,7 @@ public class GetObyektProductsHandler : IRequestHandler<GetObyektProductsRequest
                 PlasticShellCount = plasticShellCount,
                 VideoRecorderCount = videoRecorderCount,
                 FreezerCount = freezerCount,
+                MountingBoxCount = mountingBoxCount,
             };
 
             return ResponseHandler.GetAppResponse(type, response);

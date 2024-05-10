@@ -6,6 +6,6 @@ public class UpdateShelfValidator : AbstractValidator<UpdateShelfRequest>
 {
     public UpdateShelfValidator()
     {
-        RuleFor(x=>x.digitNumber).NotEmpty();
+        RuleFor(x=>x.Number).NotEmpty();
     }
 }

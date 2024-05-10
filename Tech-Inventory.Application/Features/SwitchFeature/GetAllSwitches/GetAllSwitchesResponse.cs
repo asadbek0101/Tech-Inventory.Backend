@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.SwitchFeature.GetAllSwitches;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllSwitchesResponse
+namespace Tech_Inventory.Application.Features.SwitchFeature.GetAllSwitches;
+
+public sealed record GetAllSwitchesResponse : BaseResponse
 {
     public int Id { get; set; }
     public string Name { get; set; }

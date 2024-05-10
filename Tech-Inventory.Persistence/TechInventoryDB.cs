@@ -62,6 +62,7 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
     public DbSet<Server> Servers { get; set; }
     public DbSet<Shell> Shells { get; set; }
     public DbSet<VideoRecorder> VideoRecorders { get; set; }
+    public DbSet<MountingBox> MountingBoxs { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -685,7 +686,7 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
                 SecurityStamp = Guid.NewGuid().ToString("D"),
                 PasswordHash = hasher.HashPassword(null, "Asadbek2001!"),
                 RegionId = 7,
-               }
+            }
            );
 
         modelBuilder.Entity<ObjectClassType>().HasData(
@@ -695,17 +696,17 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
 
         modelBuilder.Entity<ObjectClass>().HasData(
             new ObjectClass() { Id = 1, Name = "Maktab", ObjectClassTypeId = 1 },
-            new ObjectClass() { Id = 2, Name = "Bog'cha", ObjectClassTypeId = 1},
-            new ObjectClass() { Id = 3, Name = "Magazin", ObjectClassTypeId = 1},
-            new ObjectClass() { Id = 4, Name = "OTM", ObjectClassTypeId = 1},
-            new ObjectClass() { Id = 5, Name = "Supermarket", ObjectClassTypeId = 1},
-            new ObjectClass() { Id = 6, Name = "Masjid", ObjectClassTypeId = 1},
-            new ObjectClass() { Id = 7, Name = "Istirohat bo'gi", ObjectClassTypeId = 1},
-            new ObjectClass() { Id = 8, Name = "Jamoat maskanlari", ObjectClassTypeId = 1},
+            new ObjectClass() { Id = 2, Name = "Bog'cha", ObjectClassTypeId = 1 },
+            new ObjectClass() { Id = 3, Name = "Magazin", ObjectClassTypeId = 1 },
+            new ObjectClass() { Id = 4, Name = "OTM", ObjectClassTypeId = 1 },
+            new ObjectClass() { Id = 5, Name = "Supermarket", ObjectClassTypeId = 1 },
+            new ObjectClass() { Id = 6, Name = "Masjid", ObjectClassTypeId = 1 },
+            new ObjectClass() { Id = 7, Name = "Istirohat bo'gi", ObjectClassTypeId = 1 },
+            new ObjectClass() { Id = 8, Name = "Jamoat maskanlari", ObjectClassTypeId = 1 },
 
-            new ObjectClass() { Id = 9, Name = "Chorraxa", ObjectClassTypeId = 2},
-            new ObjectClass() { Id = 10, Name = "Radar", ObjectClassTypeId = 2},
-            new ObjectClass() { Id = 11, Name = "3.27 yo'l beligisi", ObjectClassTypeId = 2}
+            new ObjectClass() { Id = 9, Name = "Chorraxa", ObjectClassTypeId = 2 },
+            new ObjectClass() { Id = 10, Name = "Radar", ObjectClassTypeId = 2 },
+            new ObjectClass() { Id = 11, Name = "3.27 yo'l beligisi", ObjectClassTypeId = 2 }
             );
 
         modelBuilder.Entity<ApplicationRole>().HasData(
@@ -724,4 +725,4 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
             new AspNetClaim() { Id = 5, ClaimName = "Obyektni o'chirish", ClaimType = "deleteObyekt", ClaimValue = "DeleteObyekt" }
       );
     }
-   }
+}

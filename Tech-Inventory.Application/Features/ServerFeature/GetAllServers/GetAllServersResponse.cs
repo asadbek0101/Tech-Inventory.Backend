@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.ServerFeature.GetAllServers;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllServersResponse
+namespace Tech_Inventory.Application.Features.ServerFeature.GetAllServers;
+
+public sealed record GetAllServersResponse : BaseResponse
 {
     public int Id { get; set; }
     public int ObyektId { get; set; }

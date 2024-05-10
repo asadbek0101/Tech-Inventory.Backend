@@ -21,7 +21,11 @@ public class GetOneVideoRecorderHandler : IRequestHandler<GetOneVideoRecorderReq
         var type = ResponseType.Success;
         try
         {
-            var videoRecorder = await _context.VideoRecorders.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var videoRecorder = await _context
+                .VideoRecorders
+                .Include(x => x.Model)
+                .Where(x => x.Id == request.Id)
+                .FirstOrDefaultAsync();
 
             var videoRecorderResponse = _mapper.Map<GetOneVideoRecorderResponse>(videoRecorder);
 

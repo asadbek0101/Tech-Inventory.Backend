@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.NailFeature.GetAllNails;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllNailsResponse
+namespace Tech_Inventory.Application.Features.NailFeature.GetAllNails;
+
+public sealed record GetAllNailsResponse : BaseResponse
 {
     public int Id { get; set; }
     public int ObyektId { get; set; }

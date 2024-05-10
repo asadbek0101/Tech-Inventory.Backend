@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
-using Tech_Inventory.Domain.Entities;
 
 namespace Tech_Inventory.Application.Features.NailFeature.UpdateNail;
 
@@ -23,11 +23,27 @@ public class UpdateNailHandler : IRequestHandler<UpdateNailRequest, ApiResponse>
         var type = ResponseType.Success;
         try
         {
-            var nail = _mapper.Map<Nail>(request);
-            _context.Nails.Update(nail);
-            await _unitOfWork.Save(cancellationToken);
+            var nail = await _context.Nails.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var Message = "Nail not found";
+            var Id = 0;
 
-            return ResponseHandler.GetAppResponse(type, new UpdateNailResponse { Id = nail.Id, Message = "Avtomat has updated" });
+            if (nail != null)
+            {
+                nail.Weight = request.Weight;
+                nail.Info = request.Info;
+
+                _context.Nails.Update(nail);
+                await _unitOfWork.Save(cancellationToken);
+                Message = "Nail has updated!";
+                Id = nail.Id;
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
+            
+
+            return ResponseHandler.GetAppResponse(type, new UpdateNailResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

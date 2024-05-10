@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
 using Tech_Inventory.Domain.Entities;
@@ -21,13 +22,29 @@ public class UpdateCabelHandler : IRequestHandler<UpdateCabelRequest, ApiRespons
     public async Task<ApiResponse> Handle(UpdateCabelRequest request, CancellationToken cancellationToken)
     {
         var type = ResponseType.Success;
+        var Message = "Cabel not found!";
+        var Id = 0;
         try
         {
-            var cabel = _mapper.Map<Cabel>(request);
-            _context.Cabels.Update(cabel);
-            await _unitOfWork.Save(cancellationToken);
+            var cabel = await _context.Cabels.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
 
-            return ResponseHandler.GetAppResponse(type, new UpdateCabelResponse { Id = cabel.Id, Message = "District has updated" });
+            if (cabel != null)
+            {
+
+                cabel.ModelId = request.ModelId;
+                cabel.CabelTypeId = request.CabelTypeId;
+                cabel.Meter = request.Meter;
+                cabel.Info = request.Info;
+
+                _context.Cabels.Update(cabel);
+                await _unitOfWork.Save(cancellationToken);
+            }
+            else
+            {
+                type = ResponseType.Failed;
+            }
+
+            return ResponseHandler.GetAppResponse(type, new UpdateCabelResponse { Id = Id, Message = Message });
         }
         catch (Exception ex)
         {

@@ -8,6 +8,6 @@ public class GetOneUserMapper : Profile
     public GetOneUserMapper()
     {
         CreateMap<ApplicationUser, GetOneUserResponse>()
-            .ForMember(x => x.Region, otp => otp.MapFrom(x => x.Region.Name));
+            .ForMember(x => x.Region, opt => opt.MapFrom(x => x.Region.Name));
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Tech_Inventory.Application.Features.StanchionFeature.GetAllStanchions;
+﻿using Tech_Inventory.Application.Common.Exceptions;
 
-public sealed record GetAllStanchionsResponse
+namespace Tech_Inventory.Application.Features.StanchionFeature.GetAllStanchions;
+
+public sealed record GetAllStanchionsResponse : BaseResponse
 {
     public int Id { get; set; }
     public int ObyektId { get; set; }

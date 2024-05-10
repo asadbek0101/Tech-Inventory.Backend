@@ -21,7 +21,11 @@ public class GetOneBoxHandler : IRequestHandler<GetOneBoxRequest, ApiResponse>
         var type = ResponseType.Success;
         try
         {
-            var box = await _context.Boxes.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var box = await _context
+                .Boxes
+                .Include(x => x.Model)
+                .Where(x => x.Id == request.Id)
+                .FirstOrDefaultAsync();
 
             var boxResponse = _mapper.Map<GetOneBoxResponse>(box);
 

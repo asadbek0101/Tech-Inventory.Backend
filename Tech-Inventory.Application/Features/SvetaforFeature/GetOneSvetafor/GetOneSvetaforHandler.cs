@@ -21,7 +21,11 @@ public class GetOneSvetaforHandler : IRequestHandler<GetOneSvetaforRequest, ApiR
         var type = ResponseType.Success;
         try
         {
-            var svetafor = await _context.SvetoforDetectors.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var svetafor = await _context
+                .SvetoforDetectors
+                .Include(x => x.Model)
+                .Where(x => x.Id == request.Id)
+                .FirstOrDefaultAsync();
 
             var svetaforResponse = _mapper.Map<GetOneSvetaforResponse>(svetafor);
 

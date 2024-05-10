@@ -6,6 +6,6 @@ public class UpdateCameraValidator : AbstractValidator<UpdateCameraRequest>
 {
     public UpdateCameraValidator()
     {
-        RuleFor(x => x.Name).NotEmpty();
+        RuleFor(x => x.Ip).NotEmpty();
     }
 }

@@ -28,6 +28,7 @@ public class GetAllUsersHandler : IRequestHandler<GetAllUsersRequest, ApiRespons
             var skipRows = _paginator.Offset(request.PageNumber, request.PageSize);
             var users = await _userManager
                 .Users
+                .OrderBy(x => x.Id)
                 .Include(x => x.Region)
                 .Skip(skipRows)
                 .Take(request.PageSize).ToListAsync();
