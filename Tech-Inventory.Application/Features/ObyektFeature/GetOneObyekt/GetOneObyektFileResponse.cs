@@ -5,5 +5,6 @@ public sealed record GetOneObyektFileResponse
     public int Id { get; set; }
     public string Name { get; set; }
     public string FileName { get; set; }
+    public string OriginalFileName { get; set; }
     public string FileSize { get; set; }
 }

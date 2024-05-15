@@ -21,9 +21,12 @@ public class UploadFilesHandler : IRequestHandler<UploadFilesRequest, string>
     {
         var file = request.File;
         var url = FilesFolderURL.URL;
+        string filename = "";
 
-      
-            var isHasFile = await _context.Attachments.Where(x => x.ObyektId == request.Id && x.FileName == file.FileName).FirstOrDefaultAsync();
+        var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
+        filename = DateTime.Now.Ticks.ToString() + extension;
+
+        var isHasFile = await _context.Attachments.Where(x => x.ObyektId == request.Id && x.FileName == file.FileName).FirstOrDefaultAsync();
 
             if (isHasFile == null)
             {
@@ -35,17 +38,18 @@ public class UploadFilesHandler : IRequestHandler<UploadFilesRequest, string>
                     Directory.CreateDirectory(filepath);
                 }
 
-                var exactpath = Path.Combine(Path.GetFullPath(url), file.FileName);
+                var exactpath = Path.Combine(Path.GetFullPath(url), filename);
 
                 using (var stream = new FileStream(exactpath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
-                var _attachment = new Attachment
-                {
-                    ObyektId = request.Id,
-                    FileName = file.FileName,
-                    FileSize = file.Length.ToString(),
-                };
+                    var _attachment = new Attachment
+                    {
+                        ObyektId = request.Id,
+                        OriginalFileName = file.FileName,
+                        FileName = filename,
+                        FileSize = file.Length.ToString(),
+                    };
 
                 await _context.Attachments.AddAsync(_attachment);
                 await _unitOfWork.Save(cancellationToken);

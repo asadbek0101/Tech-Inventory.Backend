@@ -2,6 +2,6 @@
 
 public static class FilesFolderURL
 {
-    //public const string URL = "C:\\Uploaded";
-    public const string URL = "/home/adminz/Files/Tech-Inventories";
+    public const string URL = "C:\\Uploaded";
+    //public const string URL = "/home/adminz/Files/Tech-Inventories";
 }
