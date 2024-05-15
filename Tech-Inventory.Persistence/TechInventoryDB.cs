@@ -311,6 +311,12 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
                  .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Model>()
+                 .HasMany(u => u.Shelves)
+                 .WithOne(c => c.Model)
+                 .HasForeignKey(c => c.BrandId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Model>()
                  .HasMany(u => u.Svetafors)
                  .WithOne(c => c.Model)
                  .HasForeignKey(c => c.ModelId)

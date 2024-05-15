@@ -9,5 +9,6 @@ public sealed record UpdateBracketRequest : IRequest<ApiResponse>
     public int Id { get; set; }
     public int ObyektId { get; set; }
     public int ModelId { get; set; }
+    public string Count { get; set; }
     public string? Info { get; set; }
 }

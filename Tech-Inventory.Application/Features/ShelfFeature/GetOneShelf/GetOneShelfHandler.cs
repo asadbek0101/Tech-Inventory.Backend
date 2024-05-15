@@ -21,7 +21,11 @@ public class GetOneShelfHandler : IRequestHandler<GetOneShelfRequest, ApiRespons
         var type = ResponseType.Success;
         try
         {
-            var shelf = await _context.Shelves.Where(x => x.Id == request.Id).FirstOrDefaultAsync();
+            var shelf = await _context
+                .Shelves
+                .Include(x=>x.Model)
+                .Where(x => x.Id == request.Id)
+                .FirstOrDefaultAsync();
 
             var shelfResponse = _mapper.Map<GetOneShelfResponse>(shelf);
 

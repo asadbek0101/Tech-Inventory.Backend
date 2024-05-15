@@ -7,6 +7,7 @@ public class GetAllShelfsMapper : Profile
 {
     public GetAllShelfsMapper()
     {
-        CreateMap<Shelf, GetAllShelfsResponse>();
+        CreateMap<Shelf, GetAllShelfsResponse>()
+            .ForMember(x => x.Brand, opt => opt.MapFrom(x => x.Model.Name));
     }
 }

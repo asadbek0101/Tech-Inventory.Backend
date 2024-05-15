@@ -8,6 +8,7 @@ public sealed record UpdateShelfRequest: IRequest<ApiResponse>
 {
     public int Id { get; set; }
     public int ObyektId { get; set; }
+    public int BrandId { get; set; }
     public string SerialNumber { get; set; }
     public string Number { get; set; }
     public string? Info { get; set; }

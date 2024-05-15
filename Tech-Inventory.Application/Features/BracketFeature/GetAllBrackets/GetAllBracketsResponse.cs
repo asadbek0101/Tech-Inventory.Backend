@@ -9,5 +9,6 @@ public sealed record GetAllBracketsResponse : BaseResponse
     public int ObyektId { get; set; }
     public int ModelId { get; set; }
     public string Model { get; set; }
+    public string Count { get; set; }
     public string? Info { get; set; }
 }

@@ -26,6 +26,7 @@ public class GetAllShelfsHandler : IRequestHandler<GetAllShelfsRequest, ApiRespo
         try
         {
             var shelfs = await _context.Shelves
+                .Include(x => x.Model)
                 .Where(x => x.ObyektId == request.ObyektId)
                 .Where(x => x.ShelfType == request.ShelfType)
                 .ToListAsync();

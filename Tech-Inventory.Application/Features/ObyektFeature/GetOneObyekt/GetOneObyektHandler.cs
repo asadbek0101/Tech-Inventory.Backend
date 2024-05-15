@@ -36,6 +36,7 @@ public class GetOneObyektHandler : IRequestHandler<GetOneObyektRequest, ApiRespo
 
             var attachments = await _context.Attachments.Where(x => x.ObyektId == request.Id).ToListAsync();
             
+            
             var responseAttachments = _mapper.Map<List<GetOneObyektFileResponse>>(attachments);
 
             obyektResponse.Files = responseAttachments;

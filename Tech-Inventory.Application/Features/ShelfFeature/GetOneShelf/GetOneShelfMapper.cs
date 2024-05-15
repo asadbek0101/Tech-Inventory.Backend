@@ -7,6 +7,7 @@ public class GetOneShelfMapper : Profile
 {
     public GetOneShelfMapper()
     {
-        CreateMap<Shelf, GetOneShelfResponse>();
+        CreateMap<Shelf, GetOneShelfResponse>()
+            .ForMember(x => x.Brand, opt => opt.MapFrom(x => x.Model.Name));
     }
 }

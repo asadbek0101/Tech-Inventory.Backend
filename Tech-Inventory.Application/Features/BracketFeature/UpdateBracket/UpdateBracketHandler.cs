@@ -28,6 +28,7 @@ public class UpdateBracketHandler : IRequestHandler<UpdateBracketRequest, ApiRes
             if(bracket != null)
             {
                 bracket.ModelId = request.ModelId;
+                bracket.Count = request.Count;
                 bracket.Info = request.Info;
 
                 _context.Brackets.Update(bracket);

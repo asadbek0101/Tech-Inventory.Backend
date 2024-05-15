@@ -30,6 +30,7 @@ public class UpdateShelfHandler : IRequestHandler<UpdateShelfRequest, ApiRespons
 
             if(shelf != null)
             {
+                shelf.BrandId = request.BrandId;
                 shelf.SerialNumber = request.SerialNumber;
                 shelf.Number = request.Number;
                 shelf.Info = request.Info;

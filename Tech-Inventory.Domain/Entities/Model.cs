@@ -25,6 +25,7 @@ public class Model : BaseEntity
     public List<Counter> Counters { get; set; }
     public List<VideoRecorder> VideoRecorders { get; set; }
     public List<MountingBox> MountingBoxs { get; set; }
+    public List<Shelf> Shelves { get; set; }
 }
 
 
@@ -50,4 +51,5 @@ public enum ModelTypes
     Counter = 18,
     VideoRecorder = 19,
     MountingBox = 20,
+    Shelf = 21,
 }
