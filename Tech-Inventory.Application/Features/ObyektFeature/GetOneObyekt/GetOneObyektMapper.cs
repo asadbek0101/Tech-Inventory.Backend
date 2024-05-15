@@ -17,5 +17,8 @@ public class GetOneObyektMapper : Profile
             .ForMember(x => x.ConnectionTypeId, otp => otp.MapFrom(ex => ex.ConnectionType))
             .ForMember(x => x.ConnectionType, otp => otp.MapFrom(ex => ex.ConnectionType.ToString()))
         ;
+
+        CreateMap<Attachment, GetOneObyektFileResponse>()
+            .ForMember(x => x.Name, opt => opt.MapFrom(x => x.FileName));
     }
 }

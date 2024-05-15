@@ -1,80 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
-using Tech_Inventory.Application.Features.AttechmentFeature.CreateAttechment;
-using Tech_Inventory.Domain.Entities;
+using Tech_Inventory.Application.Common.Helpers;
+using Tech_Inventory.Application.Features.FileFeature.RemoveFile;
+using Tech_Inventory.Application.Features.FileFeature.UploadFile;
 
 namespace Tech_Inventory.WebApi.Controllers;
 public class FilesController : BaseController
 {
-    private async Task<string> WriteFile(IFormFile file)
-    {
-        string filename = "";
-        try
-        {
-            var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
-            filename = DateTime.Now.Ticks.ToString() + extension;
-
-            var filepath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files");
-
-            if (!Directory.Exists(filepath))
-            {
-                Directory.CreateDirectory(filepath);
-            }
-
-            var exactpath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", filename);
-            using (var stream = new FileStream(exactpath, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            return filename;
-
-        }
-        catch (Exception ex)
-        {
-        }
-        return filename;
-    }
 
     [HttpPost("UploadFile")]
-    
-    public async Task<IActionResult> UploadFile(IFormFile file, [FromQuery] int Id, [FromQuery] string fileName, [FromQuery] FileTypes type, CancellationToken cancellationtoken)
+    public async Task<ActionResult<string>> UploadFile(IFormFile File, [FromQuery] int Id)
     {
-        try
-        {
-            var result = await WriteFile(file);
-            var isCreatedAttachment = await Mediator.Send(new CreateAttechmentRequest { ObyektId = Id, Path = result, FileName= fileName, type = type, ContentType = file.ContentType, }) ;
-            
-            if (isCreatedAttachment.IsSuccess)
-            {
-                return Ok(result);
-            }
-            else
-            {
-                return BadRequest();
-            }
+        return await Mediator.Send(new UploadFilesRequest { File = File, Id = Id });
+    }
 
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
+    [HttpGet("RemoveFile")]
+    public async Task<ActionResult<RemoveFileResponse>> RemoveFile([FromQuery] RemoveFileRequest request)
+    {
+        return await Mediator.Send(request);
     }
 
     [HttpGet("DownloadFile")]
     public async Task<IActionResult> DownloadFile(string fileName)
     {
-        
-            var filepath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", fileName);
 
-            var provider = new FileExtensionContentTypeProvider();
-            if (!provider.TryGetContentType(filepath, out var contenttype))
-            {
-                contenttype = "application/octet-stream";
-            }
+        var filepath = Path.Combine(Path.GetFullPath(FilesFolderURL.URL), fileName);
 
-            var bytes = await System.IO.File.ReadAllBytesAsync(filepath);
-            return File(bytes, contenttype, Path.GetFileName(filepath));
+        var provider = new FileExtensionContentTypeProvider();
+        if (!provider.TryGetContentType(filepath, out var contenttype))
+        {
+            contenttype = "application/octet-stream";
+        }
+
+        var bytes = await System.IO.File.ReadAllBytesAsync(filepath);
+        return File(bytes, contenttype, Path.GetFileName(filepath));
 
     }
 }
