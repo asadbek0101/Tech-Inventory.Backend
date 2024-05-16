@@ -9,23 +9,32 @@ public class PdfController : BaseController
     public async Task<IActionResult> GeneratePdf()
     {
 
-        var options = new LaunchOptions
+        try
         {
-            Headless = true,
-        };
+            var options = new LaunchOptions
+            {
+                Headless = true,
+            };
 
-        using var browser = await Puppeteer.LaunchAsync(options);
-        using var page = await browser.NewPageAsync();
+            using var browser = await Puppeteer.LaunchAsync(options);
+            using var page = await browser.NewPageAsync();
 
-        var htmlContent = "";
+            var htmlContent = "";
 
-        htmlContent += "<h1 style='color: red; font-family: Arial, Helvetica, sans-serif; text-align: center;'> Asadbek Rejabboyev </h1>";
+            htmlContent += "<h1 style='color: red; font-family: Arial, Helvetica, sans-serif; text-align: center;'> Asadbek Rejabboyev </h1>";
 
-        await page.SetContentAsync(htmlContent);
+            await page.SetContentAsync(htmlContent);
 
-        var pdfStream = await page.PdfDataAsync();
+            var pdfStream = await page.PdfDataAsync();
 
-        return File(pdfStream, "application/pdf", "ObyektReport.pdf");
+            return File(pdfStream, "application/octet-stream", "ObyektReport.pdf");
+        }
+        catch (Exception ex)
+        {
+
+            return BadRequest(ex.Message);
+        }
+        
     }
 
 }
