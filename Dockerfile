@@ -20,6 +20,33 @@ FROM build AS publish
 RUN dotnet publish "Tech-Inventory.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
+
+RUN apt-get update && \
+    apt-get install -y \
+        wget \
+        gnupg2 \
+        apt-transport-https \
+        ca-certificates \
+        fonts-liberation \
+        libappindicator3-1 \
+        libasound2 \
+        libatk-bridge2.0-0 \
+        libatk1.0-0 \
+        libcups2 \
+        libdbus-1-3 \
+        libgdk-pixbuf2.0-0 \
+        libnspr4 \
+        libnss3 \
+        libx11-xcb1 \
+        libxcomposite1 \
+        libxdamage1 \
+        libxrandr2 \
+        xdg-utils \
+        libgbm1 \
+        libxcb-dri3-0 \
+        libxss1 && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Tech-Inventory.WebApi.dll"]

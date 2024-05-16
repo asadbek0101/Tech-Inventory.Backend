@@ -7,7 +7,7 @@ public class ResponseHandler
         ApiResponse response = new ApiResponse();
         response.IsSuccess = false;
         response.IsError = true;
-        response.Data = ex;
+        response.Data = ex.Message;
         return response;
     }
 
