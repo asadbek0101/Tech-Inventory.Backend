@@ -3,7 +3,7 @@ using PuppeteerSharp;
 
 namespace Tech_Inventory.WebApi.Controllers;
 
-public class PdfController : ControllerBase
+public class PdfController : BaseController
 {
     [HttpGet("GetObyektReport")]
     public async Task<IActionResult> GeneratePdf()
