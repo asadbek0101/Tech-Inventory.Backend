@@ -7,6 +7,7 @@ using Tech_Inventory.Application.Features.ObyektFeature.GetAllObyekts;
 using Tech_Inventory.Application.Features.ObyektFeature.GetObyektProducts;
 using Tech_Inventory.Application.Features.ObyektFeature.GetOneObyekt;
 using Tech_Inventory.Application.Features.ObyektFeature.UpdateObyekt;
+using Tech_Inventory.Application.Features.PdfFeature.ObyektReport;
 
 namespace Tech_Inventory.WebApi.Controllers;
 
@@ -26,6 +27,12 @@ public class ObyektsController : BaseController
 
     [HttpGet("GetOne")]
     public async Task<ActionResult<ApiResponse>> GetOne([FromQuery] GetOneObyektRequest request)
+    {
+        return await Mediator.Send(request);
+    }
+
+    [HttpGet("GetObyektReport")]
+    public async Task<ActionResult<ObyektReportResponse>> Get([FromQuery] ObyektReportRequest request)
     {
         return await Mediator.Send(request);
     }

@@ -1,7 +1,7 @@
 ﻿namespace Tech_Inventory.Application.Features.PdfFeature.ObyektReport;
 
-public sealed record ObyektReportTerminalServer
+public sealed record ObyektReportGSM
 {
     public int Id { get; set; }
-    public string Model { get; set; }
+    public string PhoneNumber { get; set; }
 }
