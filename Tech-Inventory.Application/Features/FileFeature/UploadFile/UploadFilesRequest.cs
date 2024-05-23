@@ -7,4 +7,5 @@ public sealed record UploadFilesRequest : IRequest<string>
 {
     public int Id { get; set; }
     public IFormFile File { get; set; }
+    public string OriginalFileName { get; set; }
 }

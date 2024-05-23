@@ -46,7 +46,7 @@ public class UploadFilesHandler : IRequestHandler<UploadFilesRequest, string>
                     var _attachment = new Attachment
                     {
                         ObyektId = request.Id,
-                        OriginalFileName = file.FileName,
+                        OriginalFileName = request.OriginalFileName,
                         FileName = filename,
                         FileSize = file.Length.ToString(),
                     };
