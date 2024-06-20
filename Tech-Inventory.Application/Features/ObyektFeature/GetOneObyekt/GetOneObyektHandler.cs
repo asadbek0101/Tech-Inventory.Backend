@@ -39,7 +39,11 @@ public class GetOneObyektHandler : IRequestHandler<GetOneObyektRequest, ApiRespo
             
             var responseAttachments = _mapper.Map<List<GetOneObyektFileResponse>>(attachments);
 
-            obyektResponse.Files = responseAttachments;
+            if (responseAttachments.Any()) 
+            {
+                obyektResponse.Files = responseAttachments;
+            }
+
 
             if (obyekt?.ConnectionType == ConnectionTypes.FTTX)
             {

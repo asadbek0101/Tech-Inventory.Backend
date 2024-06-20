@@ -12,5 +12,4 @@ public class CurrentUserService : ICurrentUserService
     }
     public int UserId => Convert.ToInt32(_httpContextAccessor.HttpContext?.Request?.Headers["userId"].ToString());
     //public int UserId => 1;
-
 }

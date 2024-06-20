@@ -75,9 +75,11 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
                     .ToList();
             }
 
-            obyekts = obyekts.Skip(skipRows).Take(request.PageSize).ToList();
+            obyekts = obyekts.ToList();
 
             var obyektsResponse = _mapper.Map<List<GetAllObyektsResponse>>(obyekts);
+
+            obyektsResponse = obyektsResponse.Skip(skipRows).Take(request.PageSize).ToList();
 
             foreach (var item in obyektsResponse)
             {

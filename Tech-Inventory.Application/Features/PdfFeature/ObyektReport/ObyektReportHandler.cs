@@ -81,6 +81,8 @@ public class ObyektReportHandler : IRequestHandler<ObyektReportRequest, ObyektRe
             var fttxs = await _context.FTTXs.Include(x => x.Model).Where(x => x.ObyektId == request.Id).ToListAsync();
             var gsms = await _context.GSMs.Where(x => x.ObyektId == request.Id).ToListAsync();
 
+            var attachments = await _context.Attachments.Where(x => x.ObyektId == request.Id).ToListAsync();
+
             var obyektResponse = _mapper.Map<ObyektReportResponse>(obyekt);
 
             obyektResponse.Cameras = _mapper.Map<List<ObyektReportCamera>>(cameras);
@@ -127,6 +129,7 @@ public class ObyektReportHandler : IRequestHandler<ObyektReportRequest, ObyektRe
             obyektResponse.GPONs = _mapper.Map<List<ObyektReportGPON>>(gpons);
             obyektResponse.FTTXs = _mapper.Map<List<ObyektReportFTTX>>(fttxs);
             obyektResponse.GSMs = _mapper.Map<List<ObyektReportGSM>>(gsms);
+            obyektResponse.Attachments = _mapper.Map<List<ObyektReportAttachment>>(attachments);
 
             return obyektResponse;
         }

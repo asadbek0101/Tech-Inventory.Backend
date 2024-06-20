@@ -26,6 +26,7 @@ public static class ServiceExtensions
         });
 
         services.AddTransient<ICurrentUserService, CurrentUserService>();
+        services.AddTransient<IMinioService, MinioService>();
 
         services.AddSwaggerGen(swagger =>
         {

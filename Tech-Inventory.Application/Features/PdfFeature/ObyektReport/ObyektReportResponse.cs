@@ -59,4 +59,5 @@ public sealed record ObyektReportResponse
     public List<ObyektReportGPON> GPONs { get; set; }
     public List<ObyektReportFTTX> FTTXs { get; set; }
     public List<ObyektReportGSM> GSMs { get; set; }
+    public List<ObyektReportAttachment> Attachments { get; set; }
 }

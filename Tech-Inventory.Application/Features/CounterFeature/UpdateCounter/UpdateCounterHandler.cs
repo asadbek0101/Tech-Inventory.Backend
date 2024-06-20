@@ -27,6 +27,7 @@ public class UpdateCounterHandler : IRequestHandler<UpdateCounterRequest, ApiRes
             if (counter != null)
             {
                 counter.ModelId = request.ModelId;
+                counter.NumberOfConcern = request.NumberOfConcern;
                 counter.Info = request.Info;
 
                 _context.Counters.Update(counter);

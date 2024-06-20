@@ -30,5 +30,5 @@ public sealed record GetOneObyektResponse
     public string SerialNumber { get; set; }
     public string NumberOfPort { get; set; }
     public string PhoneNumber { get; set; }
-    public List<GetOneObyektFileResponse> Files { get; set; }
+    public List<GetOneObyektFileResponse>? Files { get; set; }
 }

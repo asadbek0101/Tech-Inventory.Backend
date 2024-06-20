@@ -3,5 +3,6 @@
 public sealed record ObyektReportCounter
 {
     public int Id { get; set; }
+    public string NumberOfConcern { get; set; }
     public string Model { get; set; }
 }

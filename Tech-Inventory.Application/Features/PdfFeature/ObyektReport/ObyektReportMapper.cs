@@ -63,5 +63,6 @@ public class ObyektReportMapper : Profile
         CreateMap<FTTX, ObyektReportFTTX>()
             .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); 
         CreateMap<GSM, ObyektReportGSM>(); 
+        CreateMap<Attachment, ObyektReportAttachment>(); 
     }
 }

@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\GlueForNailFeature\**" />
+    <EmbeddedResource Remove="Features\GlueForNailFeature\**" />
+    <None Remove="Features\GlueForNailFeature\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
@@ -15,6 +21,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.3.1" />
+    <PackageReference Include="Minio" Version="6.0.2" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.3.1" />
   </ItemGroup>
 
@@ -23,11 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\GlueForNailFeature\CreateGlueForNail\" />
-    <Folder Include="Features\GlueForNailFeature\DeleteGlueForNail\" />
-    <Folder Include="Features\GlueForNailFeature\GetAllGlueForNails\" />
-    <Folder Include="Features\GlueForNailFeature\GetOneGlueForNail\" />
-    <Folder Include="Features\GlueForNailFeature\UpdateGlueForNail\" />
+    <Folder Include="Features\AttachmentFeature\GetOneAttachment\" />
   </ItemGroup>
 
 </Project>
