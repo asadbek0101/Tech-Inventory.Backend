@@ -19,7 +19,7 @@ public class ObyektsController : BaseController
         return await Mediator.Send(request);
     }
 
-    [HttpGet("GetProducts")]
+    [HttpGet("GetProductsCounts")]
     public async Task<ActionResult<ApiResponse>> GetPruducts([FromQuery] GetObyektProductsRequest request)
     {
         return await Mediator.Send(request);
