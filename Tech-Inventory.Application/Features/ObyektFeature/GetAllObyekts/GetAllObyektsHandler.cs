@@ -29,7 +29,6 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
         var type = ResponseType.Success;
         try
         {
-            var skipRows = _paginator.Offset(request.PageNumber, request.PageSize);
 
             var query = _context
                 .Obyekts
@@ -40,8 +39,7 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
                 .Include(x => x.Streett)
                 .AsQueryable();
 
-
-            if(request.RegionId != 0)
+            if (request.RegionId != 0)
             {
                 query = query.Where(x=>x.RegionId == request.RegionId);
             }
@@ -83,6 +81,7 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
                        x.Region.Name.ToUpper().Contains(request.SearchValue.ToUpper()));
             }
 
+
             var pagedResult = await query
                 .OrderBy(x => x.Id)
                 .Skip((request.PageNumber - 1) * request.PageSize)
@@ -94,8 +93,6 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
             var totalPageCount = _paginator.GetTotalPageCount(request.PageSize, totalRowCount);
 
             var obyektsResponse = _mapper.Map<List<GetAllObyektsResponse>>(pagedResult);
-
-            obyektsResponse = obyektsResponse.Skip(skipRows).Take(request.PageSize).ToList();
 
             foreach (var item in obyektsResponse)
             {
