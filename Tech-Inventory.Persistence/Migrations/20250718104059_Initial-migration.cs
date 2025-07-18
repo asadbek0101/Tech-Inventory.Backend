@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Tech_Inventory.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmigration : Migration
+    public partial class Initialmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -395,6 +395,26 @@ namespace Tech_Inventory.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Streets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    DistrictId = table.Column<int>(type: "integer", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Streets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Streets_Districts_DistrictId",
+                        column: x => x.DistrictId,
+                        principalTable: "Districts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Obyekts",
                 columns: table => new
                 {
@@ -403,6 +423,7 @@ namespace Tech_Inventory.Persistence.Migrations
                     RegionId = table.Column<int>(type: "integer", nullable: false),
                     ProjectId = table.Column<int>(type: "integer", nullable: false),
                     DistrictId = table.Column<int>(type: "integer", nullable: false),
+                    StreetId = table.Column<int>(type: "integer", nullable: true),
                     ObjectClassId = table.Column<int>(type: "integer", nullable: false),
                     NumberOfOrderId = table.Column<int>(type: "integer", nullable: false),
                     ObjectClassTypeId = table.Column<int>(type: "integer", nullable: false),
@@ -460,6 +481,11 @@ namespace Tech_Inventory.Persistence.Migrations
                         principalTable: "Regions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Obyekts_Streets_StreetId",
+                        column: x => x.StreetId,
+                        principalTable: "Streets",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -705,7 +731,6 @@ namespace Tech_Inventory.Persistence.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ObyektId = table.Column<int>(type: "integer", nullable: false),
                     Count = table.Column<string>(type: "text", nullable: false),
-                    NumberOfConcern = table.Column<string>(type: "text", nullable: false),
                     Info = table.Column<string>(type: "text", nullable: true),
                     CreatedBy = table.Column<int>(type: "integer", nullable: false),
                     UpdatedBy = table.Column<int>(type: "integer", nullable: true),
@@ -733,6 +758,7 @@ namespace Tech_Inventory.Persistence.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ObyektId = table.Column<int>(type: "integer", nullable: false),
                     ModelId = table.Column<int>(type: "integer", nullable: false),
+                    NumberOfConcern = table.Column<string>(type: "text", nullable: false),
                     Info = table.Column<string>(type: "text", nullable: true),
                     CreatedBy = table.Column<int>(type: "integer", nullable: false),
                     UpdatedBy = table.Column<int>(type: "integer", nullable: true),
@@ -1510,11 +1536,11 @@ namespace Tech_Inventory.Persistence.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "CreatedDate", "Name", "NormalizedName", "RoleLabel", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5547), "Programmer", "PROGRAMMER", "Dasturchi", null },
-                    { 2, null, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5551), "ChiefSpecialist", "CHIEFSPECIALIST", "Bosh mutaxassis", null },
-                    { 3, null, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5552), "SeniorSpecialist", "SENIORSPECIALIST", "Katta mutaxassis", null },
-                    { 4, null, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5553), "LeadingExpert", "LEADINGEXPERT", "Yetakchi mutaxassis", null },
-                    { 5, null, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5554), "DepartmentHead", "DEPARTMENTHEAD", "Bo'lim boshlig'i", null }
+                    { 1, null, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5720), "Programmer", "PROGRAMMER", "Dasturchi", null },
+                    { 2, null, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5722), "ChiefSpecialist", "CHIEFSPECIALIST", "Bosh mutaxassis", null },
+                    { 3, null, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5723), "SeniorSpecialist", "SENIORSPECIALIST", "Katta mutaxassis", null },
+                    { 4, null, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5724), "LeadingExpert", "LEADINGEXPERT", "Yetakchi mutaxassis", null },
+                    { 5, null, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5724), "DepartmentHead", "DEPARTMENTHEAD", "Bo'lim boshlig'i", null }
                 });
 
             migrationBuilder.InsertData(
@@ -1522,8 +1548,8 @@ namespace Tech_Inventory.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Description", "Image", "Info", "Name", "UpdatedBy", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5463), null, null, null, "Ijtimoiy obyektlar", null, null },
-                    { 2, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5467), null, null, null, "PDD", null, null }
+                    { 1, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5665), null, null, null, "Ijtimoiy obyektlar", null, null },
+                    { 2, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5669), null, null, null, "PDD", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1531,232 +1557,232 @@ namespace Tech_Inventory.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Description", "Image", "Info", "Name", "UpdatedBy", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1542), null, null, "test", "Qoraqalpog‘iston Respublikasi", null, null },
-                    { 2, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1547), null, null, "test", "Andijon viloyati", null, null },
-                    { 3, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1548), null, null, "test", "Buxoro viloyati", null, null },
-                    { 4, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1549), null, null, "test", "Jizzax viloyati", null, null },
-                    { 5, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1550), null, null, "test", "Qashqadaryo viloyati", null, null },
-                    { 6, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1551), null, null, "test", "Navoiy viloyati", null, null },
-                    { 7, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1551), null, null, "test", "Namangan viloyati", null, null },
-                    { 8, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1552), null, null, "test", "Samarqand viloyati", null, null },
-                    { 9, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1553), null, null, "test", "Surxondaryo viloyati", null, null },
-                    { 10, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1554), null, null, "test", "Sirdaryo viloyati", null, null },
-                    { 11, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1554), null, null, "test", "Toshkent viloyati", null, null },
-                    { 12, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1555), null, null, "test", "Farg‘ona viloyati", null, null },
-                    { 13, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1556), null, null, "test", "Xorazm viloyati", null, null },
-                    { 14, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1557), null, null, "test", "Toshkent shahri", null, null }
+                    { 1, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3281), null, null, "test", "Qoraqalpog‘iston Respublikasi", null, null },
+                    { 2, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3285), null, null, "test", "Andijon viloyati", null, null },
+                    { 3, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3286), null, null, "test", "Buxoro viloyati", null, null },
+                    { 4, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3286), null, null, "test", "Jizzax viloyati", null, null },
+                    { 5, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3287), null, null, "test", "Qashqadaryo viloyati", null, null },
+                    { 6, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3288), null, null, "test", "Navoiy viloyati", null, null },
+                    { 7, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3288), null, null, "test", "Namangan viloyati", null, null },
+                    { 8, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3289), null, null, "test", "Samarqand viloyati", null, null },
+                    { 9, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3290), null, null, "test", "Surxondaryo viloyati", null, null },
+                    { 10, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3290), null, null, "test", "Sirdaryo viloyati", null, null },
+                    { 11, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3291), null, null, "test", "Toshkent viloyati", null, null },
+                    { 12, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3292), null, null, "test", "Farg‘ona viloyati", null, null },
+                    { 13, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3292), null, null, "test", "Xorazm viloyati", null, null },
+                    { 14, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3293), null, null, "test", "Toshkent shahri", null, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "DateTime", "Description", "Email", "EmailConfirmed", "FirstName", "Image", "LastName", "LockoutEnabled", "LockoutEnd", "MiddleName", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RegionId", "RoleName", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "55ba34c7-2754-434d-9a07-9fe662c23763", new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(2130), null, "asad@gmail.com", false, "Asadbek", null, "Rejabboyev", false, null, "Boqijonovich", "ASAD@GMAIL.COM", "ASADBEK", "AQAAAAIAAYagAAAAENpUu3FnzpwAUH1JQhvWiRluOqLmmxxOHhWsKrsl2Ok4MTziyjLOkCE2Oz94G9RphQ==", "998996906901", false, 7, "Dasturchi", "02bf7435-0c50-4746-8495-7cf4d401ceed", false, "Asadbek" });
+                values: new object[] { 1, 0, "7545c2f5-e8c1-4fbf-b1e3-840daeeea264", new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3736), null, "asad@gmail.com", false, "Asadbek", null, "Rejabboyev", false, null, "Boqijonovich", "ASAD@GMAIL.COM", "ASADBEK", "AQAAAAIAAYagAAAAEBYPBGhmuUQqeubZ4nCZul52buxDuZAZidnGzXYawCfl4Bj25fYw+JUW+ZvfrlFm3Q==", "998996906901", false, 7, "Dasturchi", "39a1de81-197f-4d6d-a703-2fcb36e06c6f", false, "Asadbek" });
 
             migrationBuilder.InsertData(
                 table: "Districts",
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Description", "Image", "Info", "Name", "RegionId", "UpdatedBy", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1763), null, null, "test", "Nukus shahri", 1, null, null },
-                    { 2, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1765), null, null, "test", "Amudaryo tumani", 1, null, null },
-                    { 3, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1766), null, null, "test", "Beruniy tumani", 1, null, null },
-                    { 4, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1767), null, null, "test", "Kegeyli tumani", 1, null, null },
-                    { 5, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1768), null, null, "test", "Qanliko‘l tumani", 1, null, null },
-                    { 6, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1769), null, null, "test", "Qorao‘zak tumani", 1, null, null },
-                    { 7, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1770), null, null, "test", "Qo‘ng‘irot tumani", 1, null, null },
-                    { 8, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1771), null, null, "test", "Mo‘ynoq tumani", 1, null, null },
-                    { 9, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1799), null, null, "test", "Nukus tumani", 1, null, null },
-                    { 10, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1800), null, null, "test", "Taxiatosh tumani", 1, null, null },
-                    { 11, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1801), null, null, "test", "Taxtako‘pir tumani", 1, null, null },
-                    { 12, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1802), null, null, "test", "To‘rtko‘l tumani", 1, null, null },
-                    { 13, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1803), null, null, "test", "Xo‘jayli tumani", 1, null, null },
-                    { 14, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1803), null, null, "test", "Chimboy tumani", 1, null, null },
-                    { 15, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1804), null, null, "test", "Sho‘manoy tumani", 1, null, null },
-                    { 16, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1805), null, null, "test", "Ellikqal’a tumani", 1, null, null },
-                    { 17, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1806), null, null, "test", "Andijon shahri", 2, null, null },
-                    { 18, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1807), null, null, "test", "Xonabod shahri", 2, null, null },
-                    { 19, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1808), null, null, "test", "Andijon tumani", 2, null, null },
-                    { 20, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1808), null, null, "test", "Asaka tumani", 2, null, null },
-                    { 21, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1809), null, null, "test", "Baliqchi tumani", 2, null, null },
-                    { 22, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1810), null, null, "test", "Bo‘z tumani", 2, null, null },
-                    { 23, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1811), null, null, "test", "Buloqboshi tumani", 2, null, null },
-                    { 24, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1812), null, null, "test", "Jalaquduq tumani", 2, null, null },
-                    { 25, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1814), null, null, "test", "Izboskan tumani", 2, null, null },
-                    { 26, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1814), null, null, "test", "Qo‘rg‘ontepa tumani", 2, null, null },
-                    { 27, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1815), null, null, "test", "Marhamat tumani.", 2, null, null },
-                    { 28, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1816), null, null, "test", "Oltinko‘l tumani", 2, null, null },
-                    { 29, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1817), null, null, "test", "Paxtaobod tumani", 2, null, null },
-                    { 30, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1818), null, null, "test", "Ulug‘nor tumani", 2, null, null },
-                    { 31, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1818), null, null, "test", "Xo‘jaobod tumani", 2, null, null },
-                    { 32, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1819), null, null, "test", "Shahrixon tumani", 2, null, null },
-                    { 33, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1820), null, null, "test", "Buxoro shahri", 3, null, null },
-                    { 34, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1821), null, null, "test", "Kogon shahri", 3, null, null },
-                    { 35, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1822), null, null, "test", "Buxoro tumani", 3, null, null },
-                    { 36, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1822), null, null, "test", "Vobkent tumani", 3, null, null },
-                    { 37, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1823), null, null, "test", "Jondor tumani", 3, null, null },
-                    { 38, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1824), null, null, "test", "Kogon tumani", 3, null, null },
-                    { 39, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1825), null, null, "test", "Olot tumani", 3, null, null },
-                    { 40, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1825), null, null, "test", "Peshku tumani", 3, null, null },
-                    { 41, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1826), null, null, "test", "Romitan tumani", 3, null, null },
-                    { 42, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1827), null, null, "test", "Shofirkon tumani", 3, null, null },
-                    { 43, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1828), null, null, "test", "Qorovulbozor tumani", 3, null, null },
-                    { 44, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1829), null, null, "test", "Qorako‘l tumani", 3, null, null },
-                    { 45, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1829), null, null, "test", "G‘ijduvon tumani", 3, null, null },
-                    { 46, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1830), null, null, "test", "Jizzax shahri", 4, null, null },
-                    { 47, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1832), null, null, "test", "Arnasoy tumani", 4, null, null },
-                    { 48, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1833), null, null, "test", "Baxmal tumani", 4, null, null },
-                    { 49, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1834), null, null, "test", "Do‘stlik tumani", 4, null, null },
-                    { 50, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1834), null, null, "test", "Zarbdor tumani", 4, null, null },
-                    { 51, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1835), null, null, "test", "Zafarobod tumani", 4, null, null },
-                    { 52, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1836), null, null, "test", "Zomin tumani", 4, null, null },
-                    { 53, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1837), null, null, "test", "Mirzacho‘l tumani", 4, null, null },
-                    { 54, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1838), null, null, "test", "Paxtakor tumani", 4, null, null },
-                    { 55, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1838), null, null, "test", "Forish tumani", 4, null, null },
-                    { 56, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1839), null, null, "test", "Sharof Rashidov tumani", 4, null, null },
-                    { 57, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1840), null, null, "test", "G‘allaorol tumani", 4, null, null },
-                    { 58, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1841), null, null, "test", "Yangiobod tumani", 4, null, null },
-                    { 59, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1842), null, null, "test", "Qarshi shahri", 5, null, null },
-                    { 60, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1842), null, null, "test", "Shahrisabz shahri", 5, null, null },
-                    { 61, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1843), null, null, "test", "Dehqonobod tumani", 5, null, null },
-                    { 62, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1844), null, null, "test", "Kasbi tumani", 5, null, null },
-                    { 63, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1845), null, null, "test", "Kitob tumani", 5, null, null },
-                    { 64, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1846), null, null, "test", "Koson tumani", 5, null, null },
-                    { 65, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1846), null, null, "test", "Mirishkor tumani", 5, null, null },
-                    { 66, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1847), null, null, "test", "Muborak tumani", 5, null, null },
-                    { 67, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1848), null, null, "test", "Nishon tumani", 5, null, null },
-                    { 68, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1849), null, null, "test", "Chiroqchi tumani", 5, null, null },
-                    { 69, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1850), null, null, "test", "Shahrisabz tumani", 5, null, null },
-                    { 70, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1851), null, null, "test", "Yakkabog‘ tumani", 5, null, null },
-                    { 71, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1852), null, null, "test", "Qamashi tumani", 5, null, null },
-                    { 72, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1853), null, null, "test", "Qarshi tumani", 5, null, null },
-                    { 73, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1854), null, null, "test", "G‘uzor tumani", 5, null, null },
-                    { 74, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1854), null, null, "test", "Navoiy shahri", 6, null, null },
-                    { 75, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1855), null, null, "test", "Zarafshon shahri", 6, null, null },
-                    { 76, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1856), null, null, "test", "Karmana tumani", 6, null, null },
-                    { 77, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1857), null, null, "test", "Konimex tumani", 6, null, null },
-                    { 78, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1858), null, null, "test", "Navbahor tumani", 6, null, null },
-                    { 79, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1858), null, null, "test", "Nurota tumani", 6, null, null },
-                    { 80, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1859), null, null, "test", "Tomdi tumani", 6, null, null },
-                    { 81, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1860), null, null, "test", "Uchquduq tumani", 6, null, null },
-                    { 82, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1883), null, null, "test", "Xatirchi tumani", 6, null, null },
-                    { 83, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1883), null, null, "test", "Qiziltepa tumani", 6, null, null },
-                    { 84, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1884), null, null, "test", "Namangan shahri", 7, null, null },
-                    { 85, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1885), null, null, "test", "Kosonsoy tumani", 7, null, null },
-                    { 86, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1886), null, null, "test", "Mingbuloq tumani", 7, null, null },
-                    { 87, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1887), null, null, "test", "Namangan tumani", 7, null, null },
-                    { 88, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1888), null, null, "test", "Norin tumani", 7, null, null },
-                    { 89, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1888), null, null, "test", "Pop tumani", 7, null, null },
-                    { 90, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1889), null, null, "test", "To‘raqo‘rg‘on tumani", 7, null, null },
-                    { 91, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1891), null, null, "test", "Uychi tumani", 7, null, null },
-                    { 92, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1892), null, null, "test", "Uchqo‘rg‘on tumani", 7, null, null },
-                    { 93, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1893), null, null, "test", "Chortoq tumani", 7, null, null },
-                    { 94, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1893), null, null, "test", "Chust tumani", 7, null, null },
-                    { 95, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1894), null, null, "test", "Yangiqo‘rg‘on tumani", 7, null, null },
-                    { 96, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1895), null, null, "test", "Samarqand shahri", 8, null, null },
-                    { 97, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1896), null, null, "test", "Kattaqo‘rg‘on shahri", 8, null, null },
-                    { 98, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1897), null, null, "test", "Bulung‘ur tumani", 8, null, null },
-                    { 99, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1898), null, null, "test", "Jomboy tumani", 8, null, null },
-                    { 100, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1898), null, null, "test", "Ishtixon tumani", 8, null, null },
-                    { 101, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1899), null, null, "test", "Kattaqo‘rg‘on tumani", 8, null, null },
-                    { 102, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1900), null, null, "test", "Narpay tumani", 8, null, null },
-                    { 103, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1901), null, null, "test", "Nurobod tumani", 8, null, null },
-                    { 104, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1901), null, null, "test", "Oqdaryo tumani", 8, null, null },
-                    { 105, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1902), null, null, "test", "Payariq tumani", 8, null, null },
-                    { 106, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1903), null, null, "test", "Pastdarg‘om tumani", 8, null, null },
-                    { 107, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1904), null, null, "test", "Paxtachi tumani", 8, null, null },
-                    { 108, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1905), null, null, "test", "Samarqand tumani", 8, null, null },
-                    { 109, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1905), null, null, "test", "Toyloq tumani", 8, null, null },
-                    { 110, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1906), null, null, "test", "Urgut tumani", 8, null, null },
-                    { 111, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1907), null, null, "test", "Qo‘shrabot tumani", 8, null, null },
-                    { 112, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1908), null, null, "test", "Termiz shahri", 9, null, null },
-                    { 113, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1909), null, null, "test", "Angor tumani", 9, null, null },
-                    { 114, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1910), null, null, "test", "Boysun tumani", 9, null, null },
-                    { 115, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1911), null, null, "test", "Denov tumani", 9, null, null },
-                    { 116, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1912), null, null, "test", "Jarqo‘rg‘on tumani", 9, null, null },
-                    { 117, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1912), null, null, "test", "Muzrobod tumani", 9, null, null },
-                    { 118, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1913), null, null, "test", "Oltinsoy tumani", 9, null, null },
-                    { 119, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1914), null, null, "test", "Sariosiyo tumani", 9, null, null },
-                    { 120, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1915), null, null, "test", "Termiz tumani", 9, null, null },
-                    { 121, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1916), null, null, "test", "Uzun tumani", 9, null, null },
-                    { 122, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1916), null, null, "test", "Sherobod tumani", 9, null, null },
-                    { 123, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1917), null, null, "test", "Sho‘rchi tumani", 9, null, null },
-                    { 124, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1918), null, null, "test", "Qiziriq tumani", 9, null, null },
-                    { 125, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1919), null, null, "test", "Qumqo‘rg‘on tumani", 9, null, null },
-                    { 126, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1920), null, null, "test", "Guliston shahri", 10, null, null },
-                    { 127, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1920), null, null, "test", "Yangiyer shahri", 10, null, null },
-                    { 128, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1921), null, null, "test", "Shirin shahri", 10, null, null },
-                    { 129, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1922), null, null, "test", "Boyovut tumani", 10, null, null },
-                    { 130, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1923), null, null, "test", "Guliston tumani", 10, null, null },
-                    { 131, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1924), null, null, "test", "Mirzaobod tumani", 10, null, null },
-                    { 132, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1924), null, null, "test", "Oqoltin tumani", 10, null, null },
-                    { 133, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1925), null, null, "test", "Sardoba tumani", 10, null, null },
-                    { 134, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1927), null, null, "test", "Sayxunobod tumani", 10, null, null },
-                    { 135, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1928), null, null, "test", "Sirdaryo tumani", 10, null, null },
-                    { 136, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1928), null, null, "test", "Xovos tumani", 10, null, null },
-                    { 137, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1929), null, null, "test", "Nurafshon shahri", 11, null, null },
-                    { 138, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1930), null, null, "test", "Angren shahri", 11, null, null },
-                    { 139, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1931), null, null, "test", "Bekobod shahri", 11, null, null },
-                    { 140, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1932), null, null, "test", "Olmaliq shahri", 11, null, null },
-                    { 141, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1932), null, null, "test", "Ohangaron shahri", 11, null, null },
-                    { 142, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1933), null, null, "test", "Chirchiq shahri", 11, null, null },
-                    { 143, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1934), null, null, "test", "Yangiyo‘l shahri", 11, null, null },
-                    { 144, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1935), null, null, "test", "Bekobod tumani", 11, null, null },
-                    { 145, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1936), null, null, "test", "Bo‘ka tumani", 11, null, null },
-                    { 146, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1936), null, null, "test", "Bo‘stonliq tumani", 11, null, null },
-                    { 147, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1937), null, null, "test", "Zangiota tumani", 11, null, null },
-                    { 148, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1938), null, null, "test", "Qibray tumani", 11, null, null },
-                    { 149, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1939), null, null, "test", "Quyichirchiq tumani", 11, null, null },
-                    { 150, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1939), null, null, "test", "Oqqo‘rg‘on tumani", 11, null, null },
-                    { 151, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1940), null, null, "test", "Ohangaron tumani", 11, null, null },
-                    { 152, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1941), null, null, "test", "Parkent tumani", 11, null, null },
-                    { 153, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1942), null, null, "test", "Piskent tumani", 11, null, null },
-                    { 154, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1943), null, null, "test", "Toshkent tumani", 11, null, null },
-                    { 155, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1968), null, null, "test", "O‘rtachirchiq tumani", 11, null, null },
-                    { 156, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1970), null, null, "test", "Chinoz tumani", 11, null, null },
-                    { 157, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1971), null, null, "test", "21. Yuqorichirchiq tumani", 11, null, null },
-                    { 158, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1972), null, null, "test", "22. Yangiyo‘l tumani", 11, null, null },
-                    { 159, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1973), null, null, "test", "Farg‘ona shahri", 12, null, null },
-                    { 160, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1973), null, null, "test", "Marg‘ilon shahri", 12, null, null },
-                    { 161, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1974), null, null, "test", "Quvasoy shahri", 12, null, null },
-                    { 162, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1975), null, null, "test", "Qo‘qon shahri", 12, null, null },
-                    { 163, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1976), null, null, "test", "Beshariq tumani", 12, null, null },
-                    { 164, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1977), null, null, "test", "Bog‘dod tumani", 12, null, null },
-                    { 165, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1977), null, null, "test", "Buvayda tumani", 12, null, null },
-                    { 166, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1978), null, null, "test", "Dang‘ara tumani", 12, null, null },
-                    { 167, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1979), null, null, "test", "Yozyovon tumani", 12, null, null },
-                    { 168, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1980), null, null, "test", "Quva tumani", 12, null, null },
-                    { 169, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1980), null, null, "test", "Qo‘shtepa tumani", 12, null, null },
-                    { 170, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1981), null, null, "test", "Oltiariq tumani", 12, null, null },
-                    { 171, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1982), null, null, "test", "Rishton tumani", 12, null, null },
-                    { 172, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1983), null, null, "test", "So‘x tumani", 12, null, null },
-                    { 173, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1984), null, null, "test", "Toshloq tumani", 12, null, null },
-                    { 174, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1984), null, null, "test", "O‘zbekiston tumani", 12, null, null },
-                    { 175, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1985), null, null, "test", "Uchko‘prik tumani", 12, null, null },
-                    { 176, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1986), null, null, "test", "Farg‘ona tumani", 12, null, null },
-                    { 177, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1987), null, null, "test", "Furqat tumani", 12, null, null },
-                    { 178, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1988), null, null, "test", "Urganch shahri", 13, null, null },
-                    { 179, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1989), null, null, "test", "Xiva shahri", 13, null, null },
-                    { 180, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1990), null, null, "test", "Bog‘ot tumani", 13, null, null },
-                    { 181, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1991), null, null, "test", "Gurlan tumani", 13, null, null },
-                    { 182, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1991), null, null, "test", "Urganch tumani", 13, null, null },
-                    { 183, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1992), null, null, "test", "Xiva tumani", 13, null, null },
-                    { 184, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1993), null, null, "test", "Xonqa tumani", 13, null, null },
-                    { 185, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1994), null, null, "test", "Hazorasp tumani", 13, null, null },
-                    { 186, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1994), null, null, "test", "Shovot tumani", 13, null, null },
-                    { 187, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1995), null, null, "test", "Yangiariq tumani", 13, null, null },
-                    { 188, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1996), null, null, "test", "Yangibozor tumani", 13, null, null },
-                    { 189, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1997), null, null, "test", "Qo‘shko‘pir tumani", 13, null, null },
-                    { 190, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1998), null, null, "test", "Bektemir tumani", 14, null, null },
-                    { 191, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1998), null, null, "test", "Mirzo Ulug‘bek tumani", 14, null, null },
-                    { 192, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(1999), null, null, "test", "Mirobod tumani", 14, null, null },
-                    { 193, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(2000), null, null, "test", "Olmazor tumani", 14, null, null },
-                    { 194, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(2001), null, null, "test", "Sirg‘ali tumani", 14, null, null },
-                    { 195, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(2002), null, null, "test", "Uchtepa tumani", 14, null, null },
-                    { 196, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(2002), null, null, "test", "Chilonzor tumani", 14, null, null },
-                    { 197, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(2003), null, null, "test", "Shayxontohur tumani", 14, null, null },
-                    { 198, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(2004), null, null, "test", "Yunusobod tumani", 14, null, null },
-                    { 199, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(2005), null, null, "test", "Yakkasaroy tumani", 14, null, null },
-                    { 200, 1, new DateTime(2024, 6, 19, 10, 11, 16, 142, DateTimeKind.Utc).AddTicks(2006), null, null, "test", "Yashnobod tumani", 14, null, null }
+                    { 1, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3439), null, null, "test", "Nukus shahri", 1, null, null },
+                    { 2, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3442), null, null, "test", "Amudaryo tumani", 1, null, null },
+                    { 3, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3443), null, null, "test", "Beruniy tumani", 1, null, null },
+                    { 4, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3443), null, null, "test", "Kegeyli tumani", 1, null, null },
+                    { 5, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3444), null, null, "test", "Qanliko‘l tumani", 1, null, null },
+                    { 6, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3445), null, null, "test", "Qorao‘zak tumani", 1, null, null },
+                    { 7, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3446), null, null, "test", "Qo‘ng‘irot tumani", 1, null, null },
+                    { 8, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3447), null, null, "test", "Mo‘ynoq tumani", 1, null, null },
+                    { 9, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3448), null, null, "test", "Nukus tumani", 1, null, null },
+                    { 10, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3449), null, null, "test", "Taxiatosh tumani", 1, null, null },
+                    { 11, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3449), null, null, "test", "Taxtako‘pir tumani", 1, null, null },
+                    { 12, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3450), null, null, "test", "To‘rtko‘l tumani", 1, null, null },
+                    { 13, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3451), null, null, "test", "Xo‘jayli tumani", 1, null, null },
+                    { 14, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3451), null, null, "test", "Chimboy tumani", 1, null, null },
+                    { 15, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3452), null, null, "test", "Sho‘manoy tumani", 1, null, null },
+                    { 16, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3453), null, null, "test", "Ellikqal’a tumani", 1, null, null },
+                    { 17, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3453), null, null, "test", "Andijon shahri", 2, null, null },
+                    { 18, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3454), null, null, "test", "Xonabod shahri", 2, null, null },
+                    { 19, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3455), null, null, "test", "Andijon tumani", 2, null, null },
+                    { 20, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3455), null, null, "test", "Asaka tumani", 2, null, null },
+                    { 21, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3456), null, null, "test", "Baliqchi tumani", 2, null, null },
+                    { 22, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3457), null, null, "test", "Bo‘z tumani", 2, null, null },
+                    { 23, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3457), null, null, "test", "Buloqboshi tumani", 2, null, null },
+                    { 24, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3458), null, null, "test", "Jalaquduq tumani", 2, null, null },
+                    { 25, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3459), null, null, "test", "Izboskan tumani", 2, null, null },
+                    { 26, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3459), null, null, "test", "Qo‘rg‘ontepa tumani", 2, null, null },
+                    { 27, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3460), null, null, "test", "Marhamat tumani.", 2, null, null },
+                    { 28, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3481), null, null, "test", "Oltinko‘l tumani", 2, null, null },
+                    { 29, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3482), null, null, "test", "Paxtaobod tumani", 2, null, null },
+                    { 30, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3483), null, null, "test", "Ulug‘nor tumani", 2, null, null },
+                    { 31, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3484), null, null, "test", "Xo‘jaobod tumani", 2, null, null },
+                    { 32, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3485), null, null, "test", "Shahrixon tumani", 2, null, null },
+                    { 33, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3485), null, null, "test", "Buxoro shahri", 3, null, null },
+                    { 34, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3486), null, null, "test", "Kogon shahri", 3, null, null },
+                    { 35, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3487), null, null, "test", "Buxoro tumani", 3, null, null },
+                    { 36, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3487), null, null, "test", "Vobkent tumani", 3, null, null },
+                    { 37, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3488), null, null, "test", "Jondor tumani", 3, null, null },
+                    { 38, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3489), null, null, "test", "Kogon tumani", 3, null, null },
+                    { 39, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3489), null, null, "test", "Olot tumani", 3, null, null },
+                    { 40, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3490), null, null, "test", "Peshku tumani", 3, null, null },
+                    { 41, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3491), null, null, "test", "Romitan tumani", 3, null, null },
+                    { 42, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3491), null, null, "test", "Shofirkon tumani", 3, null, null },
+                    { 43, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3492), null, null, "test", "Qorovulbozor tumani", 3, null, null },
+                    { 44, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3493), null, null, "test", "Qorako‘l tumani", 3, null, null },
+                    { 45, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3493), null, null, "test", "G‘ijduvon tumani", 3, null, null },
+                    { 46, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3494), null, null, "test", "Jizzax shahri", 4, null, null },
+                    { 47, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3495), null, null, "test", "Arnasoy tumani", 4, null, null },
+                    { 48, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3495), null, null, "test", "Baxmal tumani", 4, null, null },
+                    { 49, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3496), null, null, "test", "Do‘stlik tumani", 4, null, null },
+                    { 50, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3497), null, null, "test", "Zarbdor tumani", 4, null, null },
+                    { 51, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3497), null, null, "test", "Zafarobod tumani", 4, null, null },
+                    { 52, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3499), null, null, "test", "Zomin tumani", 4, null, null },
+                    { 53, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3499), null, null, "test", "Mirzacho‘l tumani", 4, null, null },
+                    { 54, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3500), null, null, "test", "Paxtakor tumani", 4, null, null },
+                    { 55, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3501), null, null, "test", "Forish tumani", 4, null, null },
+                    { 56, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3502), null, null, "test", "Sharof Rashidov tumani", 4, null, null },
+                    { 57, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3502), null, null, "test", "G‘allaorol tumani", 4, null, null },
+                    { 58, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3503), null, null, "test", "Yangiobod tumani", 4, null, null },
+                    { 59, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3504), null, null, "test", "Qarshi shahri", 5, null, null },
+                    { 60, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3504), null, null, "test", "Shahrisabz shahri", 5, null, null },
+                    { 61, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3505), null, null, "test", "Dehqonobod tumani", 5, null, null },
+                    { 62, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3506), null, null, "test", "Kasbi tumani", 5, null, null },
+                    { 63, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3506), null, null, "test", "Kitob tumani", 5, null, null },
+                    { 64, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3507), null, null, "test", "Koson tumani", 5, null, null },
+                    { 65, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3508), null, null, "test", "Mirishkor tumani", 5, null, null },
+                    { 66, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3508), null, null, "test", "Muborak tumani", 5, null, null },
+                    { 67, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3509), null, null, "test", "Nishon tumani", 5, null, null },
+                    { 68, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3510), null, null, "test", "Chiroqchi tumani", 5, null, null },
+                    { 69, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3510), null, null, "test", "Shahrisabz tumani", 5, null, null },
+                    { 70, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3511), null, null, "test", "Yakkabog‘ tumani", 5, null, null },
+                    { 71, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3511), null, null, "test", "Qamashi tumani", 5, null, null },
+                    { 72, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3512), null, null, "test", "Qarshi tumani", 5, null, null },
+                    { 73, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3513), null, null, "test", "G‘uzor tumani", 5, null, null },
+                    { 74, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3514), null, null, "test", "Navoiy shahri", 6, null, null },
+                    { 75, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3515), null, null, "test", "Zarafshon shahri", 6, null, null },
+                    { 76, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3516), null, null, "test", "Karmana tumani", 6, null, null },
+                    { 77, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3516), null, null, "test", "Konimex tumani", 6, null, null },
+                    { 78, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3517), null, null, "test", "Navbahor tumani", 6, null, null },
+                    { 79, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3518), null, null, "test", "Nurota tumani", 6, null, null },
+                    { 80, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3518), null, null, "test", "Tomdi tumani", 6, null, null },
+                    { 81, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3519), null, null, "test", "Uchquduq tumani", 6, null, null },
+                    { 82, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3520), null, null, "test", "Xatirchi tumani", 6, null, null },
+                    { 83, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3520), null, null, "test", "Qiziltepa tumani", 6, null, null },
+                    { 84, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3521), null, null, "test", "Namangan shahri", 7, null, null },
+                    { 85, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3522), null, null, "test", "Kosonsoy tumani", 7, null, null },
+                    { 86, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3522), null, null, "test", "Mingbuloq tumani", 7, null, null },
+                    { 87, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3523), null, null, "test", "Namangan tumani", 7, null, null },
+                    { 88, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3524), null, null, "test", "Norin tumani", 7, null, null },
+                    { 89, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3525), null, null, "test", "Pop tumani", 7, null, null },
+                    { 90, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3525), null, null, "test", "To‘raqo‘rg‘on tumani", 7, null, null },
+                    { 91, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3526), null, null, "test", "Uychi tumani", 7, null, null },
+                    { 92, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3527), null, null, "test", "Uchqo‘rg‘on tumani", 7, null, null },
+                    { 93, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3527), null, null, "test", "Chortoq tumani", 7, null, null },
+                    { 94, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3528), null, null, "test", "Chust tumani", 7, null, null },
+                    { 95, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3529), null, null, "test", "Yangiqo‘rg‘on tumani", 7, null, null },
+                    { 96, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3529), null, null, "test", "Samarqand shahri", 8, null, null },
+                    { 97, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3549), null, null, "test", "Kattaqo‘rg‘on shahri", 8, null, null },
+                    { 98, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3550), null, null, "test", "Bulung‘ur tumani", 8, null, null },
+                    { 99, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3550), null, null, "test", "Jomboy tumani", 8, null, null },
+                    { 100, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3551), null, null, "test", "Ishtixon tumani", 8, null, null },
+                    { 101, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3552), null, null, "test", "Kattaqo‘rg‘on tumani", 8, null, null },
+                    { 102, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3552), null, null, "test", "Narpay tumani", 8, null, null },
+                    { 103, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3553), null, null, "test", "Nurobod tumani", 8, null, null },
+                    { 104, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3554), null, null, "test", "Oqdaryo tumani", 8, null, null },
+                    { 105, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3554), null, null, "test", "Payariq tumani", 8, null, null },
+                    { 106, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3555), null, null, "test", "Pastdarg‘om tumani", 8, null, null },
+                    { 107, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3556), null, null, "test", "Paxtachi tumani", 8, null, null },
+                    { 108, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3556), null, null, "test", "Samarqand tumani", 8, null, null },
+                    { 109, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3557), null, null, "test", "Toyloq tumani", 8, null, null },
+                    { 110, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3558), null, null, "test", "Urgut tumani", 8, null, null },
+                    { 111, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3558), null, null, "test", "Qo‘shrabot tumani", 8, null, null },
+                    { 112, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3559), null, null, "test", "Termiz shahri", 9, null, null },
+                    { 113, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3560), null, null, "test", "Angor tumani", 9, null, null },
+                    { 114, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3560), null, null, "test", "Boysun tumani", 9, null, null },
+                    { 115, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3561), null, null, "test", "Denov tumani", 9, null, null },
+                    { 116, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3562), null, null, "test", "Jarqo‘rg‘on tumani", 9, null, null },
+                    { 117, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3563), null, null, "test", "Muzrobod tumani", 9, null, null },
+                    { 118, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3564), null, null, "test", "Oltinsoy tumani", 9, null, null },
+                    { 119, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3565), null, null, "test", "Sariosiyo tumani", 9, null, null },
+                    { 120, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3565), null, null, "test", "Termiz tumani", 9, null, null },
+                    { 121, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3566), null, null, "test", "Uzun tumani", 9, null, null },
+                    { 122, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3567), null, null, "test", "Sherobod tumani", 9, null, null },
+                    { 123, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3567), null, null, "test", "Sho‘rchi tumani", 9, null, null },
+                    { 124, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3568), null, null, "test", "Qiziriq tumani", 9, null, null },
+                    { 125, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3569), null, null, "test", "Qumqo‘rg‘on tumani", 9, null, null },
+                    { 126, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3569), null, null, "test", "Guliston shahri", 10, null, null },
+                    { 127, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3570), null, null, "test", "Yangiyer shahri", 10, null, null },
+                    { 128, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3571), null, null, "test", "Shirin shahri", 10, null, null },
+                    { 129, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3571), null, null, "test", "Boyovut tumani", 10, null, null },
+                    { 130, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3572), null, null, "test", "Guliston tumani", 10, null, null },
+                    { 131, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3573), null, null, "test", "Mirzaobod tumani", 10, null, null },
+                    { 132, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3573), null, null, "test", "Oqoltin tumani", 10, null, null },
+                    { 133, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3574), null, null, "test", "Sardoba tumani", 10, null, null },
+                    { 134, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3575), null, null, "test", "Sayxunobod tumani", 10, null, null },
+                    { 135, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3575), null, null, "test", "Sirdaryo tumani", 10, null, null },
+                    { 136, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3576), null, null, "test", "Xovos tumani", 10, null, null },
+                    { 137, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3577), null, null, "test", "Nurafshon shahri", 11, null, null },
+                    { 138, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3577), null, null, "test", "Angren shahri", 11, null, null },
+                    { 139, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3579), null, null, "test", "Bekobod shahri", 11, null, null },
+                    { 140, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3579), null, null, "test", "Olmaliq shahri", 11, null, null },
+                    { 141, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3580), null, null, "test", "Ohangaron shahri", 11, null, null },
+                    { 142, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3581), null, null, "test", "Chirchiq shahri", 11, null, null },
+                    { 143, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3581), null, null, "test", "Yangiyo‘l shahri", 11, null, null },
+                    { 144, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3582), null, null, "test", "Bekobod tumani", 11, null, null },
+                    { 145, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3583), null, null, "test", "Bo‘ka tumani", 11, null, null },
+                    { 146, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3583), null, null, "test", "Bo‘stonliq tumani", 11, null, null },
+                    { 147, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3584), null, null, "test", "Zangiota tumani", 11, null, null },
+                    { 148, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3585), null, null, "test", "Qibray tumani", 11, null, null },
+                    { 149, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3585), null, null, "test", "Quyichirchiq tumani", 11, null, null },
+                    { 150, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3586), null, null, "test", "Oqqo‘rg‘on tumani", 11, null, null },
+                    { 151, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3587), null, null, "test", "Ohangaron tumani", 11, null, null },
+                    { 152, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3587), null, null, "test", "Parkent tumani", 11, null, null },
+                    { 153, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3588), null, null, "test", "Piskent tumani", 11, null, null },
+                    { 154, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3589), null, null, "test", "Toshkent tumani", 11, null, null },
+                    { 155, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3589), null, null, "test", "O‘rtachirchiq tumani", 11, null, null },
+                    { 156, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3590), null, null, "test", "Chinoz tumani", 11, null, null },
+                    { 157, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3591), null, null, "test", "21. Yuqorichirchiq tumani", 11, null, null },
+                    { 158, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3591), null, null, "test", "22. Yangiyo‘l tumani", 11, null, null },
+                    { 159, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3592), null, null, "test", "Farg‘ona shahri", 12, null, null },
+                    { 160, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3593), null, null, "test", "Marg‘ilon shahri", 12, null, null },
+                    { 161, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3594), null, null, "test", "Quvasoy shahri", 12, null, null },
+                    { 162, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3595), null, null, "test", "Qo‘qon shahri", 12, null, null },
+                    { 163, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3596), null, null, "test", "Beshariq tumani", 12, null, null },
+                    { 164, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3596), null, null, "test", "Bog‘dod tumani", 12, null, null },
+                    { 165, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3610), null, null, "test", "Buvayda tumani", 12, null, null },
+                    { 166, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3611), null, null, "test", "Dang‘ara tumani", 12, null, null },
+                    { 167, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3612), null, null, "test", "Yozyovon tumani", 12, null, null },
+                    { 168, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3613), null, null, "test", "Quva tumani", 12, null, null },
+                    { 169, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3613), null, null, "test", "Qo‘shtepa tumani", 12, null, null },
+                    { 170, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3614), null, null, "test", "Oltiariq tumani", 12, null, null },
+                    { 171, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3615), null, null, "test", "Rishton tumani", 12, null, null },
+                    { 172, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3615), null, null, "test", "So‘x tumani", 12, null, null },
+                    { 173, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3616), null, null, "test", "Toshloq tumani", 12, null, null },
+                    { 174, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3617), null, null, "test", "O‘zbekiston tumani", 12, null, null },
+                    { 175, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3617), null, null, "test", "Uchko‘prik tumani", 12, null, null },
+                    { 176, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3618), null, null, "test", "Farg‘ona tumani", 12, null, null },
+                    { 177, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3619), null, null, "test", "Furqat tumani", 12, null, null },
+                    { 178, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3619), null, null, "test", "Urganch shahri", 13, null, null },
+                    { 179, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3620), null, null, "test", "Xiva shahri", 13, null, null },
+                    { 180, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3621), null, null, "test", "Bog‘ot tumani", 13, null, null },
+                    { 181, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3621), null, null, "test", "Gurlan tumani", 13, null, null },
+                    { 182, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3622), null, null, "test", "Urganch tumani", 13, null, null },
+                    { 183, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3624), null, null, "test", "Xiva tumani", 13, null, null },
+                    { 184, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3624), null, null, "test", "Xonqa tumani", 13, null, null },
+                    { 185, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3625), null, null, "test", "Hazorasp tumani", 13, null, null },
+                    { 186, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3626), null, null, "test", "Shovot tumani", 13, null, null },
+                    { 187, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3626), null, null, "test", "Yangiariq tumani", 13, null, null },
+                    { 188, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3627), null, null, "test", "Yangibozor tumani", 13, null, null },
+                    { 189, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3628), null, null, "test", "Qo‘shko‘pir tumani", 13, null, null },
+                    { 190, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3628), null, null, "test", "Bektemir tumani", 14, null, null },
+                    { 191, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3629), null, null, "test", "Mirzo Ulug‘bek tumani", 14, null, null },
+                    { 192, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3630), null, null, "test", "Mirobod tumani", 14, null, null },
+                    { 193, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3630), null, null, "test", "Olmazor tumani", 14, null, null },
+                    { 194, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3631), null, null, "test", "Sirg‘ali tumani", 14, null, null },
+                    { 195, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3632), null, null, "test", "Uchtepa tumani", 14, null, null },
+                    { 196, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3632), null, null, "test", "Chilonzor tumani", 14, null, null },
+                    { 197, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3633), null, null, "test", "Shayxontohur tumani", 14, null, null },
+                    { 198, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3634), null, null, "test", "Yunusobod tumani", 14, null, null },
+                    { 199, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3634), null, null, "test", "Yakkasaroy tumani", 14, null, null },
+                    { 200, 1, new DateTime(2025, 7, 18, 10, 40, 59, 323, DateTimeKind.Utc).AddTicks(3635), null, null, "test", "Yashnobod tumani", 14, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1764,17 +1790,17 @@ namespace Tech_Inventory.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Description", "Image", "Info", "Name", "ObjectClassTypeId", "UpdatedBy", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5494), null, null, null, "Maktab", 1, null, null },
-                    { 2, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5496), null, null, null, "Bog'cha", 1, null, null },
-                    { 3, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5497), null, null, null, "Magazin", 1, null, null },
-                    { 4, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5498), null, null, null, "OTM", 1, null, null },
-                    { 5, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5499), null, null, null, "Supermarket", 1, null, null },
-                    { 6, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5499), null, null, null, "Masjid", 1, null, null },
-                    { 7, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5500), null, null, null, "Istirohat bo'gi", 1, null, null },
-                    { 8, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5501), null, null, null, "Jamoat maskanlari", 1, null, null },
-                    { 9, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5502), null, null, null, "Chorraxa", 2, null, null },
-                    { 10, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5503), null, null, null, "Radar", 2, null, null },
-                    { 11, 0, new DateTime(2024, 6, 19, 10, 11, 16, 199, DateTimeKind.Utc).AddTicks(5503), null, null, null, "3.27 yo'l beligisi", 2, null, null }
+                    { 1, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5687), null, null, null, "Maktab", 1, null, null },
+                    { 2, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5688), null, null, null, "Bog'cha", 1, null, null },
+                    { 3, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5689), null, null, null, "Magazin", 1, null, null },
+                    { 4, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5689), null, null, null, "OTM", 1, null, null },
+                    { 5, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5690), null, null, null, "Supermarket", 1, null, null },
+                    { 6, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5691), null, null, null, "Masjid", 1, null, null },
+                    { 7, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5691), null, null, null, "Istirohat bo'gi", 1, null, null },
+                    { 8, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5692), null, null, null, "Jamoat maskanlari", 1, null, null },
+                    { 9, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5692), null, null, null, "Chorraxa", 2, null, null },
+                    { 10, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5693), null, null, null, "Radar", 2, null, null },
+                    { 11, 0, new DateTime(2025, 7, 18, 10, 40, 59, 357, DateTimeKind.Utc).AddTicks(5693), null, null, null, "3.27 yo'l beligisi", 2, null, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -2000,6 +2026,11 @@ namespace Tech_Inventory.Persistence.Migrations
                 column: "RegionId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Obyekts_StreetId",
+                table: "Obyekts",
+                column: "StreetId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Projectors_ModelId",
                 table: "Projectors",
                 column: "ModelId");
@@ -2078,6 +2109,11 @@ namespace Tech_Inventory.Persistence.Migrations
                 name: "IX_Stanchions_StanchionTypeId",
                 table: "Stanchions",
                 column: "StanchionTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Streets_DistrictId",
+                table: "Streets",
+                column: "DistrictId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SvetoforDetectors_ModelId",
@@ -2273,22 +2309,25 @@ namespace Tech_Inventory.Persistence.Migrations
                 name: "Obyekts");
 
             migrationBuilder.DropTable(
-                name: "Districts");
-
-            migrationBuilder.DropTable(
                 name: "NumberOfOrders");
 
             migrationBuilder.DropTable(
                 name: "ObjectClasses");
 
             migrationBuilder.DropTable(
+                name: "Streets");
+
+            migrationBuilder.DropTable(
                 name: "Projects");
 
             migrationBuilder.DropTable(
-                name: "Regions");
+                name: "ObjectClassTypes");
 
             migrationBuilder.DropTable(
-                name: "ObjectClassTypes");
+                name: "Districts");
+
+            migrationBuilder.DropTable(
+                name: "Regions");
         }
     }
 }

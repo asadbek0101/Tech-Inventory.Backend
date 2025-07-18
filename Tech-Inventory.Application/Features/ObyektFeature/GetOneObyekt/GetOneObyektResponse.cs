@@ -9,12 +9,14 @@ public sealed record GetOneObyektResponse
     public DateTime CreatedDate { get; set; }
     public int RegionId { get; set; }
     public int DistrictId { get; set; }
+    public int StreetId { get; set; }
     public int ProjectId { get; set; }
     public int NumberOfOrderId { get; set; }
     public int ObjectClassId { get; set; }
     public int ObjectClassTypeId { get; set; }
     public string Region { get; set; }
     public string District { get; set; }
+    public string Street { get; set; }
     public string Project { get; set; }
     public string NumberOfOrder { get; set; }
     public string ObjectClass { get; set; }

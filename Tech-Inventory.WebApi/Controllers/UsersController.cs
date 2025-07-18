@@ -4,6 +4,7 @@ using Tech_Inventory.Application.Features.UserFeature.CreateUser;
 using Tech_Inventory.Application.Features.UserFeature.DeleteUser;
 using Tech_Inventory.Application.Features.UserFeature.GetAllusers;
 using Tech_Inventory.Application.Features.UserFeature.GetOneUser;
+using Tech_Inventory.Application.Features.UserFeature.GetUsersList;
 using Tech_Inventory.Application.Features.UserFeature.UpdateUser;
 
 namespace Tech_Inventory.WebApi.Controllers;
@@ -12,6 +13,12 @@ public class UsersController : BaseController
 {
     [HttpGet("GetAll")]
     public async Task<ActionResult<ApiResponse>> GetAll([FromQuery] GetAllUsersRequest request)
+    {
+        return await Mediator.Send(request);
+    }
+
+    [HttpGet("GetList")]
+    public async Task<ActionResult<ApiResponse>> GetList([FromQuery] GetUsersListRequest request)
     {
         return await Mediator.Send(request);
     }

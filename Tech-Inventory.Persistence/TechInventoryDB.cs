@@ -27,6 +27,7 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
     public DbSet<Cabel> Cabels { get; set; }
     public DbSet<Camera> Cameras { get; set; }
     public DbSet<District> Districts { get; set; }
+    public DbSet<Street> Streets { get; set; }
     public DbSet<NumberOfOrder> NumberOfOrders { get; set; }
     public DbSet<Obyekt> Obyekts { get; set; }
     public DbSet<Projector> Projectors { get; set; }
@@ -91,6 +92,12 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
                    .WithOne(c => c.District)
                    .HasForeignKey(c => c.DistrictId)
                    .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<District>()
+                    .HasMany(u => u.Streets)
+                    .WithOne(c => c.District)
+                    .HasForeignKey(c => c.DistrictId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Region>()
                    .HasMany(u => u.Districts)

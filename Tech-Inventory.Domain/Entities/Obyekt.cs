@@ -5,6 +5,7 @@ public class Obyekt : BaseEntity
     public int RegionId { get; set; }
     public int ProjectId { get; set; }
     public int DistrictId { get; set; }
+    public int? StreetId { get; set; }
     public int ObjectClassId { get; set; }
     public int NumberOfOrderId { get; set; }
     public int ObjectClassTypeId { get; set; }
@@ -21,6 +22,7 @@ public class Obyekt : BaseEntity
     public Region Region { get; set; }
     public Project Project { get; set; }
     public District District { get; set; }
+    public Street Streett { get; set; }
     public ObjectClass ObjectClass { get; set; }
     public NumberOfOrder NumberOfOrder { get; set; }
     public ObjectClassType ObjectClassType { get; set; }

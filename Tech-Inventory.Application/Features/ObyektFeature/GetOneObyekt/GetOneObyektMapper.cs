@@ -10,6 +10,7 @@ public class GetOneObyektMapper : Profile
         CreateMap<Obyekt, GetOneObyektResponse>()
             .ForMember(x => x.Region, otp => otp.MapFrom(ex => ex.Region.Name))
             .ForMember(x => x.District, otp => otp.MapFrom(ex => ex.District.Name))
+            .ForMember(x => x.Street, otp => otp.MapFrom(ex => ex.Streett.Name))
             .ForMember(x => x.Project, otp => otp.MapFrom(ex => ex.Project.Name))
             .ForMember(x => x.NumberOfOrder, otp => otp.MapFrom(ex => ex.NumberOfOrder.Number))
             .ForMember(x => x.ObjectClass, otp => otp.MapFrom(ex => ex.ObjectClass.Name))

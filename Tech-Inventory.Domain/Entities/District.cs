@@ -10,4 +10,5 @@ public class District : BaseEntity
     public string Info { get; set; }
     public Region Region { get; set; }
     public List<Obyekt> Obyekts { get; set; }
+    public List<Street> Streets { get; set; }
 }

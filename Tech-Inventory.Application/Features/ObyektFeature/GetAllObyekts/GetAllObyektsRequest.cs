@@ -9,6 +9,7 @@ public sealed record GetAllObyektsRequest : IRequest<ApiResponse>
     public int DistrictId { get; set; } = 0;
     public int ProjectId { get; set; } = 0;
     public int NumberOfOrderId { get; set; } = 0;
+    public int CreatedBy { get; set; } = 0;
     public int ObjectClassificationId { get; set; } = 0;
     public int ObjectClassificationTypeId { get; set; } = 0;
     public int PageNumber { get; set; } = 1;

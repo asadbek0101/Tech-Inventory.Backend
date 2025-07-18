@@ -27,6 +27,7 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
             {
                 obyekt.RegionId = request.RegionId;
                 obyekt.DistrictId = request.DistrictId;
+                obyekt.StreetId = request.StreetId;
                 obyekt.ProjectId = request.ProjectId;
                 obyekt.NumberOfOrderId = request.NumberOfOrderId;
                 obyekt.ObjectClassTypeId = request.ObjectClassTypeId;

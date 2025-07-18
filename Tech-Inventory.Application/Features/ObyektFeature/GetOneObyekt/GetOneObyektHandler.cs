@@ -25,6 +25,7 @@ public class GetOneObyektHandler : IRequestHandler<GetOneObyektRequest, ApiRespo
             var obyekt = await _context.Obyekts
                 .Include(x=>x.Region)
                 .Include(x=>x.District)
+                .Include(x=>x.Streett)
                 .Include(x=>x.Project)
                 .Include(x=>x.NumberOfOrder)
                 .Include(x=>x.ObjectClassType)

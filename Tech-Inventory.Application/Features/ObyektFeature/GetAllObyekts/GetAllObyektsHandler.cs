@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Helpers;
 using Tech_Inventory.Application.Common.Interfaces;
@@ -30,54 +31,69 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
         {
             var skipRows = _paginator.Offset(request.PageNumber, request.PageSize);
 
-            var obyekts = await _context
+            var query = _context
                 .Obyekts
                 .OrderBy(x=>x.Id)
                 .Include(x=>x.Project)
                 .Include(x=>x.Region)
                 .Include(x=>x.District)
-                .ToListAsync();
+                .Include(x => x.Streett)
+                .AsQueryable();
+
 
             if(request.RegionId != 0)
             {
-                obyekts = obyekts.Where(x=>x.RegionId == request.RegionId).ToList();
+                query = query.Where(x=>x.RegionId == request.RegionId);
             }
 
-            if(request.DistrictId != 0)
+            if (request.CreatedBy != 0)
             {
-                obyekts = obyekts.Where(x => x.DistrictId == request.DistrictId).ToList();
+                query = query.Where(x => x.CreatedBy == request.CreatedBy);
+            }
+
+            if (request.DistrictId != 0)
+            {
+                query = query.Where(x => x.DistrictId == request.DistrictId);
             }
 
             if (request.ProjectId != 0)
             {
-                obyekts = obyekts.Where(x => x.ProjectId == request.ProjectId).ToList();
+                query = query.Where(x => x.ProjectId == request.ProjectId);
             }
 
             if (request.NumberOfOrderId != 0)
             {
-                obyekts = obyekts.Where(x => x.NumberOfOrderId == request.NumberOfOrderId).ToList();
+                query = query.Where(x => x.NumberOfOrderId == request.NumberOfOrderId);
             }
 
             if (request.ObjectClassificationId != 0)
             {
-                obyekts = obyekts.Where(x => x.ObjectClassId == request.ObjectClassificationId).ToList();
+                query = query.Where(x => x.ObjectClassId == request.ObjectClassificationId);
             }
 
             if (request.ObjectClassificationTypeId != 0)
             {
-                obyekts = obyekts.Where(x => x.ObjectClassTypeId == request.ObjectClassificationTypeId).ToList();
+                query = query.Where(x => x.ObjectClassTypeId == request.ObjectClassificationTypeId);
             }
 
-            if (request.SearchValue != null)
+            if (!string.IsNullOrWhiteSpace(request.SearchValue))
             {
-                obyekts = obyekts
-                    .Where(x => x.NameAndAddress.ToUpper().Contains(request.SearchValue.ToUpper()) || x.Region.Name.ToUpper().Contains(request.SearchValue.ToUpper()))
-                    .ToList();
+                query = query
+                       .Where(x => x.NameAndAddress.ToUpper().Contains(request.SearchValue.ToUpper()) || 
+                       x.Region.Name.ToUpper().Contains(request.SearchValue.ToUpper()));
             }
 
-            obyekts = obyekts.ToList();
+            var pagedResult = await query
+                .OrderBy(x => x.Id)
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .ToListAsync();
 
-            var obyektsResponse = _mapper.Map<List<GetAllObyektsResponse>>(obyekts);
+            var totalRowCount = await query.CountAsync();
+
+            var totalPageCount = _paginator.GetTotalPageCount(request.PageSize, totalRowCount);
+
+            var obyektsResponse = _mapper.Map<List<GetAllObyektsResponse>>(pagedResult);
 
             obyektsResponse = obyektsResponse.Skip(skipRows).Take(request.PageSize).ToList();
 
@@ -101,9 +117,6 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
                     item.Updator = UpdatorUser.UserName;
                 }
             }
-
-            var totalRowCount = await _context.Obyekts.CountAsync();
-            var totalPageCount = _paginator.GetTotalPageCount(request.PageSize, totalRowCount);
 
             var response = new PaginationResponse { Data = obyektsResponse, TotalRowCount = totalRowCount, TotalPageCount = totalPageCount };
 

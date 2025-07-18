@@ -12,6 +12,7 @@ public interface ITechInventoryDB
     public DbSet<Cabel> Cabels { get; set; }
     public DbSet<Camera> Cameras { get; set; }
     public DbSet<District> Districts { get; set; }
+    public DbSet<Street> Streets { get; set; }
     public DbSet<NumberOfOrder> NumberOfOrders { get; set; }
     public DbSet<Obyekt> Obyekts { get; set; }
     public DbSet<Projector> Projectors { get; set; }

@@ -9,6 +9,7 @@ public sealed record UpdateObyektRequest : IRequest<ApiResponse>
     public int Id { get; set; }
     public int RegionId { get; set; }
     public int DistrictId { get; set; }
+    public int StreetId { get; set; }
     public int ProjectId { get; set; }
     public int NumberOfOrderId { get; set; }
     public int ObjectClassId { get; set; }

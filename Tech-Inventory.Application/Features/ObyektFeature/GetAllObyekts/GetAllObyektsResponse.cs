@@ -18,5 +18,6 @@ public sealed record GetAllObyektsResponse
     public string Updator { get; set; }
     public string Region { get; set; }
     public string District { get; set; }
+    public string? Street { get; set; }
     public string Info { get; set; }
 }
