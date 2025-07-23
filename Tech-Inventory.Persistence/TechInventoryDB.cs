@@ -64,6 +64,7 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
     public DbSet<Shell> Shells { get; set; }
     public DbSet<VideoRecorder> VideoRecorders { get; set; }
     public DbSet<MountingBox> MountingBoxs { get; set; }
+    public DbSet<UserToken> UserTokens { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

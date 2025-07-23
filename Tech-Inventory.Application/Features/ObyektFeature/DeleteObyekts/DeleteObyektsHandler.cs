@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Domain.Entities;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Interfaces;
-using Tech_Inventory.Application.Features.RegionFeature.DeleteRegion;
 
 namespace Tech_Inventory.Application.Features.ObyektFeature.DeleteObyekts;
 
@@ -36,7 +35,7 @@ public class DeleteObyektsHandler : IRequestHandler<DeleteObyektsRequest, ApiRes
             _context.Obyekts.RemoveRange(obyekts);
             await _unitOfWork.Save(cancellationToken);
 
-            return ResponseHandler.GetAppResponse(type, new DeleteRegionResponse { Message = "Obyekts have deleted" });
+            return ResponseHandler.GetAppResponse(type, new DeleteObyektsResponse { Message = "Obyekts have deleted" });
         }
         catch (Exception ex)
         {

@@ -4,10 +4,16 @@ public class ResponseHandler
 {
     public static ApiResponse GetExceptionResponse(Exception ex)
     {
+        var message = ex.Message;
+        if (ex.InnerException != null)
+        {
+            message = ex.InnerException.Message;
+        }
+
         ApiResponse response = new ApiResponse();
         response.IsSuccess = false;
         response.IsError = true;
-        response.Data = ex.Message;
+        response.Data = message;
         return response;
     }
 

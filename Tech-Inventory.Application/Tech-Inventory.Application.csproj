@@ -25,8 +25,7 @@
 
   <ItemGroup>
     <Folder Include="Features\AttachmentFeature\GetOneAttachment\" />
-    <Folder Include="Features\GlueFornailFeature\GetOneGlue\" />
-    <Folder Include="Features\GlueFornailFeature\UpdateGlue\" />
+    <Folder Include="Features\RegionFeature\" />
   </ItemGroup>
 
 </Project>

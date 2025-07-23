@@ -1,6 +1,7 @@
 using Tech_Inventory.Application;
 using Tech_Inventory.Persistence;
 using Tech_Inventory.WebApi;
+using Tech_Inventory.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
+
+app.UseMiddleware<TokenValidationMiddleware>();
+
 app.UseAuthorization();
 app.MapControllers();
-app.UseCors("AllowAll");
 app.Run();

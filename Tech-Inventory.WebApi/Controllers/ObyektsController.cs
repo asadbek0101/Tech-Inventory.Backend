@@ -4,7 +4,7 @@ using Tech_Inventory.Application.Features.ObyektFeature.CreateObyekt;
 using Tech_Inventory.Application.Features.ObyektFeature.DeleteObyekt;
 using Tech_Inventory.Application.Features.ObyektFeature.DeleteObyekts;
 using Tech_Inventory.Application.Features.ObyektFeature.GetAllObyekts;
-using Tech_Inventory.Application.Features.ObyektFeature.GetObyektProducts;
+using Tech_Inventory.Application.Features.ObyektFeature.GetObyektLocations;
 using Tech_Inventory.Application.Features.ObyektFeature.GetOneObyekt;
 using Tech_Inventory.Application.Features.ObyektFeature.UpdateObyekt;
 using Tech_Inventory.Application.Features.PdfFeature.ObyektReport;
@@ -19,8 +19,8 @@ public class ObyektsController : BaseController
         return await Mediator.Send(request);
     }
 
-    [HttpGet("GetProductsCounts")]
-    public async Task<ActionResult<ApiResponse>> GetPruducts([FromQuery] GetObyektProductsRequest request)
+    [HttpGet("GetLocations")]
+    public async Task<ActionResult<ApiResponse>> GetLocations([FromQuery] GetLocationsRequest request)
     {
         return await Mediator.Send(request);
     }

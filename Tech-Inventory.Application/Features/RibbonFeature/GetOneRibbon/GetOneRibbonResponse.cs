@@ -1,9 +1,0 @@
-﻿namespace Tech_Inventory.Application.Features.RibbonFeature.GetOneRibbon;
-
-public sealed record GetOneRibbonResponse
-{
-    public int Id { get; set; }
-    public int ObyektId { get; set; }
-    public string Meter { get; set; }
-    public string? Info { get; set; }
-}

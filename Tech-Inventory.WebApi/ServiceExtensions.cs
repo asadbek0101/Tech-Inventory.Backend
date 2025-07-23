@@ -7,6 +7,7 @@ using Tech_Inventory.WebApi.Services;
 using Microsoft.AspNetCore.Identity;
 using Tech_Inventory.Persistence;
 using Tech_Inventory.Domain.IdentityEntities;
+using Tech_Inventory.Application.Common.Settings;
 
 namespace Tech_Inventory.WebApi;
 
@@ -24,6 +25,8 @@ public static class ServiceExtensions
                 policy.AllowAnyOrigin();
             });
         });
+
+        services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
         services.AddTransient<ICurrentUserService, CurrentUserService>();
         services.AddTransient<IMinioService, MinioService>();
@@ -96,10 +99,10 @@ public static class ServiceExtensions
                 ValidateAudience = true,
                 ValidateLifetime = false,
                 ValidateIssuerSigningKey = true,
-                ValidIssuer = configuration["Jwt:Issuer"],
-                ValidAudience = configuration["Jwt:Issuer"],
+                ValidIssuer = configuration["JwtSettings:Issuer"],
+                ValidAudience = configuration["JwtSettings:Issuer"],
 
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:SecretKey"]))
             };
         });
     }

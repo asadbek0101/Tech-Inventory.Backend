@@ -7,6 +7,7 @@ using Tech_Inventory.Application.Common.Interfaces;
 using Tech_Inventory.Application.Common.Helpers;
 using Minio;
 using Microsoft.Extensions.Configuration;
+using Tech_Inventory.Application.Services;
 
 namespace Tech_Inventory.Application;
 
@@ -19,6 +20,8 @@ public static class ServiceExtensions
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddScoped<IPaginator, Paginator>();
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+        services.AddScoped<IUserTokenService, UserTokenService>();
 
         services.AddMinio(configureClient => configureClient
         .WithEndpoint(configuration["Minio:Client"])
