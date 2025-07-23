@@ -101,7 +101,7 @@ public class LoginUserHandler : IRequestHandler<LoginUserRequest, ApiResponse>
               _config["JwtSettings:Issuer"],
               _config["JwtSettings:Audience"],
               claims,
-              expires: DateTime.UtcNow.AddMinutes(30),
+              expires: DateTime.UtcNow.AddMinutes(60),
               signingCredentials: credentials);
 
 

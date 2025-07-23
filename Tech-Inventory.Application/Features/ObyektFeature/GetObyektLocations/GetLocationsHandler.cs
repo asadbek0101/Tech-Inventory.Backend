@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Tech_Inventory.Application.Common.Exceptions;
-using Tech_Inventory.Application.Common.Helpers;
 using Tech_Inventory.Application.Common.Interfaces;
 
 namespace Tech_Inventory.Application.Features.ObyektFeature.GetObyektLocations;
@@ -26,6 +25,41 @@ public class GetLocationsHandler : IRequestHandler<GetLocationsRequest, ApiRespo
             var query = _context
                 .Obyekts
                 .AsQueryable();
+
+            if (request.RegionId != 0)
+            {
+                query = query.Where(x => x.RegionId == request.RegionId);
+            }
+
+            if (request.DistrictId != 0)
+            {
+                query = query.Where(x => x.DistrictId == request.DistrictId);
+            }
+
+            if (request.StreetId != 0)
+            {
+                query = query.Where(x => x.StreetId == request.StreetId);
+            }
+
+            if (request.ProjectId != 0)
+            {
+                query = query.Where(x => x.ProjectId == request.ProjectId);
+            }
+
+            if (request.OrderId != 0)
+            {
+                query = query.Where(x => x.NumberOfOrderId == request.OrderId);
+            }
+
+            if (request.ClassTypeId != 0)
+            {
+                query = query.Where(x => x.ObjectClassTypeId == request.ClassTypeId);
+            }
+
+            if (request.ClassId != 0)
+            {
+                query = query.Where(x => x.ObjectClassId == request.ClassId);
+            }
 
             var locations = await query
                 .OrderBy(x => x.Id)
