@@ -6,5 +6,5 @@ public sealed record GetRegionsListResponse
     public string Name { get; set; }
     public double? Lat { get; set; }
     public double? Lng { get; set; }
-
+    public int? Zoom { get; set; }
 }

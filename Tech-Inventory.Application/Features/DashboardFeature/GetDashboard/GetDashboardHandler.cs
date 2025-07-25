@@ -23,7 +23,7 @@ public class GetDashboardHandler : IRequestHandler<GetDashboardRequest, ApiRespo
         var type = ResponseType.Success;
         try
         {
-            var regions = await _context.Regions.Select(x => new { x.Name, x.Id }).ToListAsync();
+            var regions = await _context.Regions.Select(x => new { x.Name, x.Id }).OrderBy(x => x.Id).ToListAsync();
 
             var classifications = await _context.ObjectClassTypes.Select(x => new { x.Name, x.Id }).ToListAsync();
 
