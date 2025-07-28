@@ -109,9 +109,89 @@ public class CreateObyektHandler : IRequestHandler<CreateObyektRequest, ApiRespo
             cameras.ForEach(x =>
             {
                 x.ObyektId = obyekt.Id;
+                x.CameraType = CameraTypes.Camera;
             });
 
             _context.Cameras.AddRange(cameras);
+            await _unitOfWork.Save(cancellationToken);
+
+            // camera
+
+            var anprCamera = _mapper.Map<List<Camera>>(request.AnprCamera);
+
+            anprCamera.ForEach(x =>
+            {
+                x.ObyektId = obyekt.Id;
+                x.CameraType = CameraTypes.ANPR;
+            });
+
+            _context.Cameras.AddRange(anprCamera);
+            await _unitOfWork.Save(cancellationToken);
+
+            // camera
+
+            var speedCheckingCamera = _mapper.Map<List<Camera>>(request.SpeedCheckingCamera);
+
+            speedCheckingCamera.ForEach(x =>
+            {
+                x.ObyektId = obyekt.Id;
+                x.CameraType = CameraTypes.Radar;
+            });
+
+            _context.Cameras.AddRange(speedCheckingCamera);
+            await _unitOfWork.Save(cancellationToken);
+
+            // camera
+
+            var ptzCamera = _mapper.Map<List<Camera>>(request.PtzCamera);
+
+            ptzCamera.ForEach(x =>
+            {
+                x.ObyektId = obyekt.Id;
+                x.CameraType = CameraTypes.PTZ;
+            });
+
+            _context.Cameras.AddRange(ptzCamera);
+            await _unitOfWork.Save(cancellationToken);
+
+            // camera
+
+            var c327Camera = _mapper.Map<List<Camera>>(request.C327Camera);
+
+            c327Camera.ForEach(x =>
+            {
+                x.ObyektId = obyekt.Id;
+                x.CameraType = CameraTypes.C327;
+            });
+
+            _context.Cameras.AddRange(c327Camera);
+            await _unitOfWork.Save(cancellationToken);
+
+            // camera
+
+            var chqbaCamera = _mapper.Map<List<Camera>>(request.ChqbaCamera);
+
+            chqbaCamera.ForEach(x =>
+            {
+                x.ObyektId = obyekt.Id;
+                x.CameraType = CameraTypes.CHQBA;
+            });
+
+            _context.Cameras.AddRange(chqbaCamera);
+            await _unitOfWork.Save(cancellationToken);
+
+            // camera
+
+
+            var c733Camera = _mapper.Map<List<Camera>>(request.C733Camera);
+
+            c733Camera.ForEach(x =>
+            {
+                x.ObyektId = obyekt.Id;
+                x.CameraType = CameraTypes.C733;
+            });
+
+            _context.Cameras.AddRange(c733Camera);
             await _unitOfWork.Save(cancellationToken);
 
             // connectors
