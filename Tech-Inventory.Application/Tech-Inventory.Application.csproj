@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <Folder Include="Features\AttachmentFeature\GetOneAttachment\" />
+    <Folder Include="Features\DashboardFeature\GetCameraDashboard\" />
   </ItemGroup>
 
 </Project>
