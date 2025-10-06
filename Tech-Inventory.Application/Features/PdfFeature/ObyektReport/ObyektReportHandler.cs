@@ -70,7 +70,7 @@ public class ObyektReportHandler : IRequestHandler<ObyektReportRequest, ObyektRe
             var connectors = await _context.Connectors.Where(x => x.ObyektId == request.Id).ToListAsync();
             var gofraShells = await _context.Shells.Where(x => x.ObyektId == request.Id && x.ShellType == ShellTypes.GofraShell).ToListAsync();
             var boxes = await _context.Boxes.Include(x => x.Model).Where(x => x.ObyektId == request.Id).ToListAsync();
-            var mountingBoxes = await _context.MountingBoxs.Include(x => x.Model).Where(x => x.ObyektId == request.Id).ToListAsync();
+            var mountingBoxes = await _context.MountingBoxes.Include(x => x.Model).Where(x => x.ObyektId == request.Id).ToListAsync();
             var freezers = await _context.Freezers.Where(x => x.ObyektId == request.Id).ToListAsync();
             var ribbons = await _context.Ribbons.Where(x => x.ObyektId == request.Id).ToListAsync();
             var sipHooks = await _context.Hooks.Where(x => x.ObyektId == request.Id && x.HookType == HookTypes.SipHook).ToListAsync();

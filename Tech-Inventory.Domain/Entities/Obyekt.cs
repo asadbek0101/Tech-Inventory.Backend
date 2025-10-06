@@ -55,6 +55,7 @@ public class Obyekt : BaseEntity
     public List<Server> Servers { get; set; }
     public List<Shell> Shells { get; set; }
     public List<VideoRecorder> VideoRecorders { get; set; }
+    public List<MountingBox> MountingBoxes { get; set; }
 
     public List<GPON> GPONs { get; set; }
     public List<FTTX> FTTXes { get; set; }

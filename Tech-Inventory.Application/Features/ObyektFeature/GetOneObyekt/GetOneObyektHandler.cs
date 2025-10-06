@@ -48,6 +48,8 @@ public class GetOneObyektHandler : IRequestHandler<GetOneObyektRequest, ApiRespo
                 .Include(x => x.Freezers)
                 .Include(x => x.GlueForNails)
                 .Include(x => x.Hooks)
+                .Include(x => x.MountingBoxes)
+                    .ThenInclude(x => x.Model)
                 .Include(x => x.Nails)
                 .Include(x => x.Projectors)
                     .ThenInclude(x => x.Model)

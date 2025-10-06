@@ -60,6 +60,7 @@ public class GetOneObyektMapper : Profile
             .ForMember(x => x.SwitchKombo, otp => otp.MapFrom(ex => ex.Switches.Where(x => x.SwitchType == SwitchTypes.SwitchCombo)))
             .ForMember(x => x.TerminalServer, otp => otp.MapFrom(ex => ex.TerminalServers))
             .ForMember(x => x.Ups, otp => otp.MapFrom(ex => ex.Ups))
+            .ForMember(x => x.MountingBox, otp => otp.MapFrom(ex => ex.MountingBoxes))
             .ForMember(x => x.VideoRecorder, otp => otp.MapFrom(ex => ex.VideoRecorders));
 
         CreateMap<Attachment, GetOneObyektFileResponse>()
@@ -69,46 +70,46 @@ public class GetOneObyektMapper : Profile
         CreateMap<Avtomat, AvtomatResponse>()
             .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<Box, BoxResponse>()
-            .ForMember(x => x.Type, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Type, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<Bracket, BracketResponse>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<Cabel, CabelResponse>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<Camera, CameraResponse>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<Connector, ConnectorResponse>();
         CreateMap<Counter, CounterResponse>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<Freezer, FreezerResponse>();
         CreateMap<GlueForNail, GlueResponse>();
         CreateMap<Hook, HookResponse>();
         CreateMap<MountingBox, MountingBoxResponse>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<Nail, NailResponse>();
         CreateMap<Projector, Projector>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<Rack, RackResponse>();
         CreateMap<Ribbon, RibbonResponse>();
         CreateMap<Server, ServerResponse>();
         CreateMap<Shelf, ShelfResponse>()
-            .ForMember(x => x.Brand, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Brand, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<Shell, ShellResponse>();
         CreateMap<Socket, SocketResponse>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<SpeedChecking, SpeedCheckingResponse>();
         CreateMap<Stabilizer, StabilizerResponse>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<Stanchion, StanchionResponse>()
-            .ForMember(x => x.StanchionType, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.StanchionType, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<SvetoforDetector, SvetaforResponse>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<Switch, SwitchResponse>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<TerminalServer, TerminalServerResponse>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<Ups, UpsResponse>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
         CreateMap<VideoRecorder, VideoRecorderResponse>()
-            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name)); ;
+            .ForMember(x => x.Model, otp => otp.MapFrom(ex => ex.Model.Name));
     }
 }

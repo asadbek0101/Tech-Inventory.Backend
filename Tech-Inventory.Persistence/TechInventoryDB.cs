@@ -63,7 +63,7 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
     public DbSet<Server> Servers { get; set; }
     public DbSet<Shell> Shells { get; set; }
     public DbSet<VideoRecorder> VideoRecorders { get; set; }
-    public DbSet<MountingBox> MountingBoxs { get; set; }
+    public DbSet<MountingBox> MountingBoxes { get; set; }
     public DbSet<UserToken> UserTokens { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -210,6 +210,12 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
 
         modelBuilder.Entity<Obyekt>()
                  .HasMany(u => u.Switches)
+                 .WithOne(c => c.Obyekt)
+                 .HasForeignKey(c => c.ObyektId)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Obyekt>()
+                 .HasMany(u => u.MountingBoxes)
                  .WithOne(c => c.Obyekt)
                  .HasForeignKey(c => c.ObyektId)
                  .OnDelete(DeleteBehavior.Cascade);

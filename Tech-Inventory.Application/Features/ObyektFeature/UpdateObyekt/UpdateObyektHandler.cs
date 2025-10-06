@@ -222,6 +222,24 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                     }
                 );
 
+            currenObyekt.MountingBoxes.SyncCollection(
+                    request.MountingBox,
+                    d => d.Id,
+                    e => e.Id,
+                    (entity, d) =>
+                    {
+                        entity.ModelId = d.ModelId;
+                        entity.Count = d.Count;
+                        entity.Info = d.Info;
+                    },
+                    d => new MountingBox
+                    {
+                        ModelId = d.ModelId,
+                        Count = d.Count,
+                        Info = d.Info
+                    }
+                );
+
             currenObyekt.Counters.SyncCollection(
                     request.Counter,
                     d => d.Id,

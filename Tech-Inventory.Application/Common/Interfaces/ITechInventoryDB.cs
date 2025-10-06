@@ -46,7 +46,7 @@ public interface ITechInventoryDB
     public DbSet<Server> Servers { get; set; }
     public DbSet<Shell> Shells { get; set; }
     public DbSet<VideoRecorder> VideoRecorders { get; set; }
-    public DbSet<MountingBox> MountingBoxs { get; set; }
+    public DbSet<MountingBox> MountingBoxes { get; set; }
     public DbSet<UserToken> UserTokens { get; set; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 

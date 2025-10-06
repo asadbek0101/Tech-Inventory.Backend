@@ -277,7 +277,7 @@ public class CreateObyektHandler : IRequestHandler<CreateObyektRequest, ApiRespo
                 x.ObyektId = obyekt.Id;
             });
 
-            _context.MountingBoxs.AddRange(mountingBoxes);
+            _context.MountingBoxes.AddRange(mountingBoxes);
             await _unitOfWork.Save(cancellationToken);
 
             // nail

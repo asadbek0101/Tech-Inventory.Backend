@@ -58,6 +58,7 @@ public sealed record UpdateObyektRequest : IRequest<ApiResponse>
     public List<UpdateStabilizer> Stabilizer { get; set; }
     public List<UpdateStanchion> Stanchion { get; set; }
     public List<UpdateSvetafor> SvetaforDetektor { get; set; }
+    public List<MountingBox> MountingBox { get; set; }
     public List<UpdateSvetafor> SvetaforDetektorForCamera { get; set; }
     public List<UpdateSwitch> SwitchPoe { get; set; }
     public List<UpdateSwitch> SwitchKombo { get; set; }
