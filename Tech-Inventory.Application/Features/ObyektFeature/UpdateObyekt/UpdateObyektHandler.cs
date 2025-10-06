@@ -53,6 +53,7 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                 .Include(x=>x.Switches)
                 .Include(x=>x.TerminalServers)
                 .Include(x=>x.VideoRecorders)
+                .Include(x=>x.MountingBoxes)
                 .Include(x=>x.Ups)
                 .FirstOrDefaultAsync(x => x.Id == request.Id);
 
@@ -642,7 +643,6 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
         }
         catch (Exception ex)
         {
-
             return ResponseHandler.GetExceptionResponse(ex);
         }
     }
