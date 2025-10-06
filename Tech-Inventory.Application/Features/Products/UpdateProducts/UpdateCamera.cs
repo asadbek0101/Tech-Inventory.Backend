@@ -4,6 +4,7 @@ namespace Tech_Inventory.Application.Features.Products.UpdateProducts;
 
 public sealed record UpdateCamera
 {
+    public int Id { get; set; }
     public int ModelId { get; set; }
     public string? Name { get; set; }
     public string SerialNumber { get; set; }

@@ -1,7 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using Tech_Inventory.Domain.IdentityEntities;
-
-namespace Tech_Inventory.Domain.Entities;
+﻿namespace Tech_Inventory.Domain.Entities;
 
 public abstract class BaseEntity
 {

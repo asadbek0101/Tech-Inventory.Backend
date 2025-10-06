@@ -2,6 +2,7 @@
 
 public sealed record UpdateAkumalator
 {
+    public int Id { get; set; }
     public string Power { get; set; }
     public string Count { get; set; }
     public string? Info { get; set; }

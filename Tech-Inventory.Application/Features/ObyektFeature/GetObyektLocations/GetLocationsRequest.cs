@@ -12,4 +12,5 @@ public sealed record GetLocationsRequest : IRequest<ApiResponse>
     public int OrderId { get; set; } = 0;
     public int ClassTypeId { get; set; } = 0;
     public int ClassId { get; set; } = 0;
+    public string? SearchValue { get; set; }
 }

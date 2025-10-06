@@ -2,6 +2,7 @@
 
 public sealed record UpdateBracket
 {
+    public int Id { get; set; }
     public int ModelId { get; set; }
     public string Count { get; set; }
     public string? Info { get; set; }

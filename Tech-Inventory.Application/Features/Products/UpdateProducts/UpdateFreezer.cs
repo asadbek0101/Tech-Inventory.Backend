@@ -2,6 +2,7 @@
 
 public sealed record UpdateFreezer
 {
+    public int Id { get; set; }
     public string Count { get; set; }
     public string? Info { get; set; }
 }

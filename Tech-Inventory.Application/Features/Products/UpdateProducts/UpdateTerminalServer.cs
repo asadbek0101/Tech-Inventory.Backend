@@ -2,6 +2,7 @@
 
 public sealed record UpdateTerminalServer
 {
+    public int Id { get; set; }
     public int ModelId { get; set; }
     public string? Info { get; set; }
 }

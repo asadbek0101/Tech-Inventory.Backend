@@ -61,6 +61,15 @@ public class GetLocationsHandler : IRequestHandler<GetLocationsRequest, ApiRespo
                 query = query.Where(x => x.ObjectClassId == request.ClassId);
             }
 
+            if (!string.IsNullOrWhiteSpace(request.SearchValue))
+            {
+                query = query
+                       .Where(x => x.NameAndAddress.ToUpper().Contains(request.SearchValue.ToUpper()) ||
+                       x.Region.Name.ToUpper().Contains(request.SearchValue.ToUpper()) ||
+                       x.Latitude.Contains(request.SearchValue) ||
+                       x.Longitude.Contains(request.SearchValue));
+            }
+
             var locations = await query
                 .OrderBy(x => x.Id)
                 .ToListAsync();
