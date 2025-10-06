@@ -2,7 +2,7 @@
 
 public sealed record UpdateGlue
 {
-    public int Id { get; set; }
+    public int? Id { get; set; }
     public string CountOfCrate { get; set; }
     public string? Info { get; set; }
 }

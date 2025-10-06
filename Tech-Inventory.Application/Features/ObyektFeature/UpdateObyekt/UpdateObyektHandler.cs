@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Minio.DataModel.Notification;
 using Tech_Inventory.Application.Common.Exceptions;
 using Tech_Inventory.Application.Common.Helpers;
 using Tech_Inventory.Application.Common.Interfaces;
+using Tech_Inventory.Application.Features.Products.UpdateProducts;
 using Tech_Inventory.Domain.Entities;
 
 namespace Tech_Inventory.Application.Features.ObyektFeature.UpdateObyekt;
@@ -143,14 +143,19 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                     }
                 );
 
+            var cabelRequest = new List<UpdateCabel>();
+
+            if(request.UtpCabel != null) cabelRequest.AddRange(request.UtpCabel.Select(d => { d.CabelType = CabelTypes.UTPable; return d; }));
+            if(request.ElectrCabel != null) cabelRequest.AddRange(request.ElectrCabel.Select(d => { d.CabelType = CabelTypes.ElectricCable; return d; }));
+
             currenObyekt.Cabels.SyncCollection(
-                  request.ElectrCabel,
+                  cabelRequest,
                   d => d.Id,
                   e => e.Id,
                   (entity, d) =>
                   {
                       entity.CabelTypeId = d.CabelTypeId;
-                      entity.CabelType = CabelTypes.ElectricCable;
+                      entity.CabelType = d.CabelType;
                       entity.ModelId = d.ModelId;
                       entity.Meter = d.Meter;
                       entity.Info = d.Info;
@@ -158,37 +163,25 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                   d => new Cabel
                   {
                       CabelTypeId = d.CabelTypeId,
-                      CabelType = CabelTypes.ElectricCable,
+                      CabelType = d.CabelType,
                       ModelId = d.ModelId,
                       Meter = d.Meter,
                       Info = d.Info
                   }
               );
 
-            currenObyekt.Cabels.SyncCollection(
-                  request.UtpCabel,
-                  d => d.Id,
-                  e => e.Id,
-                  (entity, d) =>
-                  {
-                      entity.CabelTypeId = d.CabelTypeId;
-                      entity.CabelType = CabelTypes.UTPable;
-                      entity.ModelId = d.ModelId;
-                      entity.Meter = d.Meter;
-                      entity.Info = d.Info;
-                  },
-                  d => new Cabel
-                  {
-                      CabelTypeId = d.CabelTypeId,
-                      CabelType = CabelTypes.UTPable,
-                      ModelId = d.ModelId,
-                      Meter = d.Meter,
-                      Info = d.Info
-                  }
-              );
+            var cameraRequest = new List<UpdateCamera>();
+
+            if (request.Camera != null) cameraRequest.AddRange(request.Camera.Select(d => { d.CameraType = CameraTypes.Camera; return d; }));
+            if (request.AnprCamera != null) cameraRequest.AddRange(request.AnprCamera.Select(d => { d.CameraType = CameraTypes.ANPR; return d; }));
+            if (request.SpeedCheckingCamera != null) cameraRequest.AddRange(request.SpeedCheckingCamera.Select(d => { d.CameraType = CameraTypes.Radar; return d; }));
+            if (request.PtzCamera != null) cameraRequest.AddRange(request.PtzCamera.Select(d => { d.CameraType = CameraTypes.PTZ; return d; }));
+            if (request.C327Camera != null) cameraRequest.AddRange(request.C327Camera.Select(d => { d.CameraType = CameraTypes.C327; return d; }));
+            if (request.ChqbaCamera != null) cameraRequest.AddRange(request.ChqbaCamera.Select(d => { d.CameraType = CameraTypes.CHQBA; return d; }));
+            if (request.C733Camera != null) cameraRequest.AddRange(request.C733Camera.Select(d => { d.CameraType = CameraTypes.C733; return d; }));
 
             currenObyekt.Cameras.SyncCollection(
-                  request.Camera,
+                  cameraRequest,
                   d => d.Id,
                   e => e.Id,
                   (entity, d) =>
@@ -199,7 +192,7 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                       entity.Status = d.Status;
                       entity.ModelId = d.ModelId;
                       entity.SerialNumber = d.SerialNumber;
-                      entity.CameraType = CameraTypes.Camera;
+                      entity.CameraType = d.CameraType;
                   },
                   d => new Camera
                   {
@@ -209,163 +202,7 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                       Status = d.Status,
                       ModelId = d.ModelId,
                       SerialNumber = d.SerialNumber,
-                      CameraType = CameraTypes.Camera,
-                  }
-              );
-
-            currenObyekt.Cameras.SyncCollection(
-                  request.AnprCamera,
-                  d => d.Id,
-                  e => e.Id,
-                  (entity, d) =>
-                  {
-                      entity.Ip = d.Ip;
-                      entity.Info = d.Info;
-                      entity.Name = d.Name;
-                      entity.Status = d.Status;
-                      entity.ModelId = d.ModelId;
-                      entity.SerialNumber = d.SerialNumber;
-                      entity.CameraType = CameraTypes.ANPR;
-                  },
-                  d => new Camera
-                  {
-                      Ip = d.Ip,
-                      Info = d.Info,
-                      Name = d.Name,
-                      Status = d.Status,
-                      ModelId = d.ModelId,
-                      SerialNumber = d.SerialNumber,
-                      CameraType = CameraTypes.ANPR,
-                  }
-              );
-
-            currenObyekt.Cameras.SyncCollection(
-                  request.SpeedCheckingCamera,
-                  d => d.Id,
-                  e => e.Id,
-                  (entity, d) =>
-                  {
-                      entity.Ip = d.Ip;
-                      entity.Info = d.Info;
-                      entity.Name = d.Name;
-                      entity.Status = d.Status;
-                      entity.ModelId = d.ModelId;
-                      entity.SerialNumber = d.SerialNumber;
-                      entity.CameraType = CameraTypes.Radar;
-                  },
-                  d => new Camera
-                  {
-                      Ip = d.Ip,
-                      Info = d.Info,
-                      Name = d.Name,
-                      Status = d.Status,
-                      ModelId = d.ModelId,
-                      SerialNumber = d.SerialNumber,
-                      CameraType = CameraTypes.Radar,
-                  }
-              );
-
-            currenObyekt.Cameras.SyncCollection(
-                  request.PtzCamera,
-                  d => d.Id,
-                  e => e.Id,
-                  (entity, d) =>
-                  {
-                      entity.Ip = d.Ip;
-                      entity.Info = d.Info;
-                      entity.Name = d.Name;
-                      entity.Status = d.Status;
-                      entity.ModelId = d.ModelId;
-                      entity.SerialNumber = d.SerialNumber;
-                      entity.CameraType = CameraTypes.PTZ;
-                  },
-                  d => new Camera
-                  {
-                      Ip = d.Ip,
-                      Info = d.Info,
-                      Name = d.Name,
-                      Status = d.Status,
-                      ModelId = d.ModelId,
-                      SerialNumber = d.SerialNumber,
-                      CameraType = CameraTypes.PTZ,
-                  }
-              );
-
-            currenObyekt.Cameras.SyncCollection(
-                  request.C327Camera,
-                  d => d.Id,
-                  e => e.Id,
-                  (entity, d) =>
-                  {
-                      entity.Ip = d.Ip;
-                      entity.Info = d.Info;
-                      entity.Name = d.Name;
-                      entity.Status = d.Status;
-                      entity.ModelId = d.ModelId;
-                      entity.SerialNumber = d.SerialNumber;
-                      entity.CameraType = CameraTypes.C327;
-                  },
-                  d => new Camera
-                  {
-                      Ip = d.Ip,
-                      Info = d.Info,
-                      Name = d.Name,
-                      Status = d.Status,
-                      ModelId = d.ModelId,
-                      SerialNumber = d.SerialNumber,
-                      CameraType = CameraTypes.C327,
-                  }
-              );
-
-            currenObyekt.Cameras.SyncCollection(
-                  request.ChqbaCamera,
-                  d => d.Id,
-                  e => e.Id,
-                  (entity, d) =>
-                  {
-                      entity.Ip = d.Ip;
-                      entity.Info = d.Info;
-                      entity.Name = d.Name;
-                      entity.Status = d.Status;
-                      entity.ModelId = d.ModelId;
-                      entity.SerialNumber = d.SerialNumber;
-                      entity.CameraType = CameraTypes.CHQBA;
-                  },
-                  d => new Camera
-                  {
-                      Ip = d.Ip,
-                      Info = d.Info,
-                      Name = d.Name,
-                      Status = d.Status,
-                      ModelId = d.ModelId,
-                      SerialNumber = d.SerialNumber,
-                      CameraType = CameraTypes.CHQBA,
-                  }
-              );
-
-            currenObyekt.Cameras.SyncCollection(
-                  request.C733Camera,
-                  d => d.Id,
-                  e => e.Id,
-                  (entity, d) =>
-                  {
-                      entity.Ip = d.Ip;
-                      entity.Info = d.Info;
-                      entity.Name = d.Name;
-                      entity.Status = d.Status;
-                      entity.ModelId = d.ModelId;
-                      entity.SerialNumber = d.SerialNumber;
-                      entity.CameraType = CameraTypes.C733;
-                  },
-                  d => new Camera
-                  {
-                      Ip = d.Ip,
-                      Info = d.Info,
-                      Name = d.Name,
-                      Status = d.Status,
-                      ModelId = d.ModelId,
-                      SerialNumber = d.SerialNumber,
-                      CameraType = CameraTypes.C733,
+                      CameraType = d.CameraType,
                   }
               );
 
@@ -435,39 +272,26 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                     }
                 );
 
-            currenObyekt.Hooks.SyncCollection(
-                    request.CabelHook,
-                    d => d.Id,
-                    e => e.Id,
-                    (entity, d) =>
-                    {
-                        entity.Count = d.Count;
-                        entity.Info = d.Info;
-                        entity.HookType = HookTypes.CabelHook;
-                    },
-                    d => new Hook
-                    {
-                        Count = d.Count,
-                        Info = d.Info,
-                        HookType = HookTypes.CabelHook
-                    }
-                );
+            var hookRequest = new List<UpdateHook>();
+
+            if (request.CabelHook != null) hookRequest.AddRange(request.CabelHook.Select(d => { d.HookType = HookTypes.CabelHook; return d; }));
+            if (request.SipHook != null) hookRequest.AddRange(request.SipHook.Select(d => { d.HookType = HookTypes.SipHook; return d; }));
 
             currenObyekt.Hooks.SyncCollection(
-                    request.SipHook,
+                    hookRequest,
                     d => d.Id,
                     e => e.Id,
                     (entity, d) =>
                     {
                         entity.Count = d.Count;
                         entity.Info = d.Info;
-                        entity.HookType = HookTypes.SipHook;
+                        entity.HookType = d.HookType;
                     },
                     d => new Hook
                     {
                         Count = d.Count,
                         Info = d.Info,
-                        HookType = HookTypes.SipHook
+                        HookType = d.HookType
                     }
                 );
 
@@ -505,30 +329,13 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                     }
                 );
 
-            currenObyekt.Racks.SyncCollection(
-                    request.OdfOpticRack,
-                    d => d.Id,
-                    e => e.Id,
-                    (entity, d) =>
-                    {
-                        entity.NumberOfFibers = d.NumberOfFibers;
-                        entity.TypeOfAdapter = d.TypeOfAdapter;
-                        entity.CountOfPorts = d.CountOfPorts;
-                        entity.Info = d.Info;
-                        entity.RackType = RackTypes.ODFOpticRack;
-                    },
-                    d => new Rack
-                    {
-                        NumberOfFibers = d.NumberOfFibers,
-                        TypeOfAdapter = d.TypeOfAdapter,
-                        CountOfPorts = d.CountOfPorts,
-                        Info = d.Info,
-                        RackType = RackTypes.ODFOpticRack,
-                    }
-                );
+            var rackRequest = new List<UpdateRack>();
+
+            if (request.MiniOpticRack != null) rackRequest.AddRange(request.MiniOpticRack.Select(d => { d.RackType = RackTypes.MiniOpticRack; return d; }));
+            if (request.OdfOpticRack != null) rackRequest.AddRange(request.OdfOpticRack.Select(d => { d.RackType = RackTypes.ODFOpticRack; return d; }));
 
             currenObyekt.Racks.SyncCollection(
-                    request.MiniOpticRack,
+                    rackRequest,
                     d => d.Id,
                     e => e.Id,
                     (entity, d) =>
@@ -537,7 +344,7 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                         entity.TypeOfAdapter = d.TypeOfAdapter;
                         entity.CountOfPorts = d.CountOfPorts;
                         entity.Info = d.Info;
-                        entity.RackType = RackTypes.MiniOpticRack;
+                        entity.RackType = d.RackType;
                     },
                     d => new Rack
                     {
@@ -545,7 +352,7 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                         TypeOfAdapter = d.TypeOfAdapter,
                         CountOfPorts = d.CountOfPorts,
                         Info = d.Info,
-                        RackType = RackTypes.MiniOpticRack,
+                        RackType = d.RackType,
                     }
                 );
 
@@ -581,8 +388,15 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                     }
                 );
 
+            var shelfRequest = new List<UpdateShelf>();
+
+            if (request.CentralTelecomunicationShelf != null) shelfRequest.AddRange(request.CentralTelecomunicationShelf.Select(d => { d.ShelfType = ShelfTypes.CentralTelecommunicationShelf; return d; }));
+            if (request.MainTelecomunicationShelf != null) shelfRequest.AddRange(request.MainTelecomunicationShelf.Select(d => { d.ShelfType = ShelfTypes.MainElectronicShelf; return d; }));
+            if (request.DistributionShelf != null) shelfRequest.AddRange(request.DistributionShelf.Select(d => { d.ShelfType = ShelfTypes.DistributionShelf; return d; }));
+            if (request.TelecomunicationShelf != null) shelfRequest.AddRange(request.TelecomunicationShelf.Select(d => { d.ShelfType = ShelfTypes.TelecommunicationShelf; return d; }));
+
             currenObyekt.Shelves.SyncCollection(
-                    request.CentralTelecomunicationShelf,
+                    shelfRequest,
                     d => d.Id,
                     e => e.Id,
                     (entity, d) =>
@@ -591,7 +405,7 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                         entity.SerialNumber = d.SerialNumber;
                         entity.Number = d.Number;
                         entity.Info = d.Info;
-                        entity.ShelfType = ShelfTypes.CentralTelecommunicationShelf;
+                        entity.ShelfType = d.ShelfType;
                     },
                     d => new Shelf
                     {
@@ -599,109 +413,30 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                         SerialNumber = d.SerialNumber,
                         Number = d.Number,
                         Info = d.Info,
-                        ShelfType = ShelfTypes.CentralTelecommunicationShelf,
+                        ShelfType = d.ShelfType
                     }
                 );
 
-            currenObyekt.Shelves.SyncCollection(
-                    request.MainTelecomunicationShelf,
-                    d => d.Id,
-                    e => e.Id,
-                    (entity, d) =>
-                    {
-                        entity.BrandId = d.BrandId;
-                        entity.SerialNumber = d.SerialNumber;
-                        entity.Number = d.Number;
-                        entity.Info = d.Info;
-                        entity.ShelfType = ShelfTypes.MainElectronicShelf;
-                    },
-                    d => new Shelf
-                    {
-                        BrandId = d.BrandId,
-                        SerialNumber = d.SerialNumber,
-                        Number = d.Number,
-                        Info = d.Info,
-                        ShelfType = ShelfTypes.MainElectronicShelf,
-                    }
-                );
+            var shellRequest = new List<UpdateShell>();
 
-            currenObyekt.Shelves.SyncCollection(
-                   request.DistributionShelf,
-                   d => d.Id,
-                   e => e.Id,
-                   (entity, d) =>
-                   {
-                       entity.BrandId = d.BrandId;
-                       entity.SerialNumber = d.SerialNumber;
-                       entity.Number = d.Number;
-                       entity.Info = d.Info;
-                       entity.ShelfType = ShelfTypes.DistributionShelf;
-                   },
-                   d => new Shelf
-                   {
-                       BrandId = d.BrandId,
-                       SerialNumber = d.SerialNumber,
-                       Number = d.Number,
-                       Info = d.Info,
-                       ShelfType = ShelfTypes.DistributionShelf,
-                   }
-               );
-            
-            currenObyekt.Shelves.SyncCollection(
-                   request.TelecomunicationShelf,
-                   d => d.Id,
-                   e => e.Id,
-                   (entity, d) =>
-                   {
-                       entity.BrandId = d.BrandId;
-                       entity.SerialNumber = d.SerialNumber;
-                       entity.Number = d.Number;
-                       entity.Info = d.Info;
-                       entity.ShelfType = ShelfTypes.TelecommunicationShelf;
-                   },
-                   d => new Shelf
-                   {
-                       BrandId = d.BrandId,
-                       SerialNumber = d.SerialNumber,
-                       Number = d.Number,
-                       Info = d.Info,
-                       ShelfType = ShelfTypes.TelecommunicationShelf,
-                   }
-               );
+            if (request.GofraShell != null) shellRequest.AddRange(request.GofraShell.Select(d => { d.ShellType = ShellTypes.GofraShell; return d; }));
+            if (request.PlasticShell != null) shellRequest.AddRange(request.PlasticShell.Select(d => { d.ShellType = ShellTypes.PlasticShell; return d; }));
 
             currenObyekt.Shells.SyncCollection(
-                    request.GofraShell,
+                    shellRequest,
                     d => d.Id,
                     e => e.Id,
                     (entity, d) =>
                     {
                         entity.Meter = d.Meter;
                         entity.Info = d.Info;
-                        entity.ShellType = ShellTypes.GofraShell;
+                        entity.ShellType = d.ShellType;
                     },
                     d => new Shell
                     {
                         Meter = d.Meter,
                         Info = d.Info,
-                        ShellType = ShellTypes.GofraShell,
-                    }
-                );
-
-            currenObyekt.Shells.SyncCollection(
-                    request.PlasticShell,
-                    d => d.Id,
-                    e => e.Id,
-                    (entity, d) =>
-                    {
-                        entity.Meter = d.Meter;
-                        entity.Info = d.Info;
-                        entity.ShellType = ShellTypes.PlasticShell;
-                    },
-                    d => new Shell
-                    {
-                        Meter = d.Meter,
-                        Info = d.Info,
-                        ShellType = ShellTypes.PlasticShell,
+                        ShellType = d.ShellType,
                     }
                 );
 
@@ -777,8 +512,15 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                    }
                );
 
+           
+
+            var svetaforRequest = new List<UpdateSvetafor>();
+
+            if (request.SvetaforDetektor != null) svetaforRequest.AddRange(request.SvetaforDetektor.Select(d => { d.SvetaforType = SvetaforTypes.SvetaforDetector; return d; }));
+            if (request.SvetaforDetektorForCamera != null) svetaforRequest.AddRange(request.SvetaforDetektorForCamera.Select(d => { d.SvetaforType = SvetaforTypes.SvetaforDetectorForCamera; return d; }));
+
             currenObyekt.SvetoforDetectors.SyncCollection(
-                  request.SvetaforDetektor,
+                  svetaforRequest,
                   d => d.Id,
                   e => e.Id,
                   (entity, d) =>
@@ -786,39 +528,24 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                       entity.ModelId = d.ModelId;
                       entity.CountOfPorts = d.CountOfPorts;
                       entity.Info = d.Info;
-                      entity.SvetaforType = SvetaforTypes.SvetaforDetector;
+                      entity.SvetaforType = d.SvetaforType;
                   },
                   d => new SvetoforDetector
                   {
                       ModelId = d.ModelId,
                       CountOfPorts = d.CountOfPorts,
                       Info = d.Info,
-                      SvetaforType = SvetaforTypes.SvetaforDetector,
+                      SvetaforType = d.SvetaforType,
                   }
               );
 
-            currenObyekt.SvetoforDetectors.SyncCollection(
-                  request.SvetaforDetektorForCamera,
-                  d => d.Id,
-                  e => e.Id,
-                  (entity, d) =>
-                  {
-                      entity.ModelId = d.ModelId;
-                      entity.CountOfPorts = d.CountOfPorts;
-                      entity.Info = d.Info;
-                      entity.SvetaforType = SvetaforTypes.SvetaforDetectorForCamera;
-                  },
-                  d => new SvetoforDetector
-                  {
-                      ModelId = d.ModelId,
-                      CountOfPorts = d.CountOfPorts,
-                      Info = d.Info,
-                      SvetaforType = SvetaforTypes.SvetaforDetectorForCamera,
-                  }
-              );
+            var switchRequest = new List<UpdateSwitch>();
+
+            if (request.SwitchPoe != null) switchRequest.AddRange(request.SwitchPoe.Select(d => { d.SwitchType = SwitchTypes.SwitchPoE; return d; }));
+            if (request.SwitchKombo != null) switchRequest.AddRange(request.SwitchKombo.Select(d => { d.SwitchType = SwitchTypes.SwitchCombo; return d; }));
 
             currenObyekt.Switches.SyncCollection(
-                  request.SwitchPoe,
+                  switchRequest,
                   d => d.Id,
                   e => e.Id,
                   (entity, d) =>
@@ -826,34 +553,14 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
                       entity.ModelId = d.ModelId;
                       entity.CountOfPorts = d.CountOfPorts;
                       entity.Info = d.Info;
-                      entity.SwitchType = SwitchTypes.SwitchPoE;
+                      entity.SwitchType = d.SwitchType;
                   },
                   d => new Switch
                   {
                       ModelId = d.ModelId,
                       CountOfPorts = d.CountOfPorts,
                       Info = d.Info,
-                      SwitchType = SwitchTypes.SwitchPoE
-                  }
-              );
-
-            currenObyekt.Switches.SyncCollection(
-                  request.SwitchKombo,
-                  d => d.Id,
-                  e => e.Id,
-                  (entity, d) =>
-                  {
-                      entity.ModelId = d.ModelId;
-                      entity.CountOfPorts = d.CountOfPorts;
-                      entity.Info = d.Info;
-                      entity.SwitchType = SwitchTypes.SwitchCombo;
-                  },
-                  d => new Switch
-                  {
-                      ModelId = d.ModelId,
-                      CountOfPorts = d.CountOfPorts,
-                      Info = d.Info,
-                      SwitchType = SwitchTypes.SwitchCombo
+                      SwitchType = d.SwitchType
                   }
               );
 

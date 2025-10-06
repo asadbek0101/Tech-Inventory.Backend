@@ -7,6 +7,7 @@ public sealed record GetAllObyektsRequest : IRequest<ApiResponse>
 {
     public int RegionId { get; set; } = 0;
     public int DistrictId { get; set; } = 0;
+    public int StreetId { get; set; } = 0;
     public int ProjectId { get; set; } = 0;
     public int NumberOfOrderId { get; set; } = 0;
     public int CreatedBy { get; set; } = 0;

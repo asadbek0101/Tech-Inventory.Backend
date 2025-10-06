@@ -2,7 +2,7 @@
 
 public sealed record UpdateVideoRecorder
 {
-    public int Id { get; set; }
+    public int? Id { get; set; }
     public int ModelId { get; set; }
     public string? Info { get; set; }
 }

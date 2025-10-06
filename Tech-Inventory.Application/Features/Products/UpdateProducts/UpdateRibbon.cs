@@ -2,7 +2,7 @@
 
 public sealed record UpdateRibbon
 {
-    public int Id { get; set; }
+    public int? Id { get; set; }
     public string Meter { get; set; }
     public string? Info { get; set; }
 }

@@ -39,14 +39,19 @@ public class GetAllObyektsHandler : IRequestHandler<GetAllObyektsRequest, ApiRes
                 .Include(x => x.Streett)
                 .AsQueryable();
 
-            if (request.RegionId != 0)
-            {
-                query = query.Where(x=>x.RegionId == request.RegionId);
-            }
-
             if (request.CreatedBy != 0)
             {
                 query = query.Where(x => x.CreatedBy == request.CreatedBy);
+            }
+
+            if (request.RegionId != 0)
+            {
+                query = query.Where(x => x.RegionId == request.RegionId);
+            }
+
+            if (request.StreetId != 0)
+            {
+                query = query.Where(x => x.StreetId == request.StreetId);
             }
 
             if (request.DistrictId != 0)
