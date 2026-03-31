@@ -63,13 +63,13 @@ public class TokenValidationMiddleware
 
             if (userId != null)
             {
-                var savedToken = await tokenService.GetSavedTokenAsync(Convert.ToInt32(userId));
-                if (savedToken != token)
-                {
-                    context.Response.StatusCode = 401;
-                    await context.Response.WriteAsync("Token is invalid or expired.");
-                    return;
-                }
+                //var savedToken = await tokenService.GetSavedTokenAsync(Convert.ToInt32(userId));
+                //if (savedToken != token)
+                //{
+                //    context.Response.StatusCode = 401;
+                //    await context.Response.WriteAsync("Token is invalid or expired.");
+                //    return;
+                //}
 
                 context.User = principal;
             }
