@@ -8,7 +8,7 @@ using Tech_Inventory.Application.Common.Interfaces;
 using Tech_Inventory.Domain.IdentityEntities;
 
 namespace Tech_Inventory.Application.Features.NumberOfOrderFeature.GetAllNumberOfOrder;
-
+ 
 public class GetAllNumberOfOrdersHandler : IRequestHandler<GetAllNumberOfOrdersRequest, ApiResponse>
 {
     private readonly ITechInventoryDB _context;
