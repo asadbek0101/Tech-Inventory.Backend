@@ -1,7 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using Tech_Inventory.Domain.IdentityEntities;
-
-namespace Tech_Inventory.Domain.Entities;
+﻿namespace Tech_Inventory.Domain.Entities;
 
 public class District : BaseEntity
 {
@@ -11,4 +8,5 @@ public class District : BaseEntity
     public Region Region { get; set; }
     public List<Obyekt> Obyekts { get; set; }
     public List<Street> Streets { get; set; }
+    public List<NumberOfOrder> NumberOfOrders { get; set; }
 }

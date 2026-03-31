@@ -21,10 +21,22 @@ public class GetNumberOfOrdersListHandler : IRequestHandler<GetNumberOfOrdersLis
         var type = ResponseType.Failed;
         try
         {
-            var numberOfOrders = await _context
+            var query = _context
                 .NumberOfOrders
                 .Where(x => x.ProjectId == request.ProjectId)
-                .ToListAsync();
+                .AsQueryable();
+
+            if(request.RegionId != null)
+            {
+                query = query.Where(x => x.RegionId == request.RegionId);
+            }
+
+            if(request.DistrictId != null)
+            {
+                query = query.Where(x => x.DistrictId == request.DistrictId);
+            }
+
+            var numberOfOrders = await query.ToListAsync();
 
             var numberOfOrdersResponse = _mapper.Map<List<GetNumberOfOrdersListResponse>>(numberOfOrders);
 

@@ -31,6 +31,7 @@ public class UpdateNumberOfOrderHandler : IRequestHandler<UpdateNumberOfOrderReq
             {
                 numberOfOrder.Number = request.Number;
                 numberOfOrder.RegionId = request.RegionId;
+                numberOfOrder.DistrictId = request.DistrictId;
                 numberOfOrder.Info = request.Info;
 
                 _context.NumberOfOrders.Update(numberOfOrder);

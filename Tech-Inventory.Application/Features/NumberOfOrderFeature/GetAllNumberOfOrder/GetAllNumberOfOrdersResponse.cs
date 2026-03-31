@@ -10,6 +10,7 @@ public sealed record GetAllNumberOfOrdersResponse
     public int ProjectId { get; set; }
     public string Number { get; set; }
     public string Region { get; set; }
+    public string District { get; set; }
     public string? Info { get; set; }
     public string Creator { get; set; }
     public string Updator { get; set; }

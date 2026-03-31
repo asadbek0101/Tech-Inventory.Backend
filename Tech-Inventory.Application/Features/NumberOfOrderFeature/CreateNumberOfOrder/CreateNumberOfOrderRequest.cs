@@ -7,6 +7,7 @@ public sealed record CreateNumberOfOrderRequest : IRequest<ApiResponse>
 {
     public int ProjectId { get; set; }
     public int RegionId { get; set; }
+    public int? DistrictId { get; set; }
     public string Number { get; set; }
     public string? Info { get; set; }
 }

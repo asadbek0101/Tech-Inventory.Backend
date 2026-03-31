@@ -33,7 +33,6 @@ public class GetObjectsDashboardHandler : IRequestHandler<GetObjectsDashboardReq
                 query = query.Where(x => x.RegionId == request.RegionId);
             }
 
-
             var classificationTypes = await _context.ObjectClassTypes.Select(x => new { x.Name, x.Id }).ToListAsync();
 
             var classifications = new List<ObjectClass>();
@@ -44,7 +43,6 @@ public class GetObjectsDashboardHandler : IRequestHandler<GetObjectsDashboardReq
 
                 query = query.Where(x => x.ObjectClassTypeId == request.ClassTypeId);
             }
-
 
             var projects = await _context.Projects.Select(x => new { x.Name, x.Id }).ToListAsync();
 
@@ -158,10 +156,10 @@ public class GetObjectsDashboardHandler : IRequestHandler<GetObjectsDashboardReq
             }
 
             var response = new GetObjectsDashboardResponse { 
-                Projects = request.ProjectId !=0 ? ordersResponse : projectsResponse, 
-                Regions = request.RegionId != 0 ? districtsResponse : regionsResponse, 
-                Classifications = request.ClassTypeId != 0 ? classificationResponse  : classificationTypesResponse,
-                RegionTitle = request.RegionId != 0 ? "Tumanlar kesimida" : "Viloyatlar kesimida",
+                Projects = request.ProjectId !=0 ? ordersResponse.OrderByDescending(x => x.Value).ToList() : projectsResponse.OrderByDescending(x => x.Value).ToList(), 
+                Regions = request.RegionId != 0 ? districtsResponse.OrderByDescending(x => x.Value).ToList() : regionsResponse.OrderByDescending(x => x.Value).ToList(), 
+                Classifications = request.ClassTypeId != 0 ? classificationResponse.OrderByDescending(x => x.Value).ToList() : classificationTypesResponse.OrderByDescending(x => x.Value).ToList(),
+                RegionTitle = request.RegionId != 0 ? "Tumanlar kesimida" : "Hududlar kesimida",
                 ProjectTitle = request.ProjectId != 0 ? "Buyurtma raqam kesimida" : "Loyihalar kesimida",
                 ClassTitle = request.ClassTypeId != 0 ? "Tasniflar toifasi kesimida" : "Tasniflar kesimida",
             };

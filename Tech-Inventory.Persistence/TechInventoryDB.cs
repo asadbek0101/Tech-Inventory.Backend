@@ -100,6 +100,12 @@ public class TechInventoryDB : IdentityDbContext<ApplicationUser, ApplicationRol
                     .HasForeignKey(c => c.DistrictId)
                     .OnDelete(DeleteBehavior.Cascade);
 
+        modelBuilder.Entity<District>()
+                    .HasMany(u => u.NumberOfOrders)
+                    .WithOne(c => c.District)
+                    .HasForeignKey(c => c.DistrictId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
         modelBuilder.Entity<Region>()
                    .HasMany(u => u.Districts)
                    .WithOne(c => c.Region)
