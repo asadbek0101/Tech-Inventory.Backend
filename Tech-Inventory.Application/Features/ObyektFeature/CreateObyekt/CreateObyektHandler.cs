@@ -194,6 +194,20 @@ public class CreateObyektHandler : IRequestHandler<CreateObyektRequest, ApiRespo
             _context.Cameras.AddRange(c733Camera);
             await _unitOfWork.Save(cancellationToken);
 
+            // camera
+
+
+            var variofakalCamera = _mapper.Map<List<Camera>>(request.VariofakalCamera);
+
+            c733Camera.ForEach(x =>
+            {
+                x.ObyektId = obyekt.Id;
+                x.CameraType = CameraTypes.Variofakal;
+            });
+
+            _context.Cameras.AddRange(c733Camera);
+            await _unitOfWork.Save(cancellationToken);
+
             // connectors
 
             var connectors = _mapper.Map<List<Connector>>(request.Connector);

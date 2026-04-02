@@ -47,6 +47,7 @@ public sealed record GetOneObyektResponse
     public List<CameraResponse> C327Camera { get; set; }
     public List<CameraResponse> ChqbaCamera { get; set; }
     public List<CameraResponse> C733Camera { get; set; }
+    public List<CameraResponse> VariofakalCamera { get; set; }
     public List<ConnectorResponse> Connector { get; set; }
     public List<CounterResponse> Counter { get; set; }
     public List<FreezerResponse> Freezer { get; set; }

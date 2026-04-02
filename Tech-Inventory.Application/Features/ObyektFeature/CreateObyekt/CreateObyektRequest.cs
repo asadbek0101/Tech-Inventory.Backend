@@ -33,6 +33,7 @@ public sealed record CreateObyektRequest : IRequest<ApiResponse>
     public List<CreateCamera>? C327Camera { get; set; }
     public List<CreateCamera>? ChqbaCamera { get; set; }
     public List<CreateCamera>? C733Camera { get; set; }
+    public List<CreateCamera>? VariofakalCamera { get; set; }
     public List<CreateConnector>? Connector { get; set; }
     public List<CreateCounter>? Counter { get; set; }
     public List<CreateFreezer>? Freezer { get; set; }

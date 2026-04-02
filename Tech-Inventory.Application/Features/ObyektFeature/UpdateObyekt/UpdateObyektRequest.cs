@@ -35,6 +35,7 @@ public sealed record UpdateObyektRequest : IRequest<ApiResponse>
     public List<UpdateCamera> C327Camera { get; set; }
     public List<UpdateCamera> ChqbaCamera { get; set; }
     public List<UpdateCamera> C733Camera { get; set; }
+    public List<UpdateCamera> VariofakalCamera { get; set; }
     public List<UpdateConnector> Connector { get; set; }
     public List<UpdateCounter> Counter { get; set; }
     public List<UpdateFreezer> Freezer { get; set; }

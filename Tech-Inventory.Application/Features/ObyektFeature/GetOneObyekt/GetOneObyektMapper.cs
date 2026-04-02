@@ -32,6 +32,7 @@ public class GetOneObyektMapper : Profile
             .ForMember(x => x.C327Camera, otp => otp.MapFrom(ex => ex.Cameras.Where(x => x.CameraType == CameraTypes.C327)))
             .ForMember(x => x.ChqbaCamera, otp => otp.MapFrom(ex => ex.Cameras.Where(x => x.CameraType == CameraTypes.CHQBA)))
             .ForMember(x => x.C733Camera, otp => otp.MapFrom(ex => ex.Cameras.Where(x => x.CameraType == CameraTypes.C733)))
+            .ForMember(x => x.VariofakalCamera, otp => otp.MapFrom(ex => ex.Cameras.Where(x => x.CameraType == CameraTypes.Variofakal)))
             .ForMember(x => x.Connector, otp => otp.MapFrom(ex => ex.Connectors))
             .ForMember(x => x.Counter, otp => otp.MapFrom(ex => ex.Counters))
             .ForMember(x => x.Freezer, otp => otp.MapFrom(ex => ex.Freezers))

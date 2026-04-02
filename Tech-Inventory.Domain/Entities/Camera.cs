@@ -23,4 +23,5 @@ public enum CameraTypes
     C327 = 5,
     CHQBA = 6,
     C733 = 7,
+    Variofakal = 8
 }

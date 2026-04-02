@@ -180,6 +180,7 @@ public class UpdateObyektHandler : IRequestHandler<UpdateObyektRequest, ApiRespo
             if (request.C327Camera != null) cameraRequest.AddRange(request.C327Camera.Select(d => { d.CameraType = CameraTypes.C327; return d; }));
             if (request.ChqbaCamera != null) cameraRequest.AddRange(request.ChqbaCamera.Select(d => { d.CameraType = CameraTypes.CHQBA; return d; }));
             if (request.C733Camera != null) cameraRequest.AddRange(request.C733Camera.Select(d => { d.CameraType = CameraTypes.C733; return d; }));
+            if (request.VariofakalCamera != null) cameraRequest.AddRange(request.VariofakalCamera.Select(d => { d.CameraType = CameraTypes.Variofakal; return d; }));
 
             currenObyekt.Cameras.SyncCollection(
                   cameraRequest,
